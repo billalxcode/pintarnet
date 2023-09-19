@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Operator\OperatorController;
 use App\Http\Controllers\Operator\SiswaController;
+use App\Http\Controllers\Operator\TenagaKependidikanController;
 use App\Http\Controllers\Operator\TenagaPendidikController;
+use App\Http\Controllers\Operator\RuanganController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['auth', 'role:operator']], function() {
@@ -16,5 +18,15 @@ Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['aut
     Route::group(['prefix' => 'tenaga-pendidik', 'as' => 'tenaga-pendidik.'], function () {
         Route::get('', [TenagaPendidikController::class, 'index'])->name('home');
         Route::post('store', [TenagaPendidikController::class, 'store'])->name('store');
+    });
+
+    Route::group(['prefix' => 'tenaga-kependidikan', 'as' => 'tenaga-kependidikan.'], function() {
+        Route::get('', [TenagaKependidikanController::class, 'index'])->name('home');
+        Route::post('store', [TenagaKependidikanController::class, 'store'])->name('store');
+    });
+
+    Route::group(['prefix' => 'ruangan', 'as' => 'ruangan.'], function() {
+        Route::get('', [RuanganController::class, 'index'])->name('home');
+        Route::post('store', [RuanganController::class, 'store'])->name('store');
     });
 });

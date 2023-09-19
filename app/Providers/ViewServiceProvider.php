@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Ruangan;
 use App\Models\Siswa;
+use App\Models\TenagaKependidikan;
 use App\Models\TenagaPendidik;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -23,9 +25,9 @@ class ViewServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $total_siswa = Siswa::all()->count();
-        $total_ruangan = 0;
+        $total_ruangan = Ruangan::all()->count();
         $total_tenaga_pendidik = TenagaPendidik::all()->count();
-        $total_tenaga_kependidikan = 0;
+        $total_tenaga_kependidikan = TenagaKependidikan::all()->count();
 
         View::share('total_siswa', $total_siswa);
         View::share('total_ruangan', $total_ruangan);

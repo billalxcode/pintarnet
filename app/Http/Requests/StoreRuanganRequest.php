@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class StoreTenagaKependidikanRequest extends FormRequest
+class StoreRuanganRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class StoreTenagaKependidikanRequest extends FormRequest
     {
         return [
             'nama' => 'required|string',
-            'alamat' => 'required|string',
-            'kontak' => 'required|string',
-            'jabatan' => 'required|string'
+            'keterangan' => 'required|string'
         ];
     }
 }

@@ -51,10 +51,10 @@
                             <a class="dropdown-item" href="{{ route('operator.tenaga-pendidik.home') }}">
                                 Tenaga Pendidik
                             </a>
-                            <a class="dropdown-item" href="./cookie-banner.html">
+                            <a class="dropdown-item" href="{{ route('operator.tenaga-kependidikan.home') }}">
                                 Tenaga Kependidikan
                             </a>
-                            <a class="dropdown-item" href="ruangan">
+                            <a class="dropdown-item" href="{{ route('operator.ruangan.home') }}">
                                 Ruangan
                             </a>
                         </div>

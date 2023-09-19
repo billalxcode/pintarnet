@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Operator;
 
+use App\Http\Controllers\Controller;
 use App\Models\TenagaKependidikan;
 use App\Http\Requests\StoreTenagaKependidikanRequest;
 use App\Http\Requests\UpdateTenagaKependidikanRequest;
@@ -13,7 +14,11 @@ class TenagaKependidikanController extends Controller
      */
     public function index()
     {
-        //
+        $data_tenaga_kependidikan = TenagaKependidikan::all();
+
+        return view('operator.tenaga-kependidikan.home', [
+            'data_tenaga_kependidikan' => $data_tenaga_kependidikan
+        ]);
     }
 
     /**
@@ -29,7 +34,11 @@ class TenagaKependidikanController extends Controller
      */
     public function store(StoreTenagaKependidikanRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        TenagaKependidikan::create($validated);
+
+        return redirect()->back()->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
