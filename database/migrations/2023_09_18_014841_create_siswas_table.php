@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('agama')->nullable();
             $table->string('kontak_siswa')->nullable();
             $table->text('alamat');
-            
+
             $table->timestamps();
         });
     }

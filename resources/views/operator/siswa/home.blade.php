@@ -57,7 +57,7 @@
                                         <th>NIS</th>
                                         <th>NISN</th>
                                         <th>Nama Lengkap</th>
-                                        <th>Kelas</th>
+                                        <th>Ruangan</th>
                                         <th>Created</th>
                                         <th></th>
                                     </tr>
@@ -72,7 +72,7 @@
                                             <span class="text-muted">{{ $data->nisn ?? 'Belum diisi' }}</span>
                                         </td>
                                         <td>{{ $data->nama }}</td>
-                                        <td>{{ $data->kelas ?? 'Belum diisi' }}</td>
+                                        <td>{{ $data->ruangan->nama ?? 'Belum diisi' }}</td>
                                         <td>{{ $data->created_at }}</td>
                                         <td class="text-end">
                                             <span class="dropdown">
@@ -190,6 +190,18 @@
                             <div class="mb-3">
                                 <label class="form-label">Alamat</label>
                                 <input type="text" class="form-control" name="alamat" placeholder="Alamat" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label for="form-label">Ruangan</label>
+                                <select name="ruangan_id" id="ruangan_id" class="form-control">
+                                    @foreach ($data_ruangan as $ruangan)
+                                        <option value="{{ $ruangan->id }}">{{ $ruangan->nama }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>

@@ -13,6 +13,10 @@ class Siswa extends Model
         'nis', 'nisn', 'nik', 'nama',
         'tempat_lahir', 'tanggal_lahir',
         'jk', 'tahun_masuk', 'agama', 'kontak_siswa',
-        'alamat'
+        'alamat', 'ruangan_id'
     ];
+
+    public function ruangan() {
+        return $this->hasOne(Ruangan::class, 'id', 'ruangan_id');
+    }
 }

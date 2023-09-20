@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-            RolePermission::class
+            RolePermission::class,
+            RuanganSeeder::class
         ]);
         $userOperator = \App\Models\User::factory()->create([
             'name' => 'Operator',

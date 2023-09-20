@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Siswa;
 use App\Http\Requests\StoreSiswaRequest;
 use App\Http\Requests\UpdateSiswaRequest;
+use App\Models\Ruangan;
 
 class SiswaController extends Controller
 {
@@ -15,9 +16,11 @@ class SiswaController extends Controller
     public function index()
     {
         $data_siswa = Siswa::all();
+        $data_ruangan = Ruangan::all();
 
         return view('operator.siswa.home', [
-            'siswa' => $data_siswa
+            'siswa' => $data_siswa,
+            'data_ruangan' => $data_ruangan
         ]);
     }
 
