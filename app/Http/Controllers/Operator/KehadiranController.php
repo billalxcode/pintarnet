@@ -35,7 +35,7 @@ class KehadiranController extends Controller
      */
     public function store(StoreKehadiranRequest $request)
     {
-        //
+        
     }
 
     /**
@@ -57,9 +57,19 @@ class KehadiranController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateKehadiranRequest $request, Kehadiran $kehadiran)
+    public function update(UpdateKehadiranRequest $request, $kehadiran_id)
     {
-        //
+        $validated = $request->validated();
+
+        $record = Kehadiran::where('id', $kehadiran_id);
+
+        if ($record->exists()) {
+            $record->update($validated);
+
+            return redirect()->back()->with('success', 'data berhasil diupdate');
+        } else {
+            return redirect()->back()->with('error', 'data gagal diupdate, id tidak ditemukan');
+        }
     }
 
     /**

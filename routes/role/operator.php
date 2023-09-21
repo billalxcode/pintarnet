@@ -28,7 +28,7 @@ Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['aut
     Route::group(['prefix' => 'tenaga-kependidikan', 'as' => 'tenaga-kependidikan.'], function() {
         Route::get('', [TenagaKependidikanController::class, 'index'])->name('home');
         Route::post('store', [TenagaKependidikanController::class, 'store'])->name('store');
-        Route::delete('destroy/{dataId}', [TenagaKependidikan::class, 'destroy'])->name('destroy');
+        Route::delete('destroy/{dataId}', [TenagaKependidikanController::class, 'destroy'])->name('destroy');
     });
 
     Route::group(['prefix' => 'ruangan', 'as' => 'ruangan.'], function() {
@@ -38,6 +38,7 @@ Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['aut
 
     Route::group(['prefix' => 'kehadiran', 'as' => 'kehadiran.'], function () {
         Route::get('', [KehadiranController::class, 'index'])->name('home');
+        Route::put('update/{dataId}', [KehadiranController::class, 'update'])->name('update');
     });
 
     Route::group(['prefix' => 'perizinan', 'as' => 'perizinan.'], function() {

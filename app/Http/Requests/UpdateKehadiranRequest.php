@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateKehadiranRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateKehadiranRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -22,7 +23,8 @@ class UpdateKehadiranRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'status' => 'required|in:hadir,izin,sakit,alpha',
+            'keterangan' => 'string'
         ];
     }
 }
