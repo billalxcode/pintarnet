@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\TenagaKependidikan;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +17,6 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call([
             RolePermission::class,
-            RuanganSeeder::class
         ]);
         $userOperator = \App\Models\User::factory()->create([
             'name' => 'Operator',
@@ -24,8 +25,12 @@ class DatabaseSeeder extends Seeder
         $userOperator->assignRole('operator');
 
         $this->call([
+            RuanganSeeder::class,
             SiswaSeeder::class,
-            TenagaPendidikSeeder::class
+            TenagaPendidikSeeder::class,
+            TenagaKependidikanSeeder::class,
+            PerizinanSeeder::class,
+            KehadiranSeeder::class
         ]);
     }
 }

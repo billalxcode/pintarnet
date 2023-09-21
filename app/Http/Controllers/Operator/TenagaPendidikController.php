@@ -68,8 +68,15 @@ class TenagaPendidikController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TenagaPendidik $tenagaPendidik)
+    public function destroy($dataId)
     {
-        //
+        $record = TenagaPendidik::where('id', $dataId);
+
+        if ($record->exists()) {
+            $record->delete();
+            return redirect()->back()->with('success', 'data berhasil dihapus');
+        } else {
+            return redirect()->back()->with('error', 'data gagal dihapus. id tidak ditemukan');
+        }
     }
 }

@@ -7,17 +7,16 @@
         <div class="row g-2 align-items-center">
             <div class="col">
                 <div class="page-pretitle">
-                    Tenaga Kependidikan
+                    Kehadiran
                 </div>
                 <h2 class="page-title">
                     Kelola Data
                 </h2>
             </div>
             <!-- Page title actions -->
-            <div class="col-auto ms-auto d-print-none">
+            <!-- <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
                     <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-new-data">
-                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M12 5l0 14" />
@@ -26,7 +25,6 @@
                         New Data
                     </a>
                     <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal" data-bs-target="#modal-report" aria-label="Create new report">
-                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M12 5l0 14" />
@@ -34,7 +32,7 @@
                         </svg>
                     </a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -55,27 +53,43 @@
                                 <thead>
                                     <tr>
                                         <th>Nama</th>
-                                        <th>Alamat</th>
-                                        <th>Kontak</th>
-                                        <th>Jabatan</th>
+                                        <th>Status</th>
+                                        <th>Ruangan</th>
+                                        <th>Keterangan</th>
                                         <th>Created</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data_tenaga_kependidikan as $data)
+                                    @foreach ($data_kehadiran as $data)
                                     <tr>
-                                        <td>{{ $data->nama }}</td>
-                                        <td>{{ $data->alamat ?? 'Belum diisi' }}</td>
-                                        <td>{{ $data->kontak }}</td>
-                                        <td>{{ $data->jabatan ?? 'Belum diisi' }}</td>
+                                        <td>{{ $data->siswa->nama }}</td>
+                                        <td>
+                                            @if ($data->status == "hadir")
+                                                <span class="badge bg-success">HADIR</span>
+                                            @elseif ($data->status == "izin")
+                                                <span class="badge bg-info">IZIN</span>
+                                            @elseif ($data->status == "sakit")
+                                                <span class="badge bg-warning">SAKIT</span>
+                                            @else
+                                                <span class="badge bg-danger">ALPHA</span>
+                                            @endif
+                                        </td>
+                                        <td>{{ $data->siswa->ruangan->nama ?? 'Tidak diketahui' }}</td>
+                                        <td>{{ $data->keterangan ?? 'Tidak Diketahui' }}</td>
                                         <td>{{ $data->created_at }}</td>
-                                        <td class="text-start">
-                                            <form action="{{ route('operator.tenaga-kependidikan.destroy', $data->id) }}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger" type="submit">Delete</button>
-                                            </form>
+                                        <td class="text-end">
+                                            <span class="dropdown">
+                                                <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
+                                                <div class="dropdown-menu dropdown-menu-end">
+                                                    <a class="dropdown-item" href="#">
+                                                        Update
+                                                    </a>
+                                                    <a class="dropdown-item" href="#">
+                                                        Delete
+                                                    </a>
+                                                </div>
+                                            </span>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -99,31 +113,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('operator.tenaga-kependidikan.store') }}" method="post" id="form-save">
+                <form action="{{ route('operator.ruangan.store') }}" method="post" id="form-save">
                     @csrf
                     <div class="mb-3">
-                        <label class="form-label">Nama lengkap</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Nama lengkap">
+                        <label class="form-label">Nama ruangan</label>
+                        <input type="text" class="form-control" name="nama" placeholder="Nama Ruangan">
                     </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="mb-3">
-                                <label class="form-label">Alamat</label>
-                                <input type="text" class="form-control" name="alamat" placeholder="Alamat" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="mb-3">
-                                <label class="form-label">Kontak</label>
-                                <input type="text" class="form-control" name="kontak" placeholder="Kontak" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="mb-3">
-                                <label class="form-label">Jabatan</label>
-                                <input type="text" class="form-control" name="jabatan" placeholder="Jabatan" autocomplete="off">
-                            </div>
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label">Keterangan</label>
+                        <input type="text" class="form-control" name="keterangan" placeholder="Keterangan">
                     </div>
                 </form>
             </div>

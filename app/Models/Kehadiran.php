@@ -13,4 +13,12 @@ class Kehadiran extends Model
         'siswa_id', 'status',
         'entered_by', 'keterangan'
     ];
+
+    public function siswa() {
+        return $this->hasOne(Siswa::class, 'id', 'siswa_id');
+    }
+
+    public function entered() {
+        return $this->hasOne(Siswa::class, 'id', 'entered_by');
+    }
 }

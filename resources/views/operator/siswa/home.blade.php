@@ -74,18 +74,14 @@
                                         <td>{{ $data->nama }}</td>
                                         <td>{{ $data->ruangan->nama ?? 'Belum diisi' }}</td>
                                         <td>{{ $data->created_at }}</td>
-                                        <td class="text-end">
-                                            <span class="dropdown">
-                                                <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="#">
-                                                        Update
-                                                    </a>
-                                                    <a class="dropdown-item" href="#">
-                                                        Delete
-                                                    </a>
-                                                </div>
-                                            </span>
+                                        <td class="text-start">
+                                            <form action="{{ route('operator.siswa.destroy', $data->id) }}" method="post" id="{{ 'siswa-' . $data->id }}">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <!-- <input type="hidden" name="id" value="{{ $data->id }}"> -->
+                                                <button class="btn btn-danger" type="submit">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach

@@ -71,8 +71,14 @@ class SiswaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Siswa $siswa)
+    public function destroy($siswa_id)
     {
-        //
+        $record = Siswa::where('id', $siswa_id);
+        if ($record->exists()) {
+            $record->delete();
+            return redirect()->back()->with('success', 'data berhasil dihapus');
+        } else {
+            return redirect()->back()->with('error', 'data gagal dihapus. id tidak ditemukan');
+        }
     }
 }

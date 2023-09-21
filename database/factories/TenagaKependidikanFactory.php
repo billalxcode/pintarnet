@@ -17,7 +17,10 @@ class TenagaKependidikanFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nama' => fake('id_ID')->name(),
+            'alamat' => fake('id_ID')->address(),
+            'kontak' => fake('id_ID')->phoneNumber(),
+            'jabatan' => 'Tata usaha'
         ];
     }
 }

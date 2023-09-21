@@ -75,7 +75,7 @@
                             </span>
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="./layout-horizontal.html">
+                            <a class="dropdown-item" href="{{ route('operator.kehadiran.home') }}">
                                 Kelola Kehadiran
                             </a>
                             <a class="dropdown-item" href="./layout-boxed.html">

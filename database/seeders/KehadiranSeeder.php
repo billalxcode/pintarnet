@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Kehadiran;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,6 @@ class KehadiranSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Kehadiran::factory(50)->create();
     }
 }

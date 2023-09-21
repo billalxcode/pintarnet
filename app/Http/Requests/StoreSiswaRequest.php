@@ -31,7 +31,8 @@ class StoreSiswaRequest extends FormRequest
             'jk' => 'required|string|in:pria,wanita',
             'tahun_masuk' => 'required|integer|min:1990|max:2023',
             'agama' => 'required|string',
-            'alamat' => 'required|string'
+            'alamat' => 'required|string',
+            'ruangan_id' => 'required|exists:ruangans,id'
         ];
     }
 }

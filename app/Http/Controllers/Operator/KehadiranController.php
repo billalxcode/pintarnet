@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Operator;
 
+use App\Http\Controllers\Controller;
 use App\Models\Kehadiran;
 use App\Http\Requests\StoreKehadiranRequest;
 use App\Http\Requests\UpdateKehadiranRequest;
+use Carbon\Carbon;
 
 class KehadiranController extends Controller
 {
@@ -13,7 +15,11 @@ class KehadiranController extends Controller
      */
     public function index()
     {
-        //
+        $data_kehadirans = Kehadiran::whereDate('created_at', Carbon::today('Asia/Jakarta'))->get();
+        
+        return view('operator.kehadiran.home', [
+            'data_kehadiran' => $data_kehadirans
+        ]);
     }
 
     /**

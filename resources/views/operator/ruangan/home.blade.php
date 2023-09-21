@@ -7,10 +7,10 @@
         <div class="row g-2 align-items-center">
             <div class="col">
                 <div class="page-pretitle">
-                    Siswa
+                    Ruangan
                 </div>
                 <h2 class="page-title">
-                    Kelola Siswa
+                    Kelola Data
                 </h2>
             </div>
             <!-- Page title actions -->
