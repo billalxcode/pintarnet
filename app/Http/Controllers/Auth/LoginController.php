@@ -24,4 +24,12 @@ class LoginController extends Controller
             return redirect()->back()->with('error', 'incorrect email or password');
         }
     }
+
+    public function logout() {
+        Auth::logout();
+
+        session()->regenerate();
+
+        return redirect()->route('auth.login.home');
+    }
 }

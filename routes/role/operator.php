@@ -7,6 +7,7 @@ use App\Http\Controllers\Operator\SiswaController;
 use App\Http\Controllers\Operator\TenagaKependidikanController;
 use App\Http\Controllers\Operator\TenagaPendidikController;
 use App\Http\Controllers\Operator\RuanganController;
+use App\Http\Controllers\Operator\UserController;
 use App\Models\TenagaKependidikan;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,10 @@ Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['aut
     Route::group(['prefix' => 'kehadiran', 'as' => 'kehadiran.'], function () {
         Route::get('', [KehadiranController::class, 'index'])->name('home');
         Route::put('update/{dataId}', [KehadiranController::class, 'update'])->name('update');
+    });
+
+    Route::group(['prefix' => 'users', 'as' => 'user.'], function () {
+        Route::get('', [UserController::class, 'index'])->name('home');
     });
 
     Route::group(['prefix' => 'perizinan', 'as' => 'perizinan.'], function() {
