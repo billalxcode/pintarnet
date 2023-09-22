@@ -50,7 +50,7 @@
                             </span>
                         </a>
                     </li>
-                    <li class="nav-item dropdown {{ Route::is('operator.tenaga-pendidik.home') ? 'active' : (Route::is('operator.tenaga-kependidikan.home') ? 'active' : '') }}">
+                    <li class="nav-item dropdown {{ Route::is('operator.tenaga-pendidik.home') ? 'active' : (Route::is('operator.tenaga-kependidikan.home') ? 'active' : (Route::is('operator.ruangan.home') ? 'active' : '')) }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-school" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -91,7 +91,7 @@
                             </span>
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{ route('operator.kehadiran.home') }}">
+                            <a class="dropdown-item {{ Route::is('operator.kehadiran.home') ? 'active' : '' }}" href="{{ route('operator.kehadiran.home') }}">
                                 Kelola Kehadiran
                             </a>
                             <a class="dropdown-item" href="./layout-boxed.html">
