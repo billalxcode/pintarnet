@@ -16,4 +16,15 @@ class UserController extends Controller
             'data_users' => $data_users
         ]);
     }
+
+    public function destroy($user_id) {
+        $record = User::where('id', $user_id)->get()->except(Auth::user()->id);
+        $recordQuery = $record->toQuery();
+        if ($recordQuery->exists()) {
+            $recordQuery->delete();
+            return redirect()->back()->with('success', 'data berhasil dihapus');
+        } else {
+            return redirect()->back()->with('error', 'data gagal dihapus');
+        }
+    }
 }

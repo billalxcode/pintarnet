@@ -23,7 +23,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'operator@admin.com',
         ]);
         $userOperator->assignRole('operator');
-
+        
+        $userRuangan = \App\Models\User::factory(10)->create();
+        foreach ($userRuangan as $userR) {
+            $userR->assignRole("ruangan");
+        }
+        
         $this->call([
             RuanganSeeder::class,
             SiswaSeeder::class,
