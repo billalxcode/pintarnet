@@ -57,6 +57,7 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Ruangan</th>
+                                        <th>Roles</th>
                                         <th>Created</th>
                                         <th></th>
                                     </tr>
@@ -71,6 +72,7 @@
                                             <span class="text-muted">{{ $data->email ?? 'Belum diisi' }}</span>
                                         </td>
                                         <td>{{ $data->ruangan->nama ?? 'Belum diisi' }}</td>
+                                        <td class="text-uppercase">{{ $data->role }}</td>
                                         <td>{{ $data->created_at }}</td>
                                         <td class="text-start">
                                             <form action="{{ route('operator.user.destroy', $data->id) }}" method="post" id="{{ 'siswa-' . $data->id }}">
@@ -103,88 +105,34 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('operator.siswa.store') }}" method="post" id="form-save">
+                <form action="{{ route('operator.user.store') }}" method="post" id="form-save">
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Nama lengkap</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Nama siswa">
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="mb-3">
-                                <label class="form-label">NIS</label>
-                                <input type="text" class="form-control" name="nis" placeholder="NIS" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="mb-3">
-                                <label class="form-label">NISN</label>
-                                <input type="text" class="form-control" name="nisn" placeholder="NISN" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="mb-3">
-                                <label class="form-label">NIK</label>
-                                <input type="text" class="form-control" name="nik" placeholder="nik" autocomplete="off">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="mb-3">
-                                <label class="form-label">Tempat Lahir</label>
-                                <input type="text" class="form-control" name="tempat_lahir" placeholder="Tempat Lahir" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="mb-3">
-                                <label class="form-label">Tanggal Lahir</label>
-                                <input type="date" class="form-control" name="tanggal_lahir" placeholder="NISN" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="mb-3">
-                                <label class="form-label">Jenis Kelamin</label>
-                                <select name="jk" id="jk" class="form-control">
-                                    <option value="pria">Laki-laki</option>
-                                    <option value="wanita">Perempuan</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="mb-3">
-                                <label class="form-label">Kontak Siswa</label>
-                                <input type="text" class="form-control" name="kontak_siswa" placeholder="Email/Telepon" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="mb-3">
-                                <label class="form-label">Tahun Masuk</label>
-                                <input type="number" class="form-control" name="tahun_masuk" placeholder="Tahun Masuk" autocomplete="off" min="1900" max="2023">
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="mb-3">
-                                <label class="form-label">Agama</label>
-                                <select name="agama" id="agama" class="form-control">
-                                    <option value="islam">Islam</option>
-                                    <option value="kristen">Kristen</option>
-                                    <option value="katolik">Katolik</option>
-                                    <option value="hindu">Hindu</option>
-                                    <option value="buddha">Buddha</option>
-                                    <option value="konghucu">Konghucu</option>
-                                </select>
-                            </div>
-                        </div>
+                        <input type="text" class="form-control" name="nama" placeholder="Nama user">
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="mb-3">
-                                <label class="form-label">Alamat</label>
-                                <input type="text" class="form-control" name="alamat" placeholder="Alamat" autocomplete="off">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" name="email" placeholder="Email" autocomplete="off">
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="text" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <label for="role">Role</label>
+                            <select name="role" id="role" class="form-control">
+                                @foreach ($data_roles as $role)
+                                    <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </form>

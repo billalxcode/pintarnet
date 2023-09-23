@@ -44,6 +44,7 @@ Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['aut
 
     Route::group(['prefix' => 'users', 'as' => 'user.'], function () {
         Route::get('', [UserController::class, 'index'])->name('home');
+        Route::post('store', [UserController::class, 'store'])->name('store');
         Route::delete('destroy/{dataId}', [UserController::class, 'destroy'])->name('destroy');
     });
 

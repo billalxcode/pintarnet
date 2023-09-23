@@ -3,18 +3,39 @@
 namespace App\Http\Controllers\Operator;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
     public function index() {
         $data_users = User::all()->except(Auth::user()->id);
-        
+        $data_users->map(function($data) {
+            $roles = $data->getRoleNames();
+            $role = collect($roles)->implode(",");
+            $data->setAttribute('role', $role);
+            return $data;
+        });
+        $data_roles = Role::all();
+
         return view('operator.user.home', [
-            'data_users' => $data_users
+            'data_users' => $data_users,
+            'data_roles' => $data_roles
         ]);
+    }
+
+    public function store(StoreUserRequest $storeUserRequest) {
+        $validated = $storeUserRequest->validated();
+        dd($validated);
+        $user = User::create($validated);
+        $user->assignRole($validated->role);
+
+        return redirect()->back()->with('success', 'data berhasil disimpan');
     }
 
     public function destroy($user_id) {
