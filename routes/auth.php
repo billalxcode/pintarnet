@@ -18,12 +18,12 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'auth'], func
 
         if ($role === 'operator') {
             return redirect()->route('operator.home');
-        } else if ($role === 'siswa') {
+        } else if ($role === 'ruangan') {
             return redirect()->route('ruangan.home');
         } else if ($role === 'guru') {
             return redirect()->route('guru.home');
         }
-    });
+    })->name('redirect');
 
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 });
