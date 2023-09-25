@@ -10,6 +10,10 @@ class Ruangan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama', 'keterangan'
+        'nama', 'keterangan', 'user_id'
     ];
+
+    public function user() {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

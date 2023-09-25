@@ -7,10 +7,10 @@
         <div class="row g-2 align-items-center">
             <div class="col">
                 <div class="page-pretitle">
-                    Ruangan
+                    Users
                 </div>
                 <h2 class="page-title">
-                    Kelola Data
+                    Kelola Users
                 </h2>
             </div>
             <!-- Page title actions -->
@@ -47,29 +47,35 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Siswa</h3>
+                        <h3 class="card-title">Data Users</h3>
                     </div>
                     <div class="card-body border-bottom py-3">
                         <div class="table-responsive">
                             <table class="table card-table table-vcenter text-nowrap datatable">
                                 <thead>
                                     <tr>
-                                        <th>Nama</th>
-                                        <th>Keterangan</th>
-                                        <th>User</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Connected Ruangan</th>
+                                        <th>Roles</th>
                                         <th>Created</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data_ruangan as $data)
+                                    @foreach ($data_users as $data)
                                     <tr>
-                                        <td>{{ $data->nama }}</td>
-                                        <td>{{ $data->keterangan ?? 'Belum diisi' }}</td>
-                                        <td>{{ $data->user->name ?? 'Tidak diketahui' }}</td>
+                                        <td>
+                                            <span class="text-muted">{{ $data->name ?? 'Belum diisi' }}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-muted">{{ $data->email ?? 'Belum diisi' }}</span>
+                                        </td>
+                                        <td>{{ $data->ruangan->nama ?? 'Belum diisi' }}</td>
+                                        <td class="text-uppercase">{{ $data->role }}</td>
                                         <td>{{ $data->created_at }}</td>
                                         <td class="text-start">
-                                            <form action="{{ route('operator.ruangan.destroy', $data->id) }}" method="post" id="{{ 'siswa-' . $data->id }}">
+                                            <form action="{{ route('operator.user.destroy', $data->id) }}" method="post" id="{{ 'siswa-' . $data->id }}">
                                                 @csrf
                                                 @method('DELETE')
 
@@ -99,23 +105,35 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('operator.ruangan.store') }}" method="post" id="form-save">
+                <form action="{{ route('operator.user.store') }}" method="post" id="form-save">
                     @csrf
                     <div class="mb-3">
-                        <label class="form-label">Nama ruangan</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Nama Ruangan">
+                        <label class="form-label">Nama lengkap</label>
+                        <input type="text" class="form-control" name="nama" placeholder="Nama user">
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Keterangan</label>
-                        <input type="text" class="form-control" name="keterangan" placeholder="Keterangan">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" name="email" placeholder="Email" autocomplete="off">
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="user_id" class="form-label">Connect user</label>
-                        <select name="user_id" id="user_id" class="form-control">
-                            @foreach($data_users as $users)
-                                <option value="{{ $users->id }}">{{ $users->name }} - {{ $users->email }}</option>
-                            @endforeach
-                        </select>
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="text" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <label for="role">Role</label>
+                            <select name="role" id="role" class="form-control">
+                                @foreach ($data_roles as $role)
+                                    <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </form>
             </div>

@@ -35,6 +35,7 @@ Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['aut
     Route::group(['prefix' => 'ruangan', 'as' => 'ruangan.'], function() {
         Route::get('', [RuanganController::class, 'index'])->name('home');
         Route::post('store', [RuanganController::class, 'store'])->name('store');
+        Route::delete('destroy/{ruanganId}', [RuanganController::class, 'destroy'])->name('destroy');
     });
 
     Route::group(['prefix' => 'kehadiran', 'as' => 'kehadiran.'], function () {
@@ -44,6 +45,8 @@ Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['aut
 
     Route::group(['prefix' => 'users', 'as' => 'user.'], function () {
         Route::get('', [UserController::class, 'index'])->name('home');
+        Route::post('store', [UserController::class, 'store'])->name('store');
+        Route::delete('destroy/{dataId}', [UserController::class, 'destroy'])->name('destroy');
     });
 
     Route::group(['prefix' => 'perizinan', 'as' => 'perizinan.'], function() {

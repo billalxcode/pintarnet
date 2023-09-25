@@ -19,7 +19,7 @@ class LoginController extends Controller
         $logged = Auth::attempt($credentials);
         if ($logged) {
             $loginRequest->session()->regenerate();
-            return redirect()->route('operator.home');
+            return redirect()->route('auth.redirect');
         } else {
             return redirect()->back()->with('error', 'incorrect email or password');
         }

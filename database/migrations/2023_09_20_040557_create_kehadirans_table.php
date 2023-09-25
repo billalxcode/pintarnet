@@ -19,8 +19,8 @@ return new class extends Migration
             $table->unsignedBigInteger('entered_by');
             $table->string('keterangan');
             
-            $table->foreign('siswa_id')->references('id')->on('siswas');
-            $table->foreign('entered_by')->references('id')->on('siswas');
+            $table->foreign('siswa_id')->references('id')->on('siswas')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('entered_by')->references('id')->on('siswas')->onUpdate('cascade')->onDelete('cascade');
 
             $table->index('siswa_id');
             $table->index('entered_by');

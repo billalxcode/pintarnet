@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->text('keterangan');
-            
+            $table->unsignedBigInteger('user_id')->nullable();
+
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->index('user_id');
             $table->timestamps();
         });
     }
@@ -25,6 +28,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('ruangans', function(Blueprint $table) {
+            $table->dropConstrainedForeignId('user_id');
+        });
         Schema::dropIfExists('ruangans');
     }
 };

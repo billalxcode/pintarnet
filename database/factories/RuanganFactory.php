@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +19,8 @@ class RuanganFactory extends Factory
     {
         return [
             'nama' => fake('id_ID')->word(),
-            'keterangan' => fake('id_ID')->sentence(3)
+            'keterangan' => fake('id_ID')->sentence(3),
+            'user_id' => User::role('ruangan')->get()->random()
         ];
     }
 }

@@ -23,6 +23,14 @@ return new class extends Migration
             $table->dateTime('exit_at');
             $table->dateTime('entry_at');
             $table->dateTime('return_at');
+
+            $table->foreign('siswa_id')->references('id')->on('siswas')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('guru_id')->references('id')->on('tenaga_pendidiks')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('guru_piket_id')->references('id')->on('tenaga_kependidikans')->onUpdate('cascade')->onDelete('cascade');
+
+            $table->index('siswa_id');
+            $table->index('guru_id');
+            $table->index('guru_piket_id');
             $table->timestamps();
         });
     }
@@ -32,6 +40,11 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('perizinans', function (Blueprint $table) {
+            $table->dropConstrainedForeignId('siswa_id');
+            $table->dropConstrainedForeignId('guru_id');
+            $table->dropConstrainedForeignId('guru_piket_id');
+        });
         Schema::dropIfExists('perizinans');
     }
 };
