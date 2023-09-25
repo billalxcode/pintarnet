@@ -56,7 +56,7 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Email</th>
-                                        <th>Ruangan</th>
+                                        <th>Connected Ruangan</th>
                                         <th>Roles</th>
                                         <th>Created</th>
                                         <th></th>

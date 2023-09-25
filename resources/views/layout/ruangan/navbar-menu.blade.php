@@ -3,8 +3,8 @@
         <div class="navbar">
             <div class="container-xl">
                 <ul class="navbar-nav">
-                    <li class="nav-item {{ Route::is('operator.home') ? 'active' : '' }}">
-                        <a class="nav-link" href="./">
+                    <li class="nav-item {{ Route::is('ruangan.home') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('ruangan.home') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -18,8 +18,8 @@
                             </span>
                         </a>
                     </li>
-                    <li class="nav-item {{ Route::is('operator.siswa.home') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('operator.siswa.home') }}">
+                    <li class="nav-item {{ Route::is('ruangan.siswa.home') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('ruangan.siswa.home') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
