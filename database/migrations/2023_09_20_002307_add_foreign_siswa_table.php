@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('siswas', function(Blueprint $table) {
             $table->unsignedBigInteger('ruangan_id')->after('alamat')->nullable();
 
-            $table->foreign('ruangan_id')->references('id')->on('ruangans');
+            $table->foreign('ruangan_id')->references('id')->on('ruangans')->onUpdate('cascade')->onDelete('cascade');
             $table->index('ruangan_id');
         });
     }

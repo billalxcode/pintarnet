@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Ruangan;
 use App\Http\Requests\StoreRuanganRequest;
 use App\Http\Requests\UpdateRuanganRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class RuanganController extends Controller
 {
@@ -15,9 +17,11 @@ class RuanganController extends Controller
     public function index()
     {
         $data_ruangan = Ruangan::all();
-
+        $data_users = User::role('ruangan')->get();
+        
         return view('operator.ruangan.home', [
-            'data_ruangan' => $data_ruangan
+            'data_ruangan' => $data_ruangan,
+            'data_users' => $data_users
         ]);
     }
 
@@ -68,8 +72,15 @@ class RuanganController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Ruangan $ruangan)
+    public function destroy($ruangan_id)
     {
-        //
+        $record = Ruangan::where('id', $ruangan_id);
+
+        if ($record->exists()) {
+            $record->delete();
+            return redirect()->back()->with('success', 'data berhasil dihapus');
+        } else {
+            return redirect()->back()->with('error', 'data gagal dihapus, id tidak ditemukan');
+        }
     }
 }

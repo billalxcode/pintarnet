@@ -56,6 +56,7 @@
                                     <tr>
                                         <th>Nama</th>
                                         <th>Keterangan</th>
+                                        <th>User</th>
                                         <th>Created</th>
                                         <th></th>
                                     </tr>
@@ -65,19 +66,16 @@
                                     <tr>
                                         <td>{{ $data->nama }}</td>
                                         <td>{{ $data->keterangan ?? 'Belum diisi' }}</td>
+                                        <td>{{ $data->user->name ?? 'Tidak diketahui' }}</td>
                                         <td>{{ $data->created_at }}</td>
-                                        <td class="text-end">
-                                            <span class="dropdown">
-                                                <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="#">
-                                                        Update
-                                                    </a>
-                                                    <a class="dropdown-item" href="#">
-                                                        Delete
-                                                    </a>
-                                                </div>
-                                            </span>
+                                        <td class="text-start">
+                                            <form action="{{ route('operator.ruangan.destroy', $data->id) }}" method="post" id="{{ 'siswa-' . $data->id }}">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <!-- <input type="hidden" name="id" value="{{ $data->id }}"> -->
+                                                <button class="btn btn-danger" type="submit">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -110,6 +108,14 @@
                     <div class="mb-3">
                         <label class="form-label">Keterangan</label>
                         <input type="text" class="form-control" name="keterangan" placeholder="Keterangan">
+                    </div>
+                    <div class="mb-3">
+                        <label for="user_id" class="form-label">Connect user</label>
+                        <select name="user_id" id="user_id" class="form-control">
+                            @foreach($data_users as $users)
+                                <option value="{{ $users->id }}">{{ $users->name }} - {{ $users->email }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </form>
             </div>
