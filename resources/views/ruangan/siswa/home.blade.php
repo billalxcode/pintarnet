@@ -22,7 +22,7 @@
     <div class="container-xl">
         <div class="row row-deck row-cards">
             @include('partials.alert')
-            @include('layout.operator.data-information')
+            @include('layout.ruangan.data-information')
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">

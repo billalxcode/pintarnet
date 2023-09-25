@@ -16,14 +16,14 @@ return new class extends Migration
 
             $table->unsignedBigInteger('siswa_id');
             $table->enum('status', ['hadir', 'izin', 'sakit', 'alpha'])->default('alpha');
-            $table->unsignedBigInteger('entered_by');
+            $table->unsignedBigInteger('ruangan_id');
             $table->string('keterangan');
             
             $table->foreign('siswa_id')->references('id')->on('siswas')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('entered_by')->references('id')->on('siswas')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('ruangan_id')->references('id')->on('ruangans')->onUpdate('cascade')->onDelete('cascade');
 
             $table->index('siswa_id');
-            $table->index('entered_by');
+            $table->index('ruangan_id');
 
             $table->timestamps();
         });
@@ -36,7 +36,7 @@ return new class extends Migration
     {
         Schema::table('kehadirans', function (Blueprint $table) {
             $table->dropConstrainedForeignId('siswa_id');
-            $table->dropConstrainedForeignId('entered_by');
+            $table->dropConstrainedForeignId('ruangan_id');
         });
         Schema::dropIfExists('kehadirans');
     }
