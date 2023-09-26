@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Ruangan;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreKehadiranAbsenRequest;
 use App\Models\Kehadiran;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,16 @@ class KehadiranController extends Controller
         ]);
     }
 
-    public function absen(StoreKehadiranAbsenRequest $requst) {
-        
+    public function absen(StoreKehadiranAbsenRequest $request) {
+        $validated = $request->validated();
+        $kehadiran = Kehadiran::whereDate('created_at', Carbon::today())
+            ->where('siswa_id', $validated->siswa_id);
+        dd($kehadiran->exists());
+        if ($kehadiran->exists()) {
+            return redirect()->back()->with('error', 'siswa sudah diabsen');
+        }
+        Kehadiran::create($validated);
+
+        return redirect()->back()->with('status', 'siswa berhasil absen');
     }
 }

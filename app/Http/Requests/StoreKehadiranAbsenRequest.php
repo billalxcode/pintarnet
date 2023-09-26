@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreKehadiranAbsenRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class StoreKehadiranAbsenRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -22,7 +23,9 @@ class StoreKehadiranAbsenRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'siswa_id' => 'required|exists:siswas,id',
+            'status' => 'required|string|in:hadir,izin,sakit,alpha',
+            'keterangan' => 'string'
         ];
     }
 }

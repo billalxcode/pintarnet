@@ -14,5 +14,6 @@ Route::group(['prefix' => 'ruangan', 'as' => 'ruangan.', 'middleware' => ['auth'
 
     Route::group(['prefix' => 'kehadiran', 'as' => 'kehadiran.'], function() {
         Route::get('', [KehadiranController::class, 'index'])->name('home');
+        Route::post('absen', [KehadiranController::class, 'absen'])->name('absen');
     });
 });

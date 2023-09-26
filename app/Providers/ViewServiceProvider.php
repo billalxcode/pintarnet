@@ -17,8 +17,6 @@ use Illuminate\Support\ServiceProvider;
 
 class ViewServiceProvider extends ServiceProvider
 {
-    protected $user;
-    
     /**
      * Register services.
      */
