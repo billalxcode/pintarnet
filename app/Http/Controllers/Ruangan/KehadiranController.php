@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Ruangan;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreKehadiranAbsenRequest;
 use App\Models\Kehadiran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,5 +16,9 @@ class KehadiranController extends Controller
         return view('ruangan.kehadiran.home', [
             'data_kehadiran' => $data_kehadiran
         ]);
+    }
+
+    public function absen(StoreKehadiranAbsenRequest $requst) {
+        
     }
 }
