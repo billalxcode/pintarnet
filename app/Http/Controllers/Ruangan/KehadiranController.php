@@ -21,9 +21,10 @@ class KehadiranController extends Controller
 
     public function absen(StoreKehadiranAbsenRequest $request) {
         $validated = $request->validated();
+        
         $kehadiran = Kehadiran::whereDate('created_at', Carbon::today())
-            ->where('siswa_id', $validated->siswa_id);
-        dd($kehadiran->exists());
+            ->where('siswa_id', $validated['siswa_id']);
+        
         if ($kehadiran->exists()) {
             return redirect()->back()->with('error', 'siswa sudah diabsen');
         }

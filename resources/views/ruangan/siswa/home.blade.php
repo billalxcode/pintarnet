@@ -67,6 +67,7 @@
                                                             <form action="{{ route('ruangan.kehadiran.absen') }}" method="post" id="form-save">
                                                                 @csrf
                                                                 <input type="hidden" name="siswa_id" value="{{ $data->id }}">
+                                                                <input type="hidden" name="ruangan_id" value="{{ $data->ruangan->id }}">
                                                                 <div class="mb-3">
                                                                     <label for="status">Status</label>
                                                                     <select name="status" id="status" class="form-control">

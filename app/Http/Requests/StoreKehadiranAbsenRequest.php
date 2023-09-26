@@ -24,6 +24,7 @@ class StoreKehadiranAbsenRequest extends FormRequest
     {
         return [
             'siswa_id' => 'required|exists:siswas,id',
+            'ruangan_id' => 'required|exists:ruangans,id',
             'status' => 'required|string|in:hadir,izin,sakit,alpha',
             'keterangan' => 'string'
         ];
