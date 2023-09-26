@@ -11,14 +11,14 @@ class Kehadiran extends Model
 
     protected $fillable = [
         'siswa_id', 'status',
-        'entered_by', 'keterangan'
+        'ruangan_id', 'keterangan'
     ];
 
     public function siswa() {
         return $this->hasOne(Siswa::class, 'id', 'siswa_id');
     }
 
-    public function entered() {
-        return $this->hasOne(Siswa::class, 'id', 'entered_by');
+    public function ruangan() {
+        return $this->hasOne(Ruangan::class, 'id', 'ruangan_id');
     }
 }

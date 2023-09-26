@@ -7,13 +7,12 @@
         <div class="row g-2 align-items-center">
             <div class="col">
                 <div class="page-pretitle">
-                    Siswa
+                    Kehadiran
                 </div>
                 <h2 class="page-title">
-                    Kelola Siswa
+                    Kelola Data
                 </h2>
             </div>
-
         </div>
     </div>
 </div>
@@ -26,55 +25,61 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Siswa</h3>
+                        <h3 class="card-title">Data Kehadiran</h3>
                     </div>
                     <div class="card-body border-bottom py-3">
                         <div class="table-responsive">
                             <table class="table card-table table-vcenter text-nowrap datatable">
                                 <thead>
                                     <tr>
-                                        <th>NIS</th>
-                                        <th>NISN</th>
-                                        <th>Nama Lengkap</th>
+                                        <th>Nama</th>
+                                        <th>Status</th>
                                         <th>Ruangan</th>
+                                        <th>Keterangan</th>
                                         <th>Created</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($siswa as $data)
+                                    @foreach ($data_kehadiran as $data)
                                     <tr>
+                                        <td>{{ $data->siswa->nama }}</td>
                                         <td>
-                                            <span class="text-muted">{{ $data->nis ?? 'Belum diisi' }}</span>
+                                            @if ($data->status == "hadir")
+                                            <span class="badge bg-success">HADIR</span>
+                                            @elseif ($data->status == "izin")
+                                            <span class="badge bg-info">IZIN</span>
+                                            @elseif ($data->status == "sakit")
+                                            <span class="badge bg-warning">SAKIT</span>
+                                            @else
+                                            <span class="badge bg-danger">ALPHA</span>
+                                            @endif
                                         </td>
-                                        <td>
-                                            <span class="text-muted">{{ $data->nisn ?? 'Belum diisi' }}</span>
-                                        </td>
-                                        <td>{{ $data->nama }}</td>
-                                        <td>{{ $data->ruangan->nama ?? 'Belum diisi' }}</td>
+                                        <td>{{ $data->siswa->ruangan->nama ?? 'Tidak diketahui' }}</td>
+                                        <td>{{ $data->keterangan ?? 'Tidak Diketahui' }}</td>
                                         <td>{{ $data->created_at }}</td>
-                                        <td class="text-start">
-                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-absen-{{ $data->id}}">Absen</button>
+                                        <td class="text-end">
+                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-update-{{ $data->id }}">Edit</button>
+
                                             @push('modals')
-                                            <div class="modal modal-blur fade" id="modal-absen-{{ $data->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal modal-blur fade" id="modal-update-{{ $data->id }}" tabindex="-1" role="dialog" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title">Absen {{ $data->nama ?? 'Tidak diketahui' }}</h5>
+                                                            <h5 class="modal-title">Update {{ $data->siswa->nama ?? 'Tidak diketahui' }}</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form action="{{ route('ruangan.kehadiran.absen') }}" method="post" id="form-save">
+                                                            <form action="{{ route('operator.kehadiran.update', $data->id) }}" method="post" id="form-save">
                                                                 @csrf
-                                                                <input type="hidden" name="siswa_id" value="{{ $data->id }}">
-                                                                <input type="hidden" name="ruangan_id" value="{{ $data->ruangan->id }}">
+                                                                @method('PUT')
                                                                 <div class="mb-3">
                                                                     <label for="status">Status</label>
                                                                     <select name="status" id="status" class="form-control">
-                                                                        <option value="hadir">Hadir</option>
-                                                                        <option value="izin">Izin</option>
-                                                                        <option value="sakit">Sakit</option>
-                                                                        <option value="alpha">Alpha</option>
+                                                                        <option value="hadir" {{ $data->status == 'hadir' ? 'selected' : ''}}>Hadir</option>
+                                                                        <option value="izin" {{ $data->status == 'izin' ? 'selected' : ''}}>Izin</option>
+                                                                        <option value="sakit" {{ $data->status == 'sakit' ? 'selected' : ''}}>Sakit</option>
+                                                                        <option value="alpha" {{ $data->status == 'alpha' ? 'selected' : ''}}>Alpha</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="mb-3">
@@ -115,7 +120,6 @@
 @endsection
 
 @push('modals')
-
 @endpush
 
 @push('scripts')

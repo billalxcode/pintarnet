@@ -8,6 +8,7 @@ use App\Models\Siswa;
 use App\Models\TenagaKependidikan;
 use App\Models\TenagaPendidik;
 use Carbon\Carbon;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
@@ -23,39 +24,42 @@ class ViewServiceProvider extends ServiceProvider
     {
         //
     }
-
+    
     /**
      * Bootstrap services.
      */
-    public function boot(): void
+    public function boot(Guard $auth): void
     {
-        $this->share_data_operator();
-        $this->share_data_ruangan();
+        $this->share_data_operator($auth);
+        $this->share_data_ruangan($auth);
     }
     
-    public function share_data_ruangan() {
-        $total_hadir = 0;
-        $total_sakit = 0;
-        $total_izin = 0;
-        $total_alpha = 0;
+    public function share_data_ruangan(Guard $auth) {
+        View::composer("*", function($view) {
+            $total_hadir = 0;
+            $total_sakit = 0;
+            $total_izin = 0;
+            $total_alpha = 0;
 
-        $user = Auth::user();
-        if ($user && Schema::hasTable('ruangans')) {
-            $ruangan = $user->ruangan;
-            $base_query = Kehadiran::where('ruangan_id', $ruangan->id)->whereDate('created_at', Carbon::now('Asia/Jakarta'));
-            $total_hadir = $base_query->where('status', 'hadir')->get();
-            $total_sakit = $base_query->where('status', 'sakit')->get();
-            $total_izin = $base_query->where('status', 'izin')->get();
-            $total_alpha = $base_query->where('status', 'alpha')->get();
-        }
+            $user = Auth::user();
+            
+            if ($user) {
+                $ruangan = $user->ruangan;
+                
+                $total_hadir = Kehadiran::whereDate('created_at', Carbon::today('Asia/Jakarta'))->where(['ruangan_id' => $ruangan->id, 'status' => 'hadir'])->get()->count();
+                $total_sakit = Kehadiran::whereDate('created_at', Carbon::today('Asia/Jakarta'))->where(['ruangan_id' => $ruangan->id, 'status' => 'sakit'])->get()->count();
+                $total_izin = Kehadiran::whereDate('created_at', Carbon::today('Asia/Jakarta'))->where(['ruangan_id' => $ruangan->id, 'status' => 'izin'])->get()->count();
+                $total_alpha = Kehadiran::whereDate('created_at', Carbon::today('Asia/Jakarta'))->where(['ruangan_id' => $ruangan->id, 'status' => 'alpha'])->get()->count();
+            }
 
-        View::share('ruangan_total_hadir', $total_hadir);
-        View::share('ruangan_total_sakit', $total_sakit);
-        View::share('ruangan_total_izin', $total_izin);
-        View::share('ruangan_total_alpha', $total_alpha);
+            $view->with('ruangan_total_hadir', $total_hadir);
+            $view->with('ruangan_total_sakit', $total_sakit);
+            $view->with('ruangan_total_izin', $total_izin);
+            $view->with('ruangan_total_alpha', $total_alpha);
+        });
     }
 
-    public function share_data_operator() {
+    public function share_data_operator(Guard $auth) {
         $total_siswa = 0;
         $total_ruangan = 0;
         $total_tenaga_pendidik = 0;

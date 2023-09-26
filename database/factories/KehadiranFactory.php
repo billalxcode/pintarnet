@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Ruangan;
 use App\Models\Siswa;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
@@ -18,10 +19,13 @@ class KehadiranFactory extends Factory
      */
     public function definition(): array
     {
+        $ruangan = Ruangan::all()->random();
+        $siswa = Siswa::where('ruangan_id', $ruangan->id)->get()->random();
+        
         return [
-            'siswa_id' => Siswa::all()->random()->id,
+            'siswa_id' => $siswa->id,
             'status' => Arr::random(['hadir', 'izin', 'sakit', 'alpha']),
-            'entered_by' => Siswa::all()->random()->id,
+            'ruangan_id' => $ruangan->id,
             'keterangan' => fake('id_ID')->sentence()
         ];
     }

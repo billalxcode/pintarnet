@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('siswa_id');
             $table->enum('status', ['hadir', 'izin', 'sakit', 'alpha'])->default('alpha');
             $table->unsignedBigInteger('ruangan_id');
-            $table->string('keterangan');
+            $table->string('keterangan')->nullable();
             
             $table->foreign('siswa_id')->references('id')->on('siswas')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('ruangan_id')->references('id')->on('ruangans')->onUpdate('cascade')->onDelete('cascade');
