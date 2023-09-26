@@ -30,6 +30,6 @@ class KehadiranController extends Controller
         }
         Kehadiran::create($validated);
 
-        return redirect()->back()->with('status', 'siswa berhasil absen');
+        return redirect()->back()->with('success', 'siswa berhasil absen');
     }
 }

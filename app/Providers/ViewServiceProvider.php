@@ -44,9 +44,9 @@ class ViewServiceProvider extends ServiceProvider
         $total_alpha = 0;
 
         $user = Auth::user();
-        $ruangan = $user->ruangan;
-
-        if ($ruangan) {
+        
+        if ($user && $user->ruangan) {
+            $ruangan = $user->ruangan;
 
             $total_hadir = Kehadiran::whereDate('created_at', Carbon::today('Asia/Jakarta'))->where(['ruangan_id' => $ruangan->id, 'status' => 'hadir'])->get()->count();
             $total_sakit = Kehadiran::whereDate('created_at', Carbon::today('Asia/Jakarta'))->where(['ruangan_id' => $ruangan->id, 'status' => 'sakit'])->get()->count();
