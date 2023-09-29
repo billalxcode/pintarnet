@@ -43,6 +43,11 @@
     <div class="container-xl">
         <div class="row row-deck row-cards">
             @include('partials.alert')
+            @if (isset($message))
+            <div class="alert alert-info">
+                {{ $errors }}
+            </div>
+            @endif
             @include('layout.operator.data-information')
             <div class="col-12">
                 <div class="card">

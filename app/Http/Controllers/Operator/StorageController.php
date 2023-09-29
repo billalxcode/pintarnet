@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Storage;
 use App\Http\Requests\StoreStorageRequest;
 use App\Http\Requests\UpdateStorageRequest;
+use Illuminate\Support\Facades\Storage as FacadesStorage;
 
 class StorageController extends Controller
 {
@@ -34,7 +35,25 @@ class StorageController extends Controller
      */
     public function store(StoreStorageRequest $request)
     {
-        $request->file('file');
+        $request->validated();
+        $file = $request->file('file');
+        $type = $request->post("type");
+        $path = '';
+        dd($path);
+        if ($type == "photo") {
+            $path = FacadesStorage::disk('public')->put('photossb', $file);  
+        } else {
+            $path = FacadesStorage::disk('public')->put('documents', $file);
+        }
+        dd($path);
+        Storage::create([
+            'name' => $request->name,
+            'path' => $path,
+            'status' => $request->status,
+            'type' => $type
+        ]);
+
+        return redirect()->back()->with('success', 'data berhasil disimpan');
     }
 
     /**
