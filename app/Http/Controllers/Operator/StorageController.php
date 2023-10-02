@@ -39,13 +39,11 @@ class StorageController extends Controller
         $file = $request->file('file');
         $type = $request->post("type");
         $path = '';
-        dd($path);
         if ($type == "photo") {
             $path = FacadesStorage::disk('public')->put('photossb', $file);  
         } else {
             $path = FacadesStorage::disk('public')->put('documents', $file);
         }
-        dd($path);
         Storage::create([
             'name' => $request->name,
             'path' => $path,

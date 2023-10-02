@@ -62,6 +62,7 @@
                                         <th>Nama</th>
                                         <th>Filename</th>
                                         <th>Type</th>
+                                        <th>Status</th>
                                         <th>Created</th>
                                         <th></th>
                                     </tr>
@@ -69,9 +70,12 @@
                                 <tbody>
                                     @foreach ($data_storage as $data)
                                     <tr>
-                                        <td>{{ $data->nama }}</td>
-                                        <td>{{ $data->keterangan ?? 'Belum diisi' }}</td>
-                                        <td>{{ $data->user->name ?? 'Tidak diketahui' }}</td>
+                                        <td>{{ $data->name }}</td>
+                                        <td>{{ $data->path ?? 'Belum diisi' }}</td>
+                                        <td class="text-uppercase">{{ $data->type ?? 'Tidak diketahui' }}</td>
+                                        <td>
+                                            <span class="badge {{ $data->status == 'public' ? 'bg-success' : 'bg-danger'}}">{{ $data->status }}</span>
+                                        </td>
                                         <td>{{ $data->created_at }}</td>
                                         <td class="text-start">
                                             <form action="{{ route('operator.ruangan.destroy', $data->id) }}" method="post" id="{{ 'siswa-' . $data->id }}">
@@ -104,7 +108,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('operator.storage.store') }}" method="post" id="form-save">
+                <form action="{{ route('operator.storage.store') }}" method="post" id="form-save" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Nama File</label>
@@ -125,7 +129,7 @@
                         <label class="form-label">Tipe File</label>
                         <select name="type" id="type" class="form-control">
                             <option value="document">Dokumen</option>
-                            <option value="photo">Foto</option>
+                            <option value="photo" selected>Foto</option>
                         </select>
                     </div>
                 </form>
