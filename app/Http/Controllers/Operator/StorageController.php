@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Storage;
 use App\Http\Requests\StoreStorageRequest;
 use App\Http\Requests\UpdateStorageRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage as FacadesStorage;
 
 class StorageController extends Controller
@@ -40,7 +43,7 @@ class StorageController extends Controller
         $type = $request->post("type");
         $path = '';
         if ($type == "photo") {
-            $path = FacadesStorage::disk('public')->put('photossb', $file);  
+            $path = FacadesStorage::disk('public')->put('photo', $file);
         } else {
             $path = FacadesStorage::disk('public')->put('documents', $file);
         }
@@ -48,6 +51,7 @@ class StorageController extends Controller
             'name' => $request->name,
             'path' => $path,
             'status' => $request->status,
+            'filename' => $file->getClientOriginalName(),
             'type' => $type
         ]);
 
@@ -57,9 +61,28 @@ class StorageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Storage $storage)
+    public function show(Request $request)
     {
-        //
+        $storage_id = $request->post('storage_id');
+        $storage_data = Storage::find($storage_id);
+        if ($storage_data->exists()) {
+            $exists_storage = FacadesStorage::disk('public')->exists($storage_data->path);
+            if ($exists_storage) {
+                $storage_path = storage_path('app/public/' . $storage_data->path);
+
+                $file = File::get($storage_path);
+                $type = File::mimeType($storage_path);
+
+                $response = Response::make($file, 201);
+                $response->header('Content-Type', $type);
+                $response->header('Content-disposition', 'attachment; filename=' . $storage_data->filename);
+                return $response;
+            } else {
+                return redirect()->back()->with('error', 'file tidak ditemukan, mungkin file corrupt atau terhapus.');
+            }
+        } else {
+            return redirect()->back()->with('error', 'data tidak ditemukan');
+        }
     }
 
     /**

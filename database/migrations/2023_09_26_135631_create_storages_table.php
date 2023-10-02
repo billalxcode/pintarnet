@@ -16,6 +16,7 @@ return new class extends Migration
 
             $table->string('name');
             $table->text('path');
+            $table->text('filename');
             $table->enum('status', ['private', 'public']);
             $table->enum('type', ['document', 'photo']);
             $table->timestamps();

@@ -71,19 +71,24 @@
                                     @foreach ($data_storage as $data)
                                     <tr>
                                         <td>{{ $data->name }}</td>
-                                        <td>{{ $data->path ?? 'Belum diisi' }}</td>
+                                        <td>{{ $data->filename ?? 'Belum diisi' }}</td>
                                         <td class="text-uppercase">{{ $data->type ?? 'Tidak diketahui' }}</td>
                                         <td>
                                             <span class="badge {{ $data->status == 'public' ? 'bg-success' : 'bg-danger'}}">{{ $data->status }}</span>
                                         </td>
                                         <td>{{ $data->created_at }}</td>
-                                        <td class="text-start">
-                                            <form action="{{ route('operator.ruangan.destroy', $data->id) }}" method="post" id="{{ 'siswa-' . $data->id }}">
+                                        <td class="d-flex flex-col gap-2">
+                                            <form action="{{ route('operator.storage.destroy', $data->id) }}" method="post" id="{{ 'siswa-' . $data->id }}">
                                                 @csrf
                                                 @method('DELETE')
 
                                                 <!-- <input type="hidden" name="id" value="{{ $data->id }}"> -->
                                                 <button class="btn btn-danger" type="submit">Delete</button>
+                                            </form>
+                                            <form action="{{ route('operator.storage.download') }}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="storage_id" value="{{ $data->id }}">
+                                                <button class="btn btn-primary" type="submit">Download</button>
                                             </form>
                                         </td>
                                     </tr>

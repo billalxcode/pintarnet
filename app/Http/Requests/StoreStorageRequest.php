@@ -28,7 +28,6 @@ class StoreStorageRequest extends FormRequest
             'file' => [
                 'required',
                 File::types(['pdf', 'jpg', 'png'])
-                    ->min("500kb")
                     ->max("20mb")
             ],
             'status' => 'required|in:public,private',
