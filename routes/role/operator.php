@@ -7,6 +7,7 @@ use App\Http\Controllers\Operator\SiswaController;
 use App\Http\Controllers\Operator\TenagaKependidikanController;
 use App\Http\Controllers\Operator\TenagaPendidikController;
 use App\Http\Controllers\Operator\RuanganController;
+use App\Http\Controllers\Operator\StorageController;
 use App\Http\Controllers\Operator\UserController;
 use App\Models\TenagaKependidikan;
 use Illuminate\Support\Facades\Route;
@@ -51,5 +52,10 @@ Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['aut
 
     Route::group(['prefix' => 'perizinan', 'as' => 'perizinan.'], function() {
         Route::get('', [PerizinanController::class, 'index'])->name('home');
+    });
+
+    Route::group(['prefix' => 'storage', 'as' => 'storage.'], function() {
+        Route::get('', [StorageController::class, 'index'])->name('home');
+        Route::post('store', [StorageController::class, 'store'])->name('store');
     });
 });
