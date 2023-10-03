@@ -68,6 +68,8 @@ Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['aut
     Route::group(['prefix' => 'settings', 'as' => 'setting.'], function() {
         Route::group(['prefix' => 'page', 'as' => 'page.'], function() {
             Route::get('', [PageController::class, 'index'])->name('home');
+            Route::post('slider', [PageController::class, 'sliderStore'])->name('slider.store');
+            Route::delete('slider/{id}', [PageController::class, 'sliderDestroy'])->name('slider.destroy');
         });
     });
 });
