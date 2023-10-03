@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('storages', function (Blueprint $table) {
+        Schema::create('pages_slider', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name');
-            $table->text('path');
-            $table->text('filename');
-            $table->enum('status', ['private', 'public']);
-            $table->enum('type', ['document', 'photo']);
+            $table->unsignedBigInteger('storage_id');
+            $table->enum('status', ['active', 'inactive']);
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('storages');
+        Schema::dropIfExists('pages_slider');
     }
 };

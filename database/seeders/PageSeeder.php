@@ -2,17 +2,18 @@
 
 namespace Database\Seeders;
 
-use App\Models\Siswa;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class SiswaSeeder extends Seeder
+class PageSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Siswa::factory(200)->create();
+        $pages = [
+            ['page_welcome', 'Selamat Datang di Aplikasi Absensi']
+        ];
     }
 }

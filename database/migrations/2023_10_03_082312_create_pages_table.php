@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('storages', function (Blueprint $table) {
+        Schema::create('pages', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name');
-            $table->text('path');
-            $table->text('filename');
-            $table->enum('status', ['private', 'public']);
-            $table->enum('type', ['document', 'photo']);
+            $table->string('key');
+            $table->string('value');
+            
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('storages');
+        Schema::dropIfExists('pages');
     }
 };

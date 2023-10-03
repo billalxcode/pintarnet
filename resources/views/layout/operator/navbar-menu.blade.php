@@ -115,6 +115,31 @@
                             </span>
                         </a>
                     </li>
+                    <li class="nav-item dropdown {{ Route::is('operator.setting.page.home') ? 'active' : (Route::is('operator.setting.page.home') ? 'active' : (Route::is('operator.ruangan.home') ? 'active' : '')) }}">
+                        <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-school" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M22 9l-10 -4l-10 4l10 4l10 -4v6" />
+                                    <path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4" />
+                                </svg>
+                            </span>
+                            <span class="nav-link-title">
+                                Settings
+                            </span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item {{ Route::is('operator.setting.page.home') ? 'active' : 'home' }}" href="{{ route('operator.setting.page.home') }}">
+                                Page
+                            </a>
+                            <a class="dropdown-item {{ Route::is('operator.tenaga-kependidikan.home') ? 'active' : 'home' }}" href="{{ route('operator.tenaga-kependidikan.home') }}">
+                                Tenaga Kependidikan
+                            </a>
+                            <a class="dropdown-item {{ Route::is('operator.ruangan.home') ? 'active' : 'home' }}" href="{{ route('operator.ruangan.home') }}">
+                                Ruangan
+                            </a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -10,7 +10,11 @@ use App\Http\Controllers\Operator\RuanganController;
 use App\Http\Controllers\Operator\Setting\PageController;
 use App\Http\Controllers\Operator\StorageController;
 use App\Http\Controllers\Operator\UserController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['auth', 'role:operator']], function() {
     Route::get('', [OperatorController::class, 'index'])->name('home');
@@ -57,11 +61,15 @@ Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['aut
     Route::group(['prefix' => 'storage', 'as' => 'storage.'], function() {
         Route::get('', [StorageController::class, 'index'])->name('home');
         Route::post('store', [StorageController::class, 'store'])->name('store');
+        Route::post('download', [StorageController::class, 'show'])->name('download');
+        Route::delete('destroy', [StorageController::class, 'destroy'])->name('destroy');
     });
 
     Route::group(['prefix' => 'settings', 'as' => 'setting.'], function() {
         Route::group(['prefix' => 'page', 'as' => 'page.'], function() {
             Route::get('', [PageController::class, 'index'])->name('home');
-        });   
+            Route::post('slider', [PageController::class, 'sliderStore'])->name('slider.store');
+            Route::delete('slider/{id}', [PageController::class, 'sliderDestroy'])->name('slider.destroy');
+        });
     });
 });

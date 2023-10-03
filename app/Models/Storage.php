@@ -10,6 +10,6 @@ class Storage extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'path', 'status', 'type'
+        'name', 'path', 'status', 'type', 'filename'
     ];
 }
