@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class StoreKehadiranAbsenRequest extends FormRequest
 {
@@ -25,8 +26,9 @@ class StoreKehadiranAbsenRequest extends FormRequest
         return [
             'siswa_id' => 'required|exists:siswas,id',
             'ruangan_id' => 'required|exists:ruangans,id',
-            'status' => 'required|string|in:hadir,izin,sakit,alpha',
-            'keterangan' => 'string'
+            'status' => 'required|string|in:izin,sakit,alpha',
+            'keterangan' => 'required|string',
+            'file' => 'required|image|max:20480'
         ];
     }
 }

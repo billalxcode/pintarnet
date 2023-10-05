@@ -31,9 +31,16 @@ class ViewServiceProvider extends ServiceProvider
     public function boot(Guard $auth): void
     {
         View::composer("*", function ($view) {
+            $this->share_data_user($view);
             $this->share_data_operator($view);
             $this->share_data_ruangan($view);
         });
+    }
+
+    public function share_data_user($view) {
+        $user = Auth::user();
+
+        $view->with('ruangan', $user->ruangan);
     }
 
     public function share_data_ruangan($view)
@@ -44,7 +51,7 @@ class ViewServiceProvider extends ServiceProvider
         $total_alpha = 0;
 
         $user = Auth::user();
-        
+
         if ($user && $user->ruangan) {
             $ruangan = $user->ruangan;
 

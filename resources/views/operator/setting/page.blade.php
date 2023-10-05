@@ -53,8 +53,8 @@
                     <div class="card-header">
                         <h3 class="card-title">Basic Information</h3>
                     </div>
-                    <div class="card-body border-bottom py-3">
-                        <form action="{{ route('') }}" method="post"></form>
+                    <div class="card-body border-bottom py-3 text-center">
+                        Coming soon
                     </div>
                 </div>
             </div>

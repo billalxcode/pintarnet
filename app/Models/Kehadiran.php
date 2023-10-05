@@ -11,7 +11,7 @@ class Kehadiran extends Model
 
     protected $fillable = [
         'siswa_id', 'status',
-        'ruangan_id', 'keterangan'
+        'ruangan_id', 'keterangan', 'image_path'
     ];
 
     public function siswa() {

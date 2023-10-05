@@ -13,6 +13,27 @@
                     Kelola Data
                 </h2>
             </div>
+            <div class="col-auto ms-auto d-print-none">
+                <div class="btn-list">
+                    <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-new-data">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 5l0 14" />
+                            <path d="M5 12l14 0" />
+                        </svg>
+                        New Data
+                    </a>
+                    <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal" data-bs-target="#modal-report" aria-label="Create new report">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 5l0 14" />
+                            <path d="M5 12l14 0" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -120,12 +141,68 @@
 @endsection
 
 @push('modals')
+<div class="modal modal-blur fade" id="modal-new-data" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">New Data</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('ruangan.kehadiran.absen') }}" method="post" id="form-save" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="ruangan_id" value="{{ $ruangan->id }}">
+                    <div class="mb-3">
+                        <label for="siswa_id" class="form-label">Nama Lengkap</label>
+                        <select name="siswa_id" id="siswa_id" class="form-control">
+                            @foreach($data_siswas as $siswa)
+                                <option value="{{ $siswa->id }}">{{ $siswa->nama }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label>
+                        <select name="status" id="status" class="form-control">
+                            <option value="izin">Izin</option>
+                            <option value="sakit">Sakit</option>
+                            <option value="alpha">Alpha</option>
+                            <option value="bolos">Bolos</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="keterangan" class="form-label">Keterangan (opsional)</label>
+                        <input type="text" name="keterangan" id="keterangan" class="form-control" placeholder="Keterangan (opsional)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="bukti" class="form-label">Bukti</label>
+                        <input type="file" name="file" id="file" class="form-control">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+                    Cancel
+                </a>
+                <a href="#" class="btn btn-primary ms-auto" id="btn-save">
+                    <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M12 5l0 14" />
+                        <path d="M5 12l14 0" />
+                    </svg>
+                    Create new data
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 @endpush
 
 @push('scripts')
 <script>
     $("#btn-save").on("click", function() {
-        $("#form-save").submit()
+        const html = $(this).parent().parent().find("#form-save")
+        html.submit()
     })
 
     $(document).ready(function() {
