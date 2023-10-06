@@ -31,9 +31,11 @@ class ViewServiceProvider extends ServiceProvider
     public function boot(Guard $auth): void
     {
         View::composer("*", function ($view) {
-            $this->share_data_user($view);
             $this->share_data_operator($view);
-            $this->share_data_ruangan($view);
+            if (Auth::check()) {
+                $this->share_data_ruangan($view);
+                $this->share_data_user($view);
+            }
         });
     }
 
