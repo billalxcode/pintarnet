@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Ruangan;
 use App\Http\Requests\StoreRuanganRequest;
 use App\Http\Requests\UpdateRuanganRequest;
+use App\Models\Kehadiran;
+use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +20,7 @@ class RuanganController extends Controller
     {
         $data_ruangan = Ruangan::all();
         $data_users = User::role('ruangan')->get();
-        
+
         return view('operator.ruangan.home', [
             'data_ruangan' => $data_ruangan,
             'data_users' => $data_users
@@ -48,9 +50,23 @@ class RuanganController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Ruangan $ruangan)
+    public function show($ruangan_id)
     {
-        //
+        $ruangan = Ruangan::find($ruangan_id);
+        $kehadiran = [];
+        $kehadiran['sakit'] = Kehadiran::ruanganx($ruangan->id)->sakit()->count();
+        $kehadiran['izin'] = Kehadiran::ruanganx($ruangan->id)->izin()->count();
+        $kehadiran['alpha'] = Kehadiran::ruanganx($ruangan->id)->alpha()->count();
+        $kehadiran['bolos'] = Kehadiran::ruanganx($ruangan->id)->bolos()->count();
+
+        $siswa = Siswa::ruanganx($ruangan->id);
+
+        $ruangan->setAttribute('kehadiran', (object) $kehadiran);
+        dd($ruangan);
+
+        return view('operator.ruangan.detail', [
+            'ruanganx' => $ruangan,
+        ]);
     }
 
     /**

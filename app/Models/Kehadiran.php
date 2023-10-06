@@ -22,10 +22,11 @@ class Kehadiran extends Model
     public function ruangan() {
         return $this->hasOne(Ruangan::class, 'id', 'ruangan_id');
     }
-    
-    /**
-     * Scope a query siswa
-     */
+
+    public function scopeRuanganx(Builder $query, $ruangan_id) {
+        $query->where('ruangan_id', $ruangan_id);
+    }
+
     public function scopeSiswax(Builder $query, $siswa_id) {
         $query->where('siswa_id', $siswa_id);
     }

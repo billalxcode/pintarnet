@@ -76,7 +76,7 @@
                                                 <!-- <input type="hidden" name="id" value="{{ $data->id }}"> -->
                                                 <button class="btn btn-danger" type="submit">Delete</button>
                                             </form>
-                                            <a href="#" class="btn btn-primary">Detail</a>
+                                            <a href="{{ route('operator.ruangan.show', $data->id) }}" class="btn btn-primary">Detail</a>
                                         </td>
                                     </tr>
                                     @endforeach
