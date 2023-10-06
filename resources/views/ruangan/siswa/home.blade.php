@@ -76,7 +76,9 @@
     })
 
     $(document).ready(function() {
-        $(".datatable").DataTable()
+        $(".datatable").DataTable({
+            order: [[2, "asc"]]
+        })
     })
 </script>
 @endpush

@@ -82,6 +82,7 @@
                                                 <!-- <input type="hidden" name="id" value="{{ $data->id }}"> -->
                                                 <button class="btn btn-danger" type="submit">Delete</button>
                                             </form>
+                                            <a href="{{ route('operator.siswa.show', $data->id) }}" class="btn btn-info">Detail</a>
                                         </td>
                                     </tr>
                                     @endforeach
