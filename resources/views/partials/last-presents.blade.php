@@ -45,7 +45,7 @@
     $(document).ready(function() {
         $(".datatable").DataTable({
             order: [
-                [5, 'asc']
+                [4, "asc"]
             ]
         })
     })
