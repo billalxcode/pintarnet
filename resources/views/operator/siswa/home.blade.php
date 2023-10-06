@@ -74,7 +74,7 @@
                                         <td>{{ $data->nama }}</td>
                                         <td>{{ $data->ruangan->nama ?? 'Belum diisi' }}</td>
                                         <td>{{ $data->created_at }}</td>
-                                        <td class="text-start">
+                                        <td class="d-flex gap-1">
                                             <form action="{{ route('operator.siswa.destroy', $data->id) }}" method="post" id="{{ 'siswa-' . $data->id }}">
                                                 @csrf
                                                 @method('DELETE')
