@@ -143,7 +143,7 @@
                         </a>
                     </li>
                     <li
-                        class="nav-item dropdown {{ Route::is('operator.setting.page.home') ? 'active' : (Route::is('operator.setting.page.home') ? 'active' : (Route::is('operator.ruangan.home') ? 'active' : '')) }}">
+                        class="nav-item dropdown {{ Route::is('operator.setting.page.home') ? 'active' : (Route::is('operator.setting.token.home') ? 'active' : (Route::is('operator.ruangan.home') ? 'active' : '')) }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown"
                             data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span
@@ -167,6 +167,10 @@
                             <a class="dropdown-item {{ Route::is('operator.setting.page.home') ? 'active' : 'home' }}"
                                 href="{{ route('operator.setting.page.home') }}">
                                 Page
+                            </a>
+                            <a class="dropdown-item {{ Route::is('operator.setting.token.home') ? 'active' : 'home' }}"
+                                href="{{ route('operator.setting.token.home') }}">
+                                Token
                             </a>
                         </div>
                     </li>

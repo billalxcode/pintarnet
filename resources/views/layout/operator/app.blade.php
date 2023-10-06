@@ -49,6 +49,8 @@
     <!-- Tabler Core -->
     <script src="{{ asset('assets/js/tabler.min.js?1684106062') }}" defer></script>
     <script src="{{ asset('assets/js/demo.min.js?1684106062') }}" defer></script>
+
+    <script src="{{ asset('assets/libs/clipboard/clipboard.js') }}"></script>
     @stack('scripts')
 </body>
 

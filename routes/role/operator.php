@@ -8,6 +8,7 @@ use App\Http\Controllers\Operator\TenagaKependidikanController;
 use App\Http\Controllers\Operator\TenagaPendidikController;
 use App\Http\Controllers\Operator\RuanganController;
 use App\Http\Controllers\Operator\Setting\PageController;
+use App\Http\Controllers\Operator\Setting\TokenController;
 use App\Http\Controllers\Operator\StorageController;
 use App\Http\Controllers\Operator\UserController;
 use Illuminate\Http\Request;
@@ -72,6 +73,12 @@ Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['aut
             Route::get('', [PageController::class, 'index'])->name('home');
             Route::post('slider', [PageController::class, 'sliderStore'])->name('slider.store');
             Route::delete('slider/{id}', [PageController::class, 'sliderDestroy'])->name('slider.destroy');
+        });
+
+        Route::group(['prefix' => 'token', 'as' => 'token.'], function() {
+            Route::get('', [TokenController::class, 'index'])->name('home');
+            Route::post('store', [TokenController::class, 'store'])->name('store');
+            Route::delete('destroy/{token_name}', [TokenController::class, 'destroy'])->name('destroy');
         });
     });
 });
