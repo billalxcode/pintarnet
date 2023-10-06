@@ -168,14 +168,6 @@
                                 href="{{ route('operator.setting.page.home') }}">
                                 Page
                             </a>
-                            <a class="dropdown-item {{ Route::is('operator.tenaga-kependidikan.home') ? 'active' : 'home' }}"
-                                href="{{ route('operator.tenaga-kependidikan.home') }}">
-                                Tenaga Kependidikan
-                            </a>
-                            <a class="dropdown-item {{ Route::is('operator.ruangan.home') ? 'active' : 'home' }}"
-                                href="{{ route('operator.ruangan.home') }}">
-                                Ruangan
-                            </a>
                         </div>
                     </li>
                 </ul>
