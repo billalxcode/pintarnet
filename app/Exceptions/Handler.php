@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -23,6 +24,11 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
+        $this->renderable(function (Throwable $e) {
+            if ($e instanceof ValidationException) {
+                throw new ResponseError($e->getMessage());
+            }
+        });
         $this->reportable(function (Throwable $e) {
             //
         });
