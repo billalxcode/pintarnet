@@ -78,7 +78,7 @@ Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['aut
         Route::group(['prefix' => 'token', 'as' => 'token.'], function() {
             Route::get('', [TokenController::class, 'index'])->name('home');
             Route::post('store', [TokenController::class, 'store'])->name('store');
-            Route::delete('destroy/{token_name}', [TokenController::class, 'destroy'])->name('destroy');
+            Route::delete('destroy/{token}', [TokenController::class, 'destroy'])->name('destroy');
         });
     });
 });

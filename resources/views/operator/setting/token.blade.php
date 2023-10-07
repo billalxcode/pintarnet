@@ -103,7 +103,7 @@
                                                 </td>
                                                 <td>{{ $token->created_at }}</td>
                                                 <td class="d-flex flex-col gap-2">
-                                                    <form action="{{ route('operator.setting.token.destroy', $token->id) }}"
+                                                    <form action="{{ route('operator.setting.token.destroy', $token->token) }}"
                                                         method="post" id="{{ 'token-' . $token->id }}">
                                                         @csrf
                                                         @method('DELETE')
