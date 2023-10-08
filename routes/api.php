@@ -24,3 +24,5 @@ Route::as('api.')->group(function() {
         Route::post('login', [AuthController::class, 'login'])->name('login');
     });
 });
+
+require_once __DIR__ . "/role/api/operator.php";

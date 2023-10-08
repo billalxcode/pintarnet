@@ -26,7 +26,7 @@ class StoreUserRequest extends FormRequest
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:4',
-            'role' => 'required|exists:roles,name'
+            // 'role' => 'required|exists:roles,name'
         ];
     }
 }
