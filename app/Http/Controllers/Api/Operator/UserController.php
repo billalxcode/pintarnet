@@ -26,8 +26,8 @@ class UserController extends Controller
     public function store(StoreUserRequest $request) {
         $data = $request->validated();
         $user = User::create($data);
-        dd($user);
-        $user->assignRole('ruangan');
+        $user_data = User::findOrFail($user->id);
+        $user_data->assignRole('ruangan');
 
         throw new ResponseSuccess('success create new data', $user);
     }

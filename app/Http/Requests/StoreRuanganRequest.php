@@ -25,7 +25,7 @@ class StoreRuanganRequest extends FormRequest
         return [
             'nama' => 'required|string',
             'keterangan' => 'required|string',
-            'user_id' => 'required|exists:users,id'
+            'user_id' => 'nullable|exists:users,id'
         ];
     }
 }

@@ -13,6 +13,9 @@ Route::as('api.')->group(function() {
         Route::group(['prefix' => 'ruangan', 'as' => 'ruangan.'], function() {
             Route::get('', [RuanganController::class, 'index'])->name('all');
             Route::post('', [RuanganController::class, 'store'])->name('store');
+            Route::group(['prefix' => '{ruangan_id}'], function() {
+                Route::post('assign', [RuanganController::class, 'assign']);
+            });
         });
     });
 });
