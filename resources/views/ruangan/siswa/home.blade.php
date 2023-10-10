@@ -38,7 +38,6 @@
                                         <th>Nama Lengkap</th>
                                         <th>Ruangan</th>
                                         <th>Created</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,54 +52,6 @@
                                         <td>{{ $data->nama }}</td>
                                         <td>{{ $data->ruangan->nama ?? 'Belum diisi' }}</td>
                                         <td>{{ $data->created_at }}</td>
-                                        <td class="text-start">
-                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-absen-{{ $data->id}}">Absen</button>
-                                            @push('modals')
-                                            <div class="modal modal-blur fade" id="modal-absen-{{ $data->id }}" tabindex="-1" role="dialog" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">Absen {{ $data->nama ?? 'Tidak diketahui' }}</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form action="{{ route('ruangan.kehadiran.absen') }}" method="post" id="form-save">
-                                                                @csrf
-                                                                <input type="hidden" name="siswa_id" value="{{ $data->id }}">
-                                                                <input type="hidden" name="ruangan_id" value="{{ $data->ruangan->id }}">
-                                                                <div class="mb-3">
-                                                                    <label for="status">Status</label>
-                                                                    <select name="status" id="status" class="form-control">
-                                                                        <option value="hadir">Hadir</option>
-                                                                        <option value="izin">Izin</option>
-                                                                        <option value="sakit">Sakit</option>
-                                                                        <option value="alpha">Alpha</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <label for="keterangan">Keterangan</label>
-                                                                    <input type="text" name="keterangan" id="keterangan" class="form-control" placeholder="Keterangan" value="{{ $data->keterangan ?? '' }}">
-                                                                </div>
-
-                                                                <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
-                                                                    Cancel
-                                                                </a>
-                                                                <button type="submit" class="btn btn-primary ms-auto">
-                                                                    <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                                        <path d="M12 5l0 14" />
-                                                                        <path d="M5 12l14 0" />
-                                                                    </svg>
-                                                                    Save Data
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            @endpush
-                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -125,7 +76,9 @@
     })
 
     $(document).ready(function() {
-        $(".datatable").DataTable()
+        $(".datatable").DataTable({
+            order: [[2, "asc"]]
+        })
     })
 </script>
 @endpush

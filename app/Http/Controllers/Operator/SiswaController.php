@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Siswa;
 use App\Http\Requests\StoreSiswaRequest;
 use App\Http\Requests\UpdateSiswaRequest;
+use App\Models\Kehadiran;
 use App\Models\Ruangan;
+use Illuminate\Support\Arr;
 
 class SiswaController extends Controller
 {
@@ -47,9 +49,27 @@ class SiswaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Siswa $siswa)
+    public function show($siswa_id)
     {
-        //
+        $siswa = Siswa::find($siswa_id);
+        
+        $kehadiran = [];
+        
+        $kehadiran['sakit'] = Kehadiran::siswax($siswa->id)->sakit()->get();
+        $kehadiran['izin'] = Kehadiran::siswax($siswa->id)->izin()->get();
+        $kehadiran['alpha'] = Kehadiran::siswax($siswa->id)->alpha()->get();
+        $kehadiran['bolos'] = Kehadiran::siswax($siswa->id)->bolos()->get();
+        
+        $kehadiran['jumlah_sakit'] = Kehadiran::siswax($siswa->id)->sakit()->count();
+        $kehadiran['jumlah_izin'] = Kehadiran::siswax($siswa->id)->izin()->count();
+        $kehadiran['jumlah_alpha'] = Kehadiran::siswax($siswa->id)->alpha()->count();
+        $kehadiran['jumlah_bolos'] = Kehadiran::siswax($siswa->id)->bolos()->count();
+
+        $siswa->setAttribute('kehadiran', (object) $kehadiran);
+        
+        return view('operator.siswa.detail', [
+            'siswa' => $siswa
+        ]);
     }
 
     /**

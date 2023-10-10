@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Ruangan;
 use App\Models\Siswa;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
 
@@ -21,12 +22,14 @@ class KehadiranFactory extends Factory
     {
         $ruangan = Ruangan::all()->random();
         $siswa = Siswa::where('ruangan_id', $ruangan->id)->get()->random();
-        
+        $days = random_int(-50, 50);
+
         return [
             'siswa_id' => $siswa->id,
             'status' => Arr::random(['hadir', 'izin', 'sakit', 'alpha']),
             'ruangan_id' => $ruangan->id,
-            'keterangan' => fake('id_ID')->sentence()
+            'keterangan' => fake('id_ID')->sentence(),
+            'created_at' => Carbon::now()->addDays($days)->format('Y-m-d H:i:s')
         ];
     }
 }

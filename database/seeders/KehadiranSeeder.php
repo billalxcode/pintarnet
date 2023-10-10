@@ -13,6 +13,6 @@ class KehadiranSeeder extends Seeder
      */
     public function run(): void
     {
-        Kehadiran::factory(50)->create();
+        Kehadiran::factory(20)->create();
     }
 }

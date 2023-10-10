@@ -74,7 +74,7 @@
                                         <td>{{ $data->nama }}</td>
                                         <td>{{ $data->ruangan->nama ?? 'Belum diisi' }}</td>
                                         <td>{{ $data->created_at }}</td>
-                                        <td class="text-start">
+                                        <td class="d-flex gap-1">
                                             <form action="{{ route('operator.siswa.destroy', $data->id) }}" method="post" id="{{ 'siswa-' . $data->id }}">
                                                 @csrf
                                                 @method('DELETE')
@@ -82,6 +82,7 @@
                                                 <!-- <input type="hidden" name="id" value="{{ $data->id }}"> -->
                                                 <button class="btn btn-danger" type="submit">Delete</button>
                                             </form>
+                                            <a href="{{ route('operator.siswa.show', $data->id) }}" class="btn btn-info">Detail</a>
                                         </td>
                                     </tr>
                                     @endforeach

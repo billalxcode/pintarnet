@@ -47,7 +47,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Siswa</h3>
+                        <h3 class="card-title">Data Ruangan</h3>
                     </div>
                     <div class="card-body border-bottom py-3">
                         <div class="table-responsive">
@@ -68,7 +68,7 @@
                                         <td>{{ $data->keterangan ?? 'Belum diisi' }}</td>
                                         <td>{{ $data->user->name ?? 'Tidak diketahui' }}</td>
                                         <td>{{ $data->created_at }}</td>
-                                        <td class="text-start">
+                                        <td class="d-flex gap-1">
                                             <form action="{{ route('operator.ruangan.destroy', $data->id) }}" method="post" id="{{ 'siswa-' . $data->id }}">
                                                 @csrf
                                                 @method('DELETE')
@@ -76,6 +76,7 @@
                                                 <!-- <input type="hidden" name="id" value="{{ $data->id }}"> -->
                                                 <button class="btn btn-danger" type="submit">Delete</button>
                                             </form>
+                                            <a href="{{ route('operator.ruangan.show', $data->id) }}" class="btn btn-primary">Detail</a>
                                         </td>
                                     </tr>
                                     @endforeach

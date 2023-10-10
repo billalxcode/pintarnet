@@ -2,7 +2,10 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -23,6 +26,16 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
+        $this->renderable(function (AuthenticationException $e, Request $request) {
+            if ($request->is('api/*')) {
+                throw new ResponseError($e->getMessage(), 401);
+            }
+        });
+
+        $this->renderable(function (ValidationException $e) {
+            throw new ResponseError($e->getMessage());
+        });
+
         $this->reportable(function (Throwable $e) {
             //
         });

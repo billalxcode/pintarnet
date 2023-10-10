@@ -12,6 +12,7 @@ class Ruangan extends Model
     protected $fillable = [
         'nama', 'keterangan', 'user_id'
     ];
+    protected $with = ['user'];
 
     public function user() {
         return $this->hasOne(User::class, 'id', 'user_id');

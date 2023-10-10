@@ -32,8 +32,17 @@ class ViewServiceProvider extends ServiceProvider
     {
         View::composer("*", function ($view) {
             $this->share_data_operator($view);
-            $this->share_data_ruangan($view);
+            if (Auth::check()) {
+                $this->share_data_ruangan($view);
+                $this->share_data_user($view);
+            }
         });
+    }
+
+    public function share_data_user($view) {
+        $user = Auth::user();
+
+        $view->with('ruangan', $user->ruangan);
     }
 
     public function share_data_ruangan($view)
@@ -44,7 +53,7 @@ class ViewServiceProvider extends ServiceProvider
         $total_alpha = 0;
 
         $user = Auth::user();
-        
+
         if ($user && $user->ruangan) {
             $ruangan = $user->ruangan;
 

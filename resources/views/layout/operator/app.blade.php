@@ -12,7 +12,7 @@
     <link href="{{ asset('assets/css/tabler-payments.min.css?1684106062') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/tabler-vendors.min.css?1684106062') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/demo.min.css?1684106062') }}" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('assets/libs/datatables/datatables.min.css') }}">
+    <link href="{{ asset('assets/libs/datatables/datatables.min.css') }}" rel="stylesheet" />
     <style>
         @import url('https://rsms.me/inter/inter.css');
 
@@ -41,7 +41,7 @@
     <!-- Libs JS -->
     <script src="{{ asset('assets/libs/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/libs/datatables/datatables.js') }}"></script>
-    
+
     <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js?1684106062') }}" defer></script>
     <script src="{{ asset('assets/libs/jsvectormap/dist/js/jsvectormap.min.js?1684106062') }}" defer></script>
     <script src="{{ asset('assets/libs/jsvectormap/dist/maps/world.js?1684106062') }}" defer></script>
@@ -49,6 +49,8 @@
     <!-- Tabler Core -->
     <script src="{{ asset('assets/js/tabler.min.js?1684106062') }}" defer></script>
     <script src="{{ asset('assets/js/demo.min.js?1684106062') }}" defer></script>
+
+    <script src="{{ asset('assets/libs/clipboard/clipboard.js') }}"></script>
     @stack('scripts')
 </body>
 

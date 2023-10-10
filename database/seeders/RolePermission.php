@@ -14,9 +14,11 @@ class RolePermission extends Seeder
     public function run(): void
     {
         $roles = ['operator', 'ruangan'];
-
-        foreach ($roles as $role) {
-            Role::create(['name' => $role]);
+        $guards = ['web', 'api'];
+        foreach ($guards as $guard) {
+            foreach ($roles as $role) {
+                Role::create(['guard_name' => $guard, 'name' => $role]);
+            }
         }
     }
 }
