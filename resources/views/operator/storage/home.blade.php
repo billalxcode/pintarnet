@@ -78,7 +78,7 @@
                                         </td>
                                         <td>{{ $data->created_at }}</td>
                                         <td class="d-flex flex-col gap-2">
-                                            <form action="{{ route('operator.storage.destroy', $data->id) }}" method="post" id="{{ 'siswa-' . $data->id }}">
+                                            <form action="{{ route('operator.storage.destroy', $data->id) }}" method="post" id="{{ 'storage-' . $data->id }}">
                                                 @csrf
                                                 @method('DELETE')
 

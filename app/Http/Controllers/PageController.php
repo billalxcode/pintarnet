@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Setting\Page;
 use App\Http\Requests\StorePageRequest;
 use App\Http\Requests\UpdatePageRequest;
+use App\Models\Setting\PageSlider;
 
 class PageController extends Controller
 {
@@ -13,7 +14,11 @@ class PageController extends Controller
      */
     public function index()
     {
-        //
+        $sliders = PageSlider::all();
+
+        return view('home', [
+            'sliders' => $sliders
+        ]);
     }
 
     /**
