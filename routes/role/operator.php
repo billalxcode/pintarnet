@@ -65,7 +65,7 @@ Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['aut
         Route::get('', [StorageController::class, 'index'])->name('home');
         Route::post('store', [StorageController::class, 'store'])->name('store');
         Route::post('download', [StorageController::class, 'show'])->name('download');
-        Route::delete('destroy', [StorageController::class, 'destroy'])->name('destroy');
+        Route::delete('destroy/{storage_id}', [StorageController::class, 'destroy'])->name('destroy');
     });
 
     Route::group(['prefix' => 'settings', 'as' => 'setting.'], function() {

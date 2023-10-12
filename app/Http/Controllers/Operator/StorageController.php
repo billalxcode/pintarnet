@@ -104,8 +104,19 @@ class StorageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Storage $storage)
+    public function destroy($storage_id)
     {
-        //
+        $record = Storage::findOrFail($storage_id);
+        if ($record->exists()) {
+            $filename = $record->path;
+            $exists = FacadesStorage::disk('public')->exists($filename);
+            if ($exists) {
+                FacadesStorage::disk('public')->delete($filename);
+            }
+            $record->delete();
+            return redirect()->back()->with('success', 'data berhasil dihapus');
+        } else {
+            return redirect()->back()->with('error', 'data gagal dihapus, id tidak ditemukan');
+        }
     }
 }
