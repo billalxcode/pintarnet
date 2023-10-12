@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PageController::class, 'index']);
+Route::middleware('guest')->group(function() {
+    Route::get('/', [PageController::class, 'index']);
+});
 
 require __DIR__ . "/auth.php";
 require __DIR__ . "/role/operator.php";
