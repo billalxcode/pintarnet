@@ -6,12 +6,13 @@
             <div id="carousel-sample" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     @for ($i = 0; $i < $sliders->count(); $i++)
-                        <button type="button" data-bs-target="#carousel-sample" data-bs-slide-to="{{ $i }}" class="{{ $i == 0 ? 'active' : '' }}"></button>
+                        <button type="button" data-bs-target="#carousel-sample" data-bs-slide-to="{{ $i }}"
+                            class="{{ $i == 0 ? 'active' : '' }}"></button>
                     @endfor
                 </div>
                 <div class="carousel-inner">
-                    @foreach($sliders as $item)
-                        <div class="carousel-item {{ $item === $sliders[0] ? 'active' : ''}}">
+                    @foreach ($sliders as $item)
+                        <div class="carousel-item {{ $item === $sliders[0] ? 'active' : '' }}">
                             <img class="d-block w-100" alt=""
                                 src="{{ asset('storage/' . $item->storage->path) }}" />
                         </div>
@@ -26,7 +27,27 @@
                     <span class="visually-hidden">Next</span>
                 </a>
             </div>
+        </div>
+    </div>
+    <div class="page-body">
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title text-center">Selamat datang di {{ config('app.name') }}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row gap-1">
+                        <div class="col-4">
+                            <a href="#" class="card">
+                                <div class="card-body">
+                                    Siswa
+                                </div>
+                            </a>
+                        </div>
 
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

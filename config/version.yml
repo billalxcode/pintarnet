@@ -22,7 +22,7 @@ commit:
   length: 6
   increment-by: 1
 git:
-  from: 'remote' # or "remote"
+  from: 'local' # or "remote"
   commit:
     local: 'git rev-parse --verify HEAD'
     remote: 'git ls-remote {$repository}'
