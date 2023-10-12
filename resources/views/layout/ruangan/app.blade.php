@@ -34,14 +34,14 @@
         @include('layout.ruangan.navbar-menu')
         <div class="page-wrapper">
             @yield('content')
-            @include('layout.operator.footer-page')
+            @include('layout.footer')
         </div>
     </div>
     @stack('modals')
     <!-- Libs JS -->
     <script src="{{ asset('assets/libs/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/libs/datatables/datatables.js') }}"></script>
-    
+
     <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js?1684106062') }}" defer></script>
     <script src="{{ asset('assets/libs/jsvectormap/dist/js/jsvectormap.min.js?1684106062') }}" defer></script>
     <script src="{{ asset('assets/libs/jsvectormap/dist/maps/world.js?1684106062') }}" defer></script>

@@ -5,9 +5,9 @@
         <div class="container">
             <div id="carousel-sample" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                    @foreach ($sliders as $slider)
-                        <button type="button" data-bs-target="#carousel-sample" data-bs-slide-to="{{ $slider->id }}" class="{{ $slider === $sliders[0] ? 'active' : '' }}"></button>
-                    @endforeach
+                    @for ($i = 0; $i < $sliders->count(); $i++)
+                        <button type="button" data-bs-target="#carousel-sample" data-bs-slide-to="{{ $i }}" class="{{ $i == 0 ? 'active' : '' }}"></button>
+                    @endfor
                 </div>
                 <div class="carousel-inner">
                     @foreach($sliders as $item)
