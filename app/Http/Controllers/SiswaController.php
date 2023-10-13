@@ -14,4 +14,12 @@ class SiswaController extends Controller
             'siswas' => $data_siswa
         ]);
     }
+
+    public function show($siswa_id) {
+        $data_siswa = Siswa::findOrFail($siswa_id);
+
+        return view('guest.siswa.detail', [
+            'data_siswa' => $data_siswa
+        ]);
+    }
 }

@@ -19,6 +19,7 @@ Route::group(['prefix' => '/', 'as' => 'guest.'], function() {
     Route::get('', [PageController::class, 'index'])->name('home');
 
     Route::get('siswa', [SiswaController::class, 'index'])->name('siswa');
+    Route::get('siswa/{siswa_id}', [SiswaController::class, 'show'])->name('siswa.show');
 });
 
 require __DIR__ . "/auth.php";

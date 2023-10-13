@@ -34,36 +34,7 @@
                 <h3 class="card-title text-center">Berikut data siswa SMKN 1 Maja</h3>
             </div>
             <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table card-table table-vcenter text-nowrap datatable">
-                        <thead>
-                            <tr>
-                                <th>NIS</th>
-                                <th>NISN</th>
-                                <th>Nama Lengkap</th>
-                                <th>Ruangan</th>
-                                <!-- <th></th> -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($siswas as $data)
-                            <tr>
-                                <td>
-                                    <span class="text-muted">{{ $data->nis ?? 'Belum diisi' }}</span>
-                                </td>
-                                <td>
-                                    <span class="text-muted">{{ $data->nisn ?? 'Belum diisi' }}</span>
-                                </td>
-                                <td>{{ $data->nama }}</td>
-                                <td>{{ $data->ruangan->nama ?? 'Belum diisi' }}</td>
-                                <!-- <td class="d-flex gap-1">
-                                    <a href="{{ route('guest.siswa.show', $data->id) }}" class="btn btn-info">Detail</a>
-                                </td> -->
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                
             </div>
         </div>
     </div>
