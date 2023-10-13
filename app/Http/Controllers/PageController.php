@@ -14,11 +14,8 @@ class PageController extends Controller
      */
     public function index()
     {
-        $sliders = PageSlider::all();
 
-        return view('home', [
-            'sliders' => $sliders
-        ]);
+        return view('home');
     }
 
     /**

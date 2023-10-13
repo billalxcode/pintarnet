@@ -34,7 +34,7 @@
         @include('layout.operator.navbar-menu')
         <div class="page-wrapper">
             @yield('content')
-            @include('layout.operator.footer-page')
+            @include('layout.footer')
         </div>
     </div>
     @stack('modals')

@@ -31,30 +31,20 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title text-center">Selamat datang di {{ config('app.name') }}</h3>
+                <h3 class="card-title text-center">Berikut data siswa SMKN 1 Maja</h3>
             </div>
             <div class="card-body">
-                <div class="row gap-1">
-                    <div class="col-2">
-                        <a href="{{ route('guest.siswa') }}" class="card">
-                            <div class="card-body">
-                                <p class="text-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
-                                        <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                        <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
-                                    </svg>
-                                    Siswa
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-
-                </div>
+                
             </div>
         </div>
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('.datatable').DataTable()
+    })
+</script>
+@endpush
