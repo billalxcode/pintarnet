@@ -57,6 +57,7 @@
                                         <th>Nama</th>
                                         <th>Keterangan</th>
                                         <th>User</th>
+                                        <th>Siswa</th>
                                         <th>Created</th>
                                         <th></th>
                                     </tr>
@@ -67,6 +68,7 @@
                                         <td>{{ $data->nama }}</td>
                                         <td>{{ $data->keterangan ?? 'Belum diisi' }}</td>
                                         <td>{{ $data->user->name ?? 'Tidak diketahui' }}</td>
+                                        <td>{{ $data->siswa->count() ?? '0' }} siswa</td>
                                         <td>{{ $data->created_at }}</td>
                                         <td class="d-flex gap-1">
                                             <form action="{{ route('operator.ruangan.destroy', $data->id) }}" method="post" id="{{ 'siswa-' . $data->id }}">
