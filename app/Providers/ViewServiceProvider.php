@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Kehadiran;
 use App\Models\Ruangan;
+use App\Models\Setting\PageSlider;
 use App\Models\Siswa;
 use App\Models\TenagaKependidikan;
 use App\Models\TenagaPendidik;
@@ -31,12 +32,18 @@ class ViewServiceProvider extends ServiceProvider
     public function boot(Guard $auth): void
     {
         View::composer("*", function ($view) {
+            $this->share_data_guest($view);
             $this->share_data_operator($view);
             if (Auth::check()) {
                 $this->share_data_ruangan($view);
                 $this->share_data_user($view);
             }
         });
+    }
+
+    public function share_data_guest($view) {
+        $sliders = PageSlider::all();
+        $view->with('sliders', $sliders);
     }
 
     public function share_data_user($view) {

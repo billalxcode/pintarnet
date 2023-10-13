@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PageController::class, 'index']);
+Route::group(['prefix' => '/', 'as' => 'guest.'], function() {
+    Route::get('', [PageController::class, 'index'])->name('home');
+
+    Route::get('siswa', [SiswaController::class, 'index'])->name('siswa');
+});
 
 require __DIR__ . "/auth.php";
 require __DIR__ . "/role/operator.php";
