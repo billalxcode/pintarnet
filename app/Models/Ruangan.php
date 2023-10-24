@@ -17,4 +17,8 @@ class Ruangan extends Model
     public function user() {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    public function siswa() {
+        return $this->hasMany(Siswa::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\TenagaPendidikController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +19,14 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => '/', 'as' => 'guest.'], function() {
     Route::get('', [PageController::class, 'index'])->name('home');
 
-    Route::get('siswa', [SiswaController::class, 'index'])->name('siswa');
-    Route::get('siswa/{siswa_id}', [SiswaController::class, 'show'])->name('siswa.show');
+    Route::group(['prefix' => 'siswa', 'as' => 'siswa.'], function() {
+        Route::get('', [SiswaController::class, 'index'])->name('home');
+        Route::get('{siswa_id}', [SiswaController::class, 'show'])->name('show');
+    });
+
+    Route::group(['prefix' => 'tenaga-pendidik', 'as' => 'tenaga-pendidik.'], function() {
+        Route::get('', [TenagaPendidikController::class, 'index'])->name('home');
+    });
 });
 
 require __DIR__ . "/auth.php";

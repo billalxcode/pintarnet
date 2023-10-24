@@ -59,10 +59,10 @@ class RuanganController extends Controller
         $kehadiran['alpha'] = Kehadiran::ruanganx($ruangan->id)->alpha()->count();
         $kehadiran['bolos'] = Kehadiran::ruanganx($ruangan->id)->bolos()->count();
 
-        $siswa = Siswa::ruanganx($ruangan->id);
+        $siswa = Siswa::ruanganx($ruangan->id)->get();
 
         $ruangan->setAttribute('kehadiran', (object) $kehadiran);
-        dd($ruangan);
+        $ruangan->setAttribute('siswas', (object) $siswa);
 
         return view('operator.ruangan.detail', [
             'ruanganx' => $ruangan,
