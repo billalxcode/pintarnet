@@ -27,9 +27,9 @@ class KehadiranFactory extends Factory
         return [
             'siswa_id' => $siswa->id,
             'status' => Arr::random(['hadir', 'izin', 'sakit', 'alpha']),
-            'ruangan_id' => $ruangan->id,
+            'ruangan_id' => 18,
             'keterangan' => fake('id_ID')->sentence(),
-            'created_at' => Carbon::now()->addDays($days)->format('Y-m-d H:i:s')
+            'created_at' => Carbon::now()
         ];
     }
 }

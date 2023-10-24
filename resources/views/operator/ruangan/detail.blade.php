@@ -122,6 +122,16 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
+                        <h3 class="card-title">Action</h3>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-primary">Export Excel</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
                         <h3 class="card-title">Data Siswa</h3>
                     </div>
                     <div class="card-body border-bottom py-3">
