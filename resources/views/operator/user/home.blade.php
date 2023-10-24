@@ -109,7 +109,7 @@
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Nama lengkap</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Nama user">
+                        <input type="text" class="form-control" name="name" placeholder="Nama user">
                     </div>
                     <div class="row">
                         <div class="col-12">
