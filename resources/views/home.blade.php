@@ -42,7 +42,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row gap-1">
-                        <div class="col-2">
+                        <div class="col-12 col-lg-2">
                             <a href="{{ route('guest.siswa.home') }}" class="card">
                                 <div class="card-body">
                                     <p class="text-center">
@@ -61,7 +61,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-3">
+                        <div class="col-12 col-lg-3">
                             <a href="{{ route('guest.tenaga-pendidik.home') }}" class="card">
                                 <div class="card-body">
                                     <p class="text-center">
@@ -80,7 +80,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-3">
+                        <div class="col-12 col-lg-3">
                             <a href="{{ route('guest.siswa.home') }}" class="card">
                                 <div class="card-body">
                                     <p class="text-center">
@@ -99,7 +99,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-2">
+                        <div class="col-12 col-lg-2">
                             <a href="{{ route('guest.siswa.home') }}" class="card">
                                 <div class="card-body">
                                     <p class="text-center">
