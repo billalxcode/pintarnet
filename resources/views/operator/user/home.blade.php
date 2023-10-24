@@ -130,7 +130,9 @@
                             <label for="role">Role</label>
                             <select name="role" id="role" class="form-control">
                                 @foreach ($data_roles as $role)
-                                    <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                    @if ($role->guard_name == "web")
+                                        <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
