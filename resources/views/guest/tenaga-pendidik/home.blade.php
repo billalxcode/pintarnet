@@ -29,7 +29,15 @@
 </div>
 <div class="page-body">
     <div class="container">
-        <div class="card">
+        <div class="card my-2">
+            <div class="card-header">
+                <h4 class="card-title">Action</h4>
+            </div>
+            <div class="card-body">
+                <a href="{{ url()->previous() }}" class="btn btn-outline-secondary">Kembali</a>
+            </div>
+        </div>
+        <div class="card my-2">
             <div class="card-header">
                 <h3 class="card-title text-center">Berikut data tenaga pendidik SMKN 1 Maja</h3>
             </div>
