@@ -23,8 +23,7 @@ class StoreMataPelajaranRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nama' => 'required|string',
-            'keterangan' => 'nullable|string'
+            'nama' => 'required|string'
         ];
     }
 }
