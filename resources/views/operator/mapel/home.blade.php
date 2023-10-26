@@ -55,7 +55,7 @@
                                 <thead>
                                     <tr>
                                         <th>Nama</th>
-                                        <th>Keterangan</th>
+                                        <th>Jumlah Pendidik</th>
                                         <th>Created</th>
                                         <th></th>
                                     </tr>
@@ -64,7 +64,7 @@
                                     @foreach ($mapels as $data)
                                     <tr>
                                         <td>{{ $data->nama }}</td>
-                                        <td>{{ $data->keterangan ?? 'Tidak Diketahui' }}</td>
+                                        <td>{{ $data->jumlah_pendidik ?? "0" }}</td>
                                         <td>{{ $data->created_at }}</td>
                                         <td class="text-end">
                                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-update-{{ $data->id }}">Edit</button> 
@@ -96,10 +96,6 @@
                     <div class="mb-3">
                         <label class="form-label">Nama mata pelajaran</label>
                         <input type="text" class="form-control" name="nama" placeholder="Nama mata pelajaran">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Keterangan</label>
-                        <input type="text" class="form-control" name="keterangan" placeholder="Keterangan">
                     </div>
                 </form>
             </div>
