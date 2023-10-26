@@ -16,7 +16,6 @@ return new class extends Migration
             
             $table->string('nip');
             $table->string('nama');
-            $table->string('mapel')->nullable();
             $table->enum('jk', ['pria', 'wanita']);
             $table->string('alamat');
             $table->string('tempat_lahir');
