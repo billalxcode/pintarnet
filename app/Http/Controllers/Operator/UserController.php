@@ -33,7 +33,7 @@ class UserController extends Controller
         $validated = $storeUserRequest->validated();
 
         $user = User::create($validated);
-        $user->assignRole($validated->role);
+        $user->assignRole($validated['role']);
 
         return redirect()->back()->with('success', 'data berhasil disimpan');
     }

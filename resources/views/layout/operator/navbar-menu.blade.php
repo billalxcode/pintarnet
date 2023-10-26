@@ -37,7 +37,7 @@
                             <a class="dropdown-item {{ Route::is('operator.siswa.home') ? 'active' : '' }}" href="{{ route('operator.siswa.home') }}">
                                 Siswa
                             </a>
-                            <a class="dropdown-item {{ Route::is('operator.ruangan.home') ? 'active' : 'home' }}" href="{{ route('operator.ruangan.home') }}">
+                            <a class="dropdown-item {{ Route::is('operator.ruangan.home') ? 'active' : '' }}" href="{{ route('operator.ruangan.home') }}">
                                 Ruangan
                             </a>
                         </div>
@@ -58,7 +58,7 @@
                             </span>
                         </a>
                     </li>
-                    <li class="nav-item dropdown {{ Route::is('operator.tenaga-pendidik.home') ? 'active' : (Route::is('operator.tenaga-kependidikan.home') ? 'active' : (Route::is('operator.ruangan.home') ? 'active' : '')) }}">
+                    <li class="nav-item dropdown {{ Route::is('operator.tenaga-pendidik.home') ? 'active' : (Route::is('operator.tenaga-kependidikan.home') ? 'active' : '') }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-school" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -72,10 +72,10 @@
                             </span>
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item {{ Route::is('operator.tenaga-pendidik.home') ? 'active' : 'home' }}" href="{{ route('operator.tenaga-pendidik.home') }}">
+                            <a class="dropdown-item {{ Route::is('operator.tenaga-pendidik.home') ? 'active' : '' }}" href="{{ route('operator.tenaga-pendidik.home') }}">
                                 Tenaga Pendidik
                             </a>
-                            <a class="dropdown-item {{ Route::is('operator.tenaga-kependidikan.home') ? 'active' : 'home' }}" href="{{ route('operator.tenaga-kependidikan.home') }}">
+                            <a class="dropdown-item {{ Route::is('operator.tenaga-kependidikan.home') ? 'active' : '' }}" href="{{ route('operator.tenaga-kependidikan.home') }}">
                                 Tenaga Kependidikan
                             </a>
                         </div>
@@ -120,7 +120,7 @@
                             </span>
                         </a>
                     </li>
-                    <li class="nav-item dropdown {{ Route::is('operator.setting.page.home') ? 'active' : (Route::is('operator.setting.token.home') ? 'active' : (Route::is('operator.ruangan.home') ? 'active' : '')) }}">
+                    <li class="nav-item dropdown {{ Route::is('operator.setting.page.home') ? 'active' : (Route::is('operator.setting.token.home') ? 'active' : '') }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

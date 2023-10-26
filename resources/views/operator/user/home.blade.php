@@ -25,7 +25,7 @@
                         </svg>
                         New Data
                     </a>
-                    <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal" data-bs-target="#modal-report" aria-label="Create new report">
+                    <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal" data-bs-target="#modal-new-data" aria-label="Create new report">
                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -109,7 +109,7 @@
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Nama lengkap</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Nama user">
+                        <input type="text" class="form-control" name="name" placeholder="Nama user">
                     </div>
                     <div class="row">
                         <div class="col-12">
@@ -130,7 +130,9 @@
                             <label for="role">Role</label>
                             <select name="role" id="role" class="form-control">
                                 @foreach ($data_roles as $role)
-                                    <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                    @if ($role->guard_name == "web")
+                                        <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>

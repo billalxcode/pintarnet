@@ -54,10 +54,10 @@ class RuanganController extends Controller
     {
         $ruangan = Ruangan::find($ruangan_id);
         $kehadiran = [];
-        $kehadiran['sakit'] = Kehadiran::ruanganx($ruangan->id)->sakit()->count();
-        $kehadiran['izin'] = Kehadiran::ruanganx($ruangan->id)->izin()->count();
-        $kehadiran['alpha'] = Kehadiran::ruanganx($ruangan->id)->alpha()->count();
-        $kehadiran['bolos'] = Kehadiran::ruanganx($ruangan->id)->bolos()->count();
+        $kehadiran['jumlah_sakit'] = Kehadiran::ruanganx($ruangan->id)->sakit()->count();
+        $kehadiran['jumlah_izin'] = Kehadiran::ruanganx($ruangan->id)->izin()->count();
+        $kehadiran['jumlah_alpha'] = Kehadiran::ruanganx($ruangan->id)->alpha()->count();
+        $kehadiran['jumlah_bolos'] = Kehadiran::ruanganx($ruangan->id)->bolos()->count();
 
         $siswa = Siswa::ruanganx($ruangan->id)->get();
 

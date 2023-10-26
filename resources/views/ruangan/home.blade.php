@@ -48,7 +48,7 @@
 <div class="page-body">
     <div class="container-xl">
         <div class="row row-deck row-cards">
-            <div class="col-12">
+            <div class="col-12 col-lg-6 col-md-6">
                 <div class="card card-md">
                     <div class="card-body">
                         <div class="row align-items-center">
@@ -62,6 +62,17 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 col-md-6">
+                <div class="card card-md">
+                    <div class="card-header">
+                        <h4 class="card-title">Senin, 14 Januari 2023</h4>
+                    </div>
+                    <div class="card-body d-flex justify-content-center align-items-center flex-column">
+                        <h4 id="greeting" class="placeholder col-3"></h4>
+                        <h1 style="font-size:40px;" id="clock" class="placeholder col-5"></h1>
                     </div>
                 </div>
             </div>
@@ -109,264 +120,7 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice"></td>
-                                    <td><span class="text-muted">001401</span></td>
-                                    <td><a href="invoice.html" class="text-reset" tabindex="-1">Design Works</a></td>
-                                    <td>
-                                        <span class="flag flag-country-us"></span>
-                                        Carlson Limited
-                                    </td>
-                                    <td>
-                                        87956621
-                                    </td>
-                                    <td>
-                                        15 Dec 2017
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-success me-1"></span> Paid
-                                    </td>
-                                    <td>$887</td>
-                                    <td class="text-end">
-                                        <span class="dropdown">
-                                            <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="#">
-                                                    Action
-                                                </a>
-                                                <a class="dropdown-item" href="#">
-                                                    Another action
-                                                </a>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice"></td>
-                                    <td><span class="text-muted">001402</span></td>
-                                    <td><a href="invoice.html" class="text-reset" tabindex="-1">UX Wireframes</a></td>
-                                    <td>
-                                        <span class="flag flag-country-gb"></span>
-                                        Adobe
-                                    </td>
-                                    <td>
-                                        87956421
-                                    </td>
-                                    <td>
-                                        12 Apr 2017
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-warning me-1"></span> Pending
-                                    </td>
-                                    <td>$1200</td>
-                                    <td class="text-end">
-                                        <span class="dropdown">
-                                            <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="#">
-                                                    Action
-                                                </a>
-                                                <a class="dropdown-item" href="#">
-                                                    Another action
-                                                </a>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice"></td>
-                                    <td><span class="text-muted">001403</span></td>
-                                    <td><a href="invoice.html" class="text-reset" tabindex="-1">New Dashboard</a></td>
-                                    <td>
-                                        <span class="flag flag-country-de"></span>
-                                        Bluewolf
-                                    </td>
-                                    <td>
-                                        87952621
-                                    </td>
-                                    <td>
-                                        23 Oct 2017
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-warning me-1"></span> Pending
-                                    </td>
-                                    <td>$534</td>
-                                    <td class="text-end">
-                                        <span class="dropdown">
-                                            <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="#">
-                                                    Action
-                                                </a>
-                                                <a class="dropdown-item" href="#">
-                                                    Another action
-                                                </a>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice"></td>
-                                    <td><span class="text-muted">001404</span></td>
-                                    <td><a href="invoice.html" class="text-reset" tabindex="-1">Landing Page</a></td>
-                                    <td>
-                                        <span class="flag flag-country-br"></span>
-                                        Salesforce
-                                    </td>
-                                    <td>
-                                        87953421
-                                    </td>
-                                    <td>
-                                        2 Sep 2017
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-secondary me-1"></span> Due in 2 Weeks
-                                    </td>
-                                    <td>$1500</td>
-                                    <td class="text-end">
-                                        <span class="dropdown">
-                                            <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="#">
-                                                    Action
-                                                </a>
-                                                <a class="dropdown-item" href="#">
-                                                    Another action
-                                                </a>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice"></td>
-                                    <td><span class="text-muted">001405</span></td>
-                                    <td><a href="invoice.html" class="text-reset" tabindex="-1">Marketing Templates</a></td>
-                                    <td>
-                                        <span class="flag flag-country-pl"></span>
-                                        Printic
-                                    </td>
-                                    <td>
-                                        87956621
-                                    </td>
-                                    <td>
-                                        29 Jan 2018
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-danger me-1"></span> Paid Today
-                                    </td>
-                                    <td>$648</td>
-                                    <td class="text-end">
-                                        <span class="dropdown">
-                                            <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="#">
-                                                    Action
-                                                </a>
-                                                <a class="dropdown-item" href="#">
-                                                    Another action
-                                                </a>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice"></td>
-                                    <td><span class="text-muted">001406</span></td>
-                                    <td><a href="invoice.html" class="text-reset" tabindex="-1">Sales Presentation</a></td>
-                                    <td>
-                                        <span class="flag flag-country-br"></span>
-                                        Tabdaq
-                                    </td>
-                                    <td>
-                                        87956621
-                                    </td>
-                                    <td>
-                                        4 Feb 2018
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-secondary me-1"></span> Due in 3 Weeks
-                                    </td>
-                                    <td>$300</td>
-                                    <td class="text-end">
-                                        <span class="dropdown">
-                                            <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="#">
-                                                    Action
-                                                </a>
-                                                <a class="dropdown-item" href="#">
-                                                    Another action
-                                                </a>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice"></td>
-                                    <td><span class="text-muted">001407</span></td>
-                                    <td><a href="invoice.html" class="text-reset" tabindex="-1">Logo & Print</a></td>
-                                    <td>
-                                        <span class="flag flag-country-us"></span>
-                                        Apple
-                                    </td>
-                                    <td>
-                                        87956621
-                                    </td>
-                                    <td>
-                                        22 Mar 2018
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-success me-1"></span> Paid Today
-                                    </td>
-                                    <td>$2500</td>
-                                    <td class="text-end">
-                                        <span class="dropdown">
-                                            <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="#">
-                                                    Action
-                                                </a>
-                                                <a class="dropdown-item" href="#">
-                                                    Another action
-                                                </a>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice"></td>
-                                    <td><span class="text-muted">001408</span></td>
-                                    <td><a href="invoice.html" class="text-reset" tabindex="-1">Icons</a></td>
-                                    <td>
-                                        <span class="flag flag-country-pl"></span>
-                                        Tookapic
-                                    </td>
-                                    <td>
-                                        87956621
-                                    </td>
-                                    <td>
-                                        13 May 2018
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-success me-1"></span> Paid Today
-                                    </td>
-                                    <td>$940</td>
-                                    <td class="text-end">
-                                        <span class="dropdown">
-                                            <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="#">
-                                                    Action
-                                                </a>
-                                                <a class="dropdown-item" href="#">
-                                                    Another action
-                                                </a>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                     <div class="card-footer d-flex align-items-center">
@@ -406,5 +160,57 @@
 @endsection
 
 @push('scripts')
+<script>
+    function setGreeting() {
+        const iconSunHigh = `
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z"></path>
+            <path d="M6.343 17.657l-1.414 1.414"></path>
+            <path d="M6.343 6.343l-1.414 -1.414"></path>
+            <path d="M17.657 6.343l1.414 -1.414"></path>
+            <path d="M17.657 17.657l1.414 1.414"></path>
+            <path d="M4 12h-2"></path>
+            <path d="M12 4v-2"></path>
+            <path d="M20 12h2"></path>
+            <path d="M12 20v2"></path>
+            </svg>`
+        const iconSunLow = `
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-low" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+            <path d="M4 12h.01"></path>
+            <path d="M12 4v.01"></path>
+            <path d="M20 12h.01"></path>
+            <path d="M12 20v.01"></path>
+            <path d="M6.31 6.31l-.01 -.01"></path>
+            <path d="M17.71 6.31l-.01 -.01"></path>
+            <path d="M17.7 17.7l.01 .01"></path>
+            <path d="M6.3 17.7l.01 .01"></path>
+            </svg>`
+        const iconMoon = `
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path>
+            </svg>`
+        const hours = new Date().getHours()
+        let status = (hours < 12) ? "Pagi " + iconSunLow :
+            ((hours <= 18 && hours >= 12) ? "Siang " + iconSunHigh : "Malam " + iconMoon);
+        $("#greeting").html("Selamat " + status)
+    }
 
+    $(document).ready(function() {
+        $("#greeting").removeAttr("class")
+        $("#clock").removeAttr("class")
+
+        setGreeting()
+        const interval = setInterval(() => {
+            const d = new Date();
+            const s = d.getSeconds()
+            const m = d.getMinutes()
+            const h = d.getHours()
+            $("#clock").text(("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2))
+        }, 500)
+    })
+</script>
 @endpush
