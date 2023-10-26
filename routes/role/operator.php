@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Operator\JadwalPelajaranController;
+use App\Http\Controllers\Operator\MataPelajaranController;
 use App\Http\Controllers\Operator\KehadiranController;
 use App\Http\Controllers\Operator\OperatorController;
 use App\Http\Controllers\Operator\PerizinanController;
@@ -11,11 +13,7 @@ use App\Http\Controllers\Operator\Setting\PageController;
 use App\Http\Controllers\Operator\Setting\TokenController;
 use App\Http\Controllers\Operator\StorageController;
 use App\Http\Controllers\Operator\UserController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
 
 Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['auth', 'role:operator']], function() {
     Route::get('', [OperatorController::class, 'index'])->name('home');
@@ -44,6 +42,15 @@ Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['aut
         Route::get('{ruangan_id}', [RuanganController::class, 'show'])->name('show');
         Route::post('store', [RuanganController::class, 'store'])->name('store');
         Route::delete('destroy/{ruanganId}', [RuanganController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::group(['prefix' => 'mapel', 'as' => 'mapel.'], function () {
+        Route::get('', [MataPelajaranController::class, 'index'])->name('home');
+        Route::post('store', [MataPelajaranController::class, 'store'])->name('store');
+    });
+
+    Route::group(['prefix' => 'japel', 'as' => 'japel.'], function () {
+        Route::get('', [JadwalPelajaranController::class, 'index'])->name('home');
     });
 
     Route::group(['prefix' => 'kehadiran', 'as' => 'kehadiran.'], function () {
