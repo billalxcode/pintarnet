@@ -12,6 +12,6 @@ class TenagaPendidik extends Model
     
     protected $fillable = [
         'nip', 'nama', 'mapel', 'jk', 'alamat',
-        'tempat_lahir', 'tanggal_lahir'
+        'tempat_lahir', 'tanggal_lahir', 'mapel_id'
     ];
 }
