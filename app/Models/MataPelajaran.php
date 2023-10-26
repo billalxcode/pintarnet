@@ -10,6 +10,6 @@ class MataPelajaran extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama', 'keterangan'
+        'nama'
     ];
 }
