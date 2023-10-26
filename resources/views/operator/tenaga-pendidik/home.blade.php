@@ -69,7 +69,7 @@
                                             <span class="text-muted">{{ $data->nip ?? 'Belum diisi' }}</span>
                                         </td>
                                         <td>{{ $data->nama }}</td>
-                                        <td>{{ $data->mapel ?? 'Belum diisi' }}</td>
+                                        <td>{{ $data->mapel->nama ?? 'Belum diisi' }}</td>
                                         <td>{{ $data->created_at }}</td>
                                         <td class="text-start">
                                             <form action="{{ route('operator.tenaga-pendidik.destroy', $data->id) }}" method="post">
@@ -118,7 +118,13 @@
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label class="form-label">Mapel</label>
-                                <input type="text" class="form-control" name="mapel" placeholder="Mapel" autocomplete="off">
+                                <select name="mapel_id" id="mapel_id" class="form-control">
+                                    @forelse ($mapels as $mapel)
+                                        <option value="{{ $mapel->id }}">{{ $mapel->nama }}</option>
+                                    @empty
+                                        <option value="" disabled>Data kosong</option>
+                                    @endforelse
+                                </select>
                             </div>
                         </div>
                     </div>
