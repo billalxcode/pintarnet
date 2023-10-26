@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\TenagaPendidik;
 use App\Http\Requests\StoreTenagaPendidikRequest;
 use App\Http\Requests\UpdateTenagaPendidikRequest;
+use App\Models\MataPelajaran;
 
 class TenagaPendidikController extends Controller
 {
@@ -15,9 +16,11 @@ class TenagaPendidikController extends Controller
     public function index()
     {
         $data_tenaga_pendidik = TenagaPendidik::all();
+        $data_mapels = MataPelajaran::all();
 
         return view('operator.tenaga-pendidik.home', [
-            'data_tenaga_pendidik' => $data_tenaga_pendidik
+            'data_tenaga_pendidik' => $data_tenaga_pendidik,
+            'mapels' => $data_mapels
         ]);
     }
 
