@@ -4,7 +4,7 @@ current:
   label: v
   major: 1
   minor: 3
-  patch: 0
+  patch: 1
   prerelease: alpha
   buildmetadata:
   commit: 100051
