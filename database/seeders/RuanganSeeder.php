@@ -15,17 +15,6 @@ class RuanganSeeder extends Seeder
      */
     public function run(): void
     {
-        $content = Storage::get('json/ruangan.json');
-        $json = json_decode($content, true);
-
-        foreach ($json['data'] as $data) {
-            Ruangan::create(['nama' => $data, 'keterangan' => "Kelas " . $data]);
-
-            $userRuangan = \App\Models\User::factory()->create([
-                'name' => $data,
-                'email' => Str::of(Str::lower($data))->replace(' ', '') . "@example.net",
-            ]);
-            $userRuangan->assignRole("ruangan");
-        }
+        
     }
 }
