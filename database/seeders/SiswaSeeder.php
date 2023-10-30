@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Imports\SiswaImport;
 use App\Models\Siswa;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SiswaSeeder extends Seeder
 {
@@ -13,6 +15,6 @@ class SiswaSeeder extends Seeder
      */
     public function run(): void
     {
-        Siswa::factory(200)->create();
+        
     }
 }
