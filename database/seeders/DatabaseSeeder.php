@@ -25,16 +25,16 @@ class DatabaseSeeder extends Seeder
         $userOperator->assignRole('operator');
 
 
-        if (config('app.debug') == true) {
-            $this->call([
-                RuanganSeeder::class,
-                SiswaSeeder::class,
-                MataPelajaranSeeder::class,
-                TenagaPendidikSeeder::class,
-                TenagaKependidikanSeeder::class,
-                PerizinanSeeder::class,
-                KehadiranSeeder::class
-            ]);
-        }
+        // if (config('app.debug') == true) {
+        //     $this->call([
+        //         RuanganSeeder::class,
+        //         SiswaSeeder::class,
+        //         MataPelajaranSeeder::class,
+        //         TenagaPendidikSeeder::class,
+        //         TenagaKependidikanSeeder::class,
+        //         PerizinanSeeder::class,
+        //         KehadiranSeeder::class
+        //     ]);
+        // }
     }
 }
