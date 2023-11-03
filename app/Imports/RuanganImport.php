@@ -5,34 +5,35 @@ namespace App\Imports;
 use App\Models\Ruangan;
 use App\Models\User;
 use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\HasReferencesToOtherSheets;
+use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\RegistersEventListeners;
+use Maatwebsite\Excel\Concerns\ToArray;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
+use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithPreCalculateFormulas;
+use Maatwebsite\Excel\Events\BeforeImport;
 
-class RuanganImport implements ToModel, ToCollection, WithHeadingRow
+class RuanganImport implements WithHeadingRow, ToModel, WithCalculatedFormulas
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
     public function model(array $row)
     {
-        return new Ruangan([
-            'id' => $row[1],
-            'keterangan' => null,
-            'user_id' => null
-        ]);
-    }
-
-    /**
-     * @param Collection $collection
-     */
-    public function collection(Collection $collection)
-    {
-        foreach ($collection as $row) {
-            $user = User::email($row[2]);
-            Ruangan::create(['id' => $row[0], 'name' => $row[1], 'user_id' => ($user->exists() ? $user->id : 0)]);
+        $user = User::where('email', $row['user']);
+        if (!$user->count() > 1) {
+            return new Ruangan([
+                'nama' => $row['nama'],
+                'user' => null
+            ]);
+        } else {
+            $data = $user->get();
+            dd($data);
+            return new Ruangan([
+                'nama' => $row['nama'],
+                'user' => $data->id
+            ]);
         }
     }
 }

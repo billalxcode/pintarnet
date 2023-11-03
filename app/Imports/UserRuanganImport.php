@@ -4,26 +4,31 @@ namespace App\Imports;
 
 use App\Models\User;
 use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class UserRuanganImport implements ToCollection, WithHeadingRow
+class UserRuanganImport implements ToModel, WithHeadingRow, WithCalculatedFormulas
 {
-    /**
-    * @param Collection $collection
-    */
-    public function collection(Collection $collection)
+    public function model(array $row)
     {
-        foreach ($collection as $row) {
-            $user = User::email($row[2]);
-            if (!$user->exists()) {
-                $usr = User::create([
-                    'name' => $row[1],
-                    'email' => $row[2],
-                    'password' => $row[3],
-                ]);
-                $usr->assignRole('ruangan');
-            }
+        $user = User::email($row['email']);
+        if ($user->exists()) {
+            return null;
         }
+        return new User([
+            'name' => $row['name'],
+            'email' => $row['email'],
+            'password' => $row['password']
+        ]);
+        // $user = User::email($row['email']);
+        // if (!$user->exists()) {
+        //     $usr = User::create([
+        //         'name' => $row['name'],
+        //         'email' => $row['email'],
+        //         'password' => $row['password'],
+        //     ]);
+        //     $usr->assignRole('ruangan');
+        // }
     }
 }
