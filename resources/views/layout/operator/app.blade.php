@@ -30,7 +30,7 @@
     <script src="{{ asset('assets/js/demo-theme.min.js?1684106062') }}"></script>
     <div class="page">
         <!-- Navbar -->
-        @include('layout.operator.navbar')
+        @include('layout.navbar')
         @include('layout.operator.navbar-menu')
         <div class="page-wrapper">
             @yield('content')
