@@ -37,7 +37,6 @@ class Siswa extends Model
         string $ruangan         = ""
     ) {
         $ruangan = Ruangan::createRuangan($ruangan, 'Kelas ' . $ruangan);
-        // dd($ruangan);
         $siswa = static::create([
             'nis' => $nis,
             'nisn' => $nisn,
