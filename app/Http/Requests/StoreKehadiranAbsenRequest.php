@@ -26,8 +26,8 @@ class StoreKehadiranAbsenRequest extends FormRequest
         return [
             'siswa_id' => 'required|exists:siswas,id',
             'ruangan_id' => 'required|exists:ruangans,id',
-            'status' => 'required|string|in:izin,sakit,alpha',
-            'keterangan' => 'required|string',
+            'status' => 'required|string|in:izin,sakit,alpha,bolos',
+            'keterangan' => 'nullable|string',
             'file' => 'required|image|max:20480'
         ];
     }
