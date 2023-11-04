@@ -10,7 +10,9 @@ use App\Http\Requests\UpdateSiswaRequest;
 use App\Imports\SiswaImport;
 use App\Models\Kehadiran;
 use App\Models\Ruangan;
-use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class SiswaController extends Controller
@@ -58,6 +60,21 @@ class SiswaController extends Controller
         Excel::import(new SiswaImport, $storeImportSiswaRequest->file('file'));
 
         return redirect()->back()->with('success', 'data berhasil disimpan');
+    }
+
+    /**
+     * Download and convert template
+     */
+    public function convert(Request $request, $filetype) {
+        $filetype = Str::lower($filetype);
+        if (!Storage::exists('excel/MS.T-Master.xlsx')) {
+            return redirect()->back()->with('error', 'maaf file tidak ditemukan. silahkan lapor jika ini merupakan bug');
+        }
+        $storage = Storage::path('excel/MS.T-Master.xlsx');
+
+        if ($filetype == "xlsx") {
+            return response()->download($storage, Str::lower(config('app.name')) . '-template.xlsx');
+        }
     }
 
     /**

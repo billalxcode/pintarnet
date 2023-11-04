@@ -287,6 +287,14 @@
                     <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
                         Cancel
                     </a>
+                    <div class="dropdown ms-auto">
+                        <a href="#" class="btn dropdown-toggle" data-bs-toggle="dropdown">Download</a>
+
+                        <div class="dropdown-menu">
+                            <a href="{{ route('operator.siswa.convert', 'xlsx') }}" class="dropdown-item">XLSX</a>
+                            {{-- <a href="{{ route('operator.siswa.convert', 'xls') }}" class="dropdown-item">XLS</a> --}}
+                        </div>
+                    </div>
                     <a href="#" class="btn btn-primary ms-auto btn-save">
                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
