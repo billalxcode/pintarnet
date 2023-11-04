@@ -21,6 +21,7 @@ Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['aut
     Route::group(['prefix' => 'siswa', 'as' => 'siswa.'], function () {
         Route::get('', [SiswaController::class, 'index'])->name('home');
         Route::get('{siswa_id}', [SiswaController::class, 'show'])->name('show');
+        Route::get('download/{filetype}', [SiswaController::class, 'convert'])->name('convert');
         Route::post('store', [SiswaController::class, 'store'])->name('store');
         Route::post('import', [SiswaController::class, 'import'])->name('import');
         Route::delete('destroy/{siswaId}', [SiswaController::class, 'destroy'])->name('destroy');
