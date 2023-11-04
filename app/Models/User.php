@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -46,11 +47,33 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public static function generateEmail($name) {
+        $prefix = Str::of($name)->replace(' ', '')->lower();
+        return $prefix . '@smkn1maja.sch.id';
+    }
+
     public function ruangan() {
         return $this->belongsTo(Ruangan::class, 'id', 'user_id');
     }
 
     public function scopeEmail(Builder $query, string $email) {
         $query->where('email', $email);
+    }
+
+    public static function createUser(
+        string $name = ""
+    ) {
+        $user = static::where('name', $name);
+        if (!$user->exists()) {
+            $email = static::generateEmail($name);
+            $collection = User::factory()->create([
+                'name' => $name,
+                'email' => $email
+            ]);
+            $collection->assignRole('ruangan');
+            return $collection;
+        } else {
+            return $user->get();
+        }
     }
 }

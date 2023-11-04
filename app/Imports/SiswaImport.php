@@ -4,45 +4,38 @@ namespace App\Imports;
 
 use App\Models\Siswa;
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Events\BeforeSheet;
 
-class SiswaImport implements ToModel, WithHeadingRow
+class SiswaImport implements ToCollection, WithHeadingRow, WithCalculatedFormulas
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
-    public function model(array $row)
+    public function collection(Collection $collection)
     {
-        return new Siswa([
-            'nis' => $row[1],
-            'nisn' => $row[2],
-            'nik' => $row[3],
-            'nama' => $row[4],
-            'jk' => $row[5],
-            'tempat_lahir' => $row[6],
-            'tanggal_lahir' => $row[7],
-            'tahun_masuk' => Carbon::today('Asia/Jakarta')->year,
-            'agama' => $row[8],
-            'kontak_siswa' => $row[9],
-            'alamat' => fake('id_ID')->address()
-        ]);
+        foreach ($collection as $row) {
+            // dd($row);
+            Siswa::createSiswa(
+                $row['nis'],
+                $row['nisn'],
+                $row['nik'],
+                $row['nama_lengkap'],
+                $row['tempat_lahir'],
+                $row['tanggal_lahir'],
+                $row['jk'],
+                Carbon::today()->year,
+                $row['agama'],
+                $row['kontak'],
+                $row['alamat'],
+                $row['ruangan']
+            );
+        }
     }
 
     public function headingRow() {
         return 1;
     }
-
-    // public function registerEvents(): array
-    // {
-    //     return [
-    //         BeforeSheet::class => function (BeforeSheet $events) {
-    //             thi
-    //         }
-    //     ]
-    // }
 }
