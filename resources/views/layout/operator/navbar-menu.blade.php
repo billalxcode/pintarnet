@@ -21,7 +21,7 @@
                         </a>
                     </li>
                     <li
-                        class="nav-item dropdown {{ Route::is('operator.siswa.home') ? 'active' : (Route::is('operator.ruangan.home') ? 'active' : ( Route::is('operator.mapel.home') ? 'active' : (Route::is('operator.japel.home') ? 'active' : '') )) }}">
+                        class="nav-item dropdown {{ Route::is('operator.siswa.home') ? 'active' : ( Route::is('operator.ruangan.home') ? 'active' : ( Route::is('operator.mapel.home') ? 'active' : (Route::is('operator.japel.home') ? 'active' : ( Route::is('operator.tenaga-pendidik.home') ? 'active' : (Route::is('operator.tenaga-kependidikan.home') ? 'active' : '') ) ) )) }}">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -64,6 +64,14 @@
                                 href="{{ route('operator.japel.home') }}">
                                 Jadwal Pelajaran
                             </a>
+                            <a class="dropdown-item {{ Route::is('operator.tenaga-pendidik.home') ? 'active' : '' }}"
+                                href="{{ route('operator.tenaga-pendidik.home') }}">
+                                Tenaga Pendidik
+                            </a>
+                            <a class="dropdown-item {{ Route::is('operator.tenaga-kependidikan.home') ? 'active' : '' }}"
+                                href="{{ route('operator.tenaga-kependidikan.home') }}">
+                                Tenaga Kependidikan
+                            </a>
                         </div>
                     </li>
 
@@ -84,35 +92,6 @@
                                 Users
                             </span>
                         </a>
-                    </li>
-                    <li
-                        class="nav-item dropdown {{ Route::is('operator.tenaga-pendidik.home') ? 'active' : (Route::is('operator.tenaga-kependidikan.home') ? 'active' : '') }}">
-                        <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown"
-                            data-bs-auto-close="outside" role="button" aria-expanded="false">
-                            <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-school"
-                                    width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor" fill="none" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M22 9l-10 -4l-10 4l10 4l10 -4v6" />
-                                    <path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4" />
-                                </svg>
-                            </span>
-                            <span class="nav-link-title">
-                                Kependidikan
-                            </span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item {{ Route::is('operator.tenaga-pendidik.home') ? 'active' : '' }}"
-                                href="{{ route('operator.tenaga-pendidik.home') }}">
-                                Tenaga Pendidik
-                            </a>
-                            <a class="dropdown-item {{ Route::is('operator.tenaga-kependidikan.home') ? 'active' : '' }}"
-                                href="{{ route('operator.tenaga-kependidikan.home') }}">
-                                Tenaga Kependidikan
-                            </a>
-                        </div>
                     </li>
                     <li class="nav-item dropdown {{ Route::is('operator.kehadiran.home') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
