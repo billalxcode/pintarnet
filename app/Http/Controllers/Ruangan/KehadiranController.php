@@ -17,7 +17,7 @@ class KehadiranController extends Controller
         $user = Auth::user();
         $data_kehadiran = Kehadiran::where('ruangan_id', $user->ruangan->id)->whereDate('created_at', Carbon::today())->get();
         $data_siswas = Siswa::where('ruangan_id', $user->ruangan->id)->orderBy('nama')->get();
-        
+
         return view('ruangan.kehadiran.home', [
             'data_kehadiran' => $data_kehadiran,
             'data_siswas' => $data_siswas
