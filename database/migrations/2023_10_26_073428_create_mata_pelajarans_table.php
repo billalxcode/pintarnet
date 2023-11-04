@@ -11,16 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tenaga_pendidiks', function (Blueprint $table) {
+        Schema::create('mata_pelajarans', function (Blueprint $table) {
             $table->id();
-            
-            $table->string('nip');
             $table->string('nama');
-            $table->enum('jk', ['pria', 'wanita']);
-            $table->string('alamat');
-            $table->string('tempat_lahir');
-            $table->date('tanggal_lahir');
-
             $table->timestamps();
         });
     }
@@ -30,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tenaga_pendidiks');
+        Schema::dropIfExists('mata_pelajarans');
     }
 };

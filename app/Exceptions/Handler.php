@@ -32,9 +32,11 @@ class Handler extends ExceptionHandler
             }
         });
 
-        $this->renderable(function (ValidationException $e) {
-            throw new ResponseError($e->getMessage());
-        });
+        // $this->renderable(function (ValidationException $e, Request $request) {
+        //     if ($request->is('api/*')) {
+        //         throw new ResponseError($e->getMessage());
+        //     }
+        // });
 
         $this->reportable(function (Throwable $e) {
             //

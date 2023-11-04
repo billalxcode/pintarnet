@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>MasterApp</title>
+    <title>{{ config('app.name') ?? 'PintarNet' }}</title>
     <!-- CSS files -->
     <link href="{{ asset('assets/css/tabler.min.css?1684106062') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/tabler-flags.min.css?1684106062') }}" rel="stylesheet" />
@@ -30,7 +30,7 @@
     <script src="{{ asset('assets/js/demo-theme.min.js?1684106062') }}"></script>
     <div class="page">
         <!-- Navbar -->
-        @include('layout.operator.navbar')
+        @include('layout.navbar')
         @include('layout.operator.navbar-menu')
         <div class="page-wrapper">
             @yield('content')

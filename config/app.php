@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
+use Maatwebsite\Excel\ExcelServiceProvider;
 
 return [
 
@@ -16,7 +17,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'MasterApp'),
+    'name' => env('APP_NAME', 'PintarNet'),
 
     /*
     |--------------------------------------------------------------------------
@@ -169,7 +170,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
-        Spatie\Permission\PermissionServiceProvider::class
+        Spatie\Permission\PermissionServiceProvider::class,
+        \Maatwebsite\Excel\ExcelServiceProvider::class
     ])->toArray(),
 
     /*
@@ -185,6 +187,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        "Excel" => \Maatwebsite\Excel\Facades\Excel::class
     ])->toArray(),
 
 ];

@@ -7,13 +7,13 @@
         <div class="row g-2 align-items-center">
             <div class="col">
                 <div class="page-pretitle">
-                    Tenaga Pendidik
+                    Mata Pelajaran
                 </div>
                 <h2 class="page-title">
                     Kelola Data
                 </h2>
             </div>
-            <!-- Page title actions -->
+
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
                     <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-new-data">
@@ -47,38 +47,27 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Tenaga Pendidik</h3>
+                        <h3 class="card-title">Data Mata Pelajaran</h3>
                     </div>
                     <div class="card-body border-bottom py-3">
-
                         <div class="table-responsive">
-                            <table class="table datatable">
+                            <table class="table card-table table-vcenter text-nowrap datatable">
                                 <thead>
                                     <tr>
-                                        <th>NIP</th>
-                                        <th>Nama Lengkap</th>
-                                        <th>Mapel</th>
+                                        <th>Nama</th>
+                                        <th>Jumlah Pendidik</th>
                                         <th>Created</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data_tenaga_pendidik as $data)
+                                    @foreach ($mapels as $data)
                                     <tr>
-                                        <td>
-                                            <span class="text-muted">{{ $data->nip ?? 'Belum diisi' }}</span>
-                                        </td>
                                         <td>{{ $data->nama }}</td>
-                                        <td>{{ $data->mapel->nama ?? 'Belum diisi' }}</td>
+                                        <td>{{ $data->jumlah_pendidik ?? "0" }}</td>
                                         <td>{{ $data->created_at }}</td>
-                                        <td class="text-start">
-                                            <form action="{{ route('operator.tenaga-pendidik.destroy', $data->id) }}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-
-                                                <!-- <input type="hidden" name="id" value="{{ $data->id }}"> -->
-                                                <button class="btn btn-danger" type="submit">Delete</button>
-                                            </form>
+                                        <td class="text-end">
+                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-update-{{ $data->id }}">Edit</button> 
                                         </td>
                                     </tr>
                                     @endforeach
@@ -102,62 +91,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('operator.tenaga-pendidik.store') }}" method="post" id="form-save">
+                <form action="{{ route('operator.mapel.store') }}" method="post" id="form-save">
                     @csrf
                     <div class="mb-3">
-                        <label class="form-label">Nama lengkap</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Nama">
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="mb-3">
-                                <label class="form-label">NIP</label>
-                                <input type="text" class="form-control" name="nip" placeholder="NIP" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="mb-3">
-                                <label class="form-label">Mapel</label>
-                                <select name="mapel_id" id="mapel_id" class="form-control">
-                                    @forelse ($mapels as $mapel)
-                                        <option value="{{ $mapel->id }}">{{ $mapel->nama }}</option>
-                                    @empty
-                                        <option value="" disabled>Data kosong</option>
-                                    @endforelse
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="mb-3">
-                                <label class="form-label">Tempat Lahir</label>
-                                <input type="text" class="form-control" name="tempat_lahir" placeholder="Tempat Lahir" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="mb-3">
-                                <label class="form-label">Tanggal Lahir</label>
-                                <input type="date" class="form-control" name="tanggal_lahir" placeholder="NISN" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="mb-3">
-                                <label class="form-label">Jenis Kelamin</label>
-                                <select name="jk" id="jk" class="form-control">
-                                    <option value="pria">Laki-laki</option>
-                                    <option value="wanita">Perempuan</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="mb-3">
-                                <label class="form-label">Alamat</label>
-                                <input type="text" class="form-control" name="alamat" placeholder="Alamat" autocomplete="off">
-                            </div>
-                        </div>
+                        <label class="form-label">Nama mata pelajaran</label>
+                        <input type="text" class="form-control" name="nama" placeholder="Nama mata pelajaran">
                     </div>
                 </form>
             </div>

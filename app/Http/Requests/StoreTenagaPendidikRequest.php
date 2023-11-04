@@ -25,7 +25,7 @@ class StoreTenagaPendidikRequest extends FormRequest
         return [
             'nip' => 'required|string|unique:tenaga_pendidiks',
             'nama' => 'required|string',
-            'mapel' => 'required|string',
+            'mapel_id' => 'required|exists:mata_pelajarans,id',
             'tempat_lahir' => 'required|string',
             'tanggal_lahir' => 'required|date',
             'jk' => 'required|string|in:pria,wanita',

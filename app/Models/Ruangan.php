@@ -21,4 +21,22 @@ class Ruangan extends Model
     public function siswa() {
         return $this->hasMany(Siswa::class);
     }
+
+    public static function createRuangan(
+        string $nama = "",
+        string $keterangan = ""
+    ) {
+        $ruangan = static::where("nama", $nama);
+        if ($ruangan->exists() == false) {
+            $user = User::createUser($nama);
+            $result = static::create([
+                'nama' => $nama,
+                'keterangan' => $keterangan,
+                'user_id' => $user->id
+            ]);
+            return $result;
+        } else {
+            return $ruangan->first();
+        }
+    }
 }

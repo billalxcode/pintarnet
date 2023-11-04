@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Operator;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserImportRequest;
 use App\Http\Requests\StoreUserRequest;
+use App\Imports\MasterImport;
+use App\Imports\UserRuanganImport;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller

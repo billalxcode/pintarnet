@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\MataPelajaran;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,14 +18,15 @@ class TenagaPendidikFactory extends Factory
      */
     public function definition(): array
     {
+        $mapel = MataPelajaran::all()->random();
         return [
             'nip' => random_int(100000, 9999999),
             'nama' => fake('id_ID')->name(),
-            'mapel' => 'Bahasa Indonesia',
             'jk' => 'pria',
             'alamat' => fake('id_ID')->address(),
             'tempat_lahir' => fake('id_ID')->address(),
-            'tanggal_lahir' => Carbon::now('Asia/Jakarta')
+            'tanggal_lahir' => Carbon::now('Asia/Jakarta'),
+            'mapel_id' => $mapel->id
         ];
     }
 }
