@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Siswa extends Model
 {
@@ -17,6 +19,16 @@ class Siswa extends Model
         'jk', 'tahun_masuk', 'agama', 'kontak_siswa',
         'alamat', 'ruangan_id'
     ];
+
+    public static function boot() {
+        parent::boot();
+        static::creating(function ($siswa) {
+            $nama = Str::of($siswa->nama)->lower()->headline();
+            Log::info("Nama: " . $nama);
+            $siswa->nama = $nama;
+            return $siswa;
+        });
+    }
 
     public function ruangan() {
         return $this->hasOne(Ruangan::class, 'id', 'ruangan_id');
