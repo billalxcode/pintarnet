@@ -29,10 +29,7 @@
                                     <h3 class="h1">Welcome {{ auth()->user()->name ?? 'Unknown' }}</h3>
                                     <div class="markdown text-muted">
                                         Selamat datang di aplikasi {{ config('app.name') }}. {{ config('app.name') }} adalah solusi canggih
-                                        untuk mengelola informasi akademik dengan mudah dan efisien. Dengan fitur-fitur
-                                        seperti pengelolaan siswa, ruangan, kehadiran, perizinan, dan buku tamu, aplikasi
-                                        ini akan membantu institusi pendidikan Anda menjadi lebih terorganisir dan terfokus
-                                        pada pengembangan akademik. Selamat menggunakan {{ config('app.name') }} untuk mengoptimalkan
+                                        untuk mengelola informasi akademik dengan mudah dan efisien. Selamat menggunakan {{ config('app.name') }} untuk mengoptimalkan
                                         proses pendidikan Anda!
                                     </div>
                                     <div class="mt-3">
