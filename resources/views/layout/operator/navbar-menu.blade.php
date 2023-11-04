@@ -21,7 +21,7 @@
                         </a>
                     </li>
                     <li
-                        class="nav-item dropdown {{ Route::is('operator.siswa.home') ? 'active' : ( Route::is('operator.ruangan.home') ? 'active' : ( Route::is('operator.mapel.home') ? 'active' : (Route::is('operator.japel.home') ? 'active' : ( Route::is('operator.tenaga-pendidik.home') ? 'active' : (Route::is('operator.tenaga-kependidikan.home') ? 'active' : '') ) ) )) }}">
+                        class="nav-item dropdown {{ Route::is('operator.siswa.home') ? 'active' : (Route::is('operator.ruangan.home') ? 'active' : (Route::is('operator.mapel.home') ? 'active' : (Route::is('operator.japel.home') ? 'active' : (Route::is('operator.tenaga-pendidik.home') ? 'active' : (Route::is('operator.tenaga-kependidikan.home') ? 'active' : ''))))) }}">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -44,25 +44,25 @@
                                 </svg>
                             </span>
                             <span class="nav-link-title">
-                                Master Data
+                                Data Utama
                             </span>
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item {{ Route::is('operator.siswa.home') ? 'active' : '' }}"
-                                href="{{ route('operator.siswa.home') }}">
-                                Siswa
-                            </a>
-                            <a class="dropdown-item {{ Route::is('operator.ruangan.home') ? 'active' : '' }}"
-                                href="{{ route('operator.ruangan.home') }}">
-                                Ruangan
+                            <a class="dropdown-item {{ Route::is('operator.japel.home') ? 'active' : '' }}"
+                                href="{{ route('operator.japel.home') }}">
+                                Jadwal Pelajaran
                             </a>
                             <a class="dropdown-item {{ Route::is('operator.mapel.home') ? 'active' : '' }}"
                                 href="{{ route('operator.mapel.home') }}">
                                 Mata Pelajaran
                             </a>
-                            <a class="dropdown-item {{ Route::is('operator.japel.home') ? 'active' : '' }}"
-                                href="{{ route('operator.japel.home') }}">
-                                Jadwal Pelajaran
+                            <a class="dropdown-item {{ Route::is('operator.ruangan.home') ? 'active' : '' }}"
+                                href="{{ route('operator.ruangan.home') }}">
+                                Ruangan
+                            </a>
+                            <a class="dropdown-item {{ Route::is('operator.siswa.home') ? 'active' : '' }}"
+                                href="{{ route('operator.siswa.home') }}">
+                                Siswa
                             </a>
                             <a class="dropdown-item {{ Route::is('operator.tenaga-pendidik.home') ? 'active' : '' }}"
                                 href="{{ route('operator.tenaga-pendidik.home') }}">
@@ -89,7 +89,7 @@
                                 </svg>
                             </span>
                             <span class="nav-link-title">
-                                Users
+                                Pengguna
                             </span>
                         </a>
                     </li>
@@ -141,7 +141,7 @@
                                 </svg>
                             </span>
                             <span class="nav-link-title">
-                                Storage
+                                Penyimpanan
                             </span>
                         </a>
                     </li>
@@ -161,17 +161,17 @@
                                 </svg>
                             </span>
                             <span class="nav-link-title">
-                                Settings
+                                Pengaturan
                             </span>
                         </a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item {{ Route::is('operator.setting.page.home') ? 'active' : 'home' }}"
                                 href="{{ route('operator.setting.page.home') }}">
-                                Page
+                                Halaman
                             </a>
                             <a class="dropdown-item {{ Route::is('operator.setting.token.home') ? 'active' : 'home' }}"
                                 href="{{ route('operator.setting.token.home') }}">
-                                Token
+                                Integrasi
                             </a>
                         </div>
                     </li>
