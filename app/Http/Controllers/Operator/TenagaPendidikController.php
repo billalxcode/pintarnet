@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Operator;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreImportTenagaPendidikRequest;
 use App\Models\TenagaPendidik;
 use App\Http\Requests\StoreTenagaPendidikRequest;
 use App\Http\Requests\UpdateTenagaPendidikRequest;
+use App\Imports\TenagaPendidikImport;
 use App\Models\MataPelajaran;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TenagaPendidikController extends Controller
 {
@@ -50,6 +53,16 @@ class TenagaPendidikController extends Controller
     public function show(TenagaPendidik $tenagaPendidik)
     {
         //
+    }
+
+    /**
+     * Import data
+     */
+    public function import(StoreImportTenagaPendidikRequest $storeImportTenagaPendidikRequest) {
+        $storeImportTenagaPendidikRequest->validated();
+
+        Excel::import(new TenagaPendidikImport, $storeImportTenagaPendidikRequest->file('file'));
+        return redirect()->back()->with('success', 'data berhasil disimpan');
     }
 
     /**

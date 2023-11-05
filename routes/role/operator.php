@@ -30,6 +30,7 @@ Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['aut
     Route::group(['prefix' => 'tenaga-pendidik', 'as' => 'tenaga-pendidik.'], function () {
         Route::get('', [TenagaPendidikController::class, 'index'])->name('home');
         Route::post('store', [TenagaPendidikController::class, 'store'])->name('store');
+        Route::post('import', [TenagaPendidikController::class, 'import'])->name('import');
         Route::delete('destroy/{dataId}', [TenagaPendidikController::class, 'destroy'])->name('destroy');
     });
 

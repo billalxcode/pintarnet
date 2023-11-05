@@ -9,9 +9,9 @@ class TenagaPendidik extends Model
 {
     use HasFactory;
 
-    
+
     protected $fillable = [
-        'nip', 'nama', 'mapel', 'jk', 'alamat',
+        'nip', 'nama', 'jk', 'alamat',
         'tempat_lahir', 'tanggal_lahir', 'mapel_id'
     ];
 
