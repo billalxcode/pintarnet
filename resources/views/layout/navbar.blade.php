@@ -9,6 +9,7 @@
                 <img src="{{ asset('logo.svg') }}" width="110" height="32" alt="Tabler" class="navbar-brand-image">
             </a>
         </h1>
+        @auth
         <div class="navbar-nav flex-row order-md-last">
             <div class="d-none d-md-flex">
                 <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" title="Enable dark mode"
@@ -170,9 +171,9 @@
                         @csrf
                         <button class="btn-none dropdown-item">Logout</button>
                     </form>
-                    <!-- <a href="./sign-in.html" class="dropdown-item">Logout</a> -->
                 </div>
             </div>
         </div>
+        @endauth
     </div>
 </header>
