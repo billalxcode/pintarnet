@@ -28,7 +28,8 @@ class StoreKehadiranAbsenRequest extends FormRequest
             'ruangan_id' => 'required|exists:ruangans,id',
             'status' => 'required|string|in:izin,sakit,alpha,bolos',
             'keterangan' => 'nullable|string',
-            'file' => 'required|image|max:20480'
+            'file' => 'nullable|sometimes|image|max:20480',
+            'mapel' => 'nullable|in:mata_pelajarans,id'
         ];
     }
 }

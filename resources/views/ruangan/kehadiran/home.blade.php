@@ -169,11 +169,19 @@
                             <option value="bolos">Bolos</option>
                         </select>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 removable">
+                        <label for="mapel">Mata Pelajaran</label>
+                        <select name="mapel" id="mapel" class="form-control">
+                            @foreach ($data_mapels as $mapel)
+                                <option value="{{ $mapel->id }}">{{ $mapel->nama }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3 removable">
                         <label for="keterangan" class="form-label">Keterangan (opsional)</label>
                         <input type="text" name="keterangan" id="keterangan" class="form-control" placeholder="Keterangan (opsional)">
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 removable">
                         <label for="bukti" class="form-label">Bukti</label>
                         <input type="file" name="file" id="file" class="form-control">
                     </div>
@@ -198,7 +206,13 @@
 </div>
 @endpush
 
+@push('styles')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+@endpush
+
 @push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $("#btn-save").on("click", function() {
         const html = $(this).parent().parent().find("#form-save")
@@ -207,6 +221,9 @@
 
     $(document).ready(function() {
         $(".datatable").DataTable()
+        $("#mapel").select2({
+            theme: 'bootstrap-5'
+        })
     })
 </script>
 @endpush
