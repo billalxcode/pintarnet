@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Ruangan;
 
+use App\Exceptions\AlreadyPresent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreKehadiranAbsenRequest;
 use App\Models\Kehadiran;
@@ -33,20 +34,11 @@ class KehadiranController extends Controller
 
         $storage_path = Storage::disk('public')->put('absensi/' . Carbon::now()->toFormattedDateString(), $file);
 
-        $kehadiran = Kehadiran::whereDate('created_at', Carbon::today())
-            ->where('siswa_id', $validated['siswa_id']);
-
-        if ($kehadiran->exists()) {
-            return redirect()->back()->with('error', 'siswa sudah diabsen');
+        try {
+            Kehadiran::createKehadiran($request->siswa_id, $request->status, $request->ruangan_id, $storage_path, $request->keterangan);
+            return redirect()->back()->with('success', 'siswa berhasil absen');
+        } catch (AlreadyPresent $e) {
+            return redirect()->back()->with('error', $e->getMessage());
         }
-        Kehadiran::create([
-            'siswa_id' => $request->siswa_id,
-            'status' => $request->status,
-            'ruangan_id' => $request->ruangan_id,
-            'keterangan' => $request->keterangan,
-            'image_path' => $storage_path
-        ]);
-
-        return redirect()->back()->with('success', 'siswa berhasil absen');
     }
 }

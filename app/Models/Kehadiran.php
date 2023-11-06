@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Exceptions\AlreadyPresent;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -49,5 +51,22 @@ class Kehadiran extends Model
 
     public function scopeBolos(Builder $query): void {
         $query->where('status', 'bolos');
+    }
+
+    public static function createKehadiran($siswa_id, $status, $ruangan_id, $storage_path = null, $keterangan = null) {
+        $kehadiran_data = static::whereDate('created_at', Carbon::today())
+            ->where('siswa_id', $siswa_id);
+        if ($kehadiran_data->exists()) {
+            throw new AlreadyPresent("Siswa sudah diabsen");
+        } else {
+            static::create([
+                'siswa_id' => $siswa_id,
+                'status' => $status,
+                'ruangan_id' => $ruangan_id,
+                'keterangan' => $keterangan,
+                'image_path' => $storage_path
+            ]);
+            return true;
+        }
     }
 }
