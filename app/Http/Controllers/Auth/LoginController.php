@@ -16,7 +16,7 @@ class LoginController extends Controller
     public function check(LoginRequest $loginRequest) {
         $credentials = $loginRequest->validated();
 
-        $logged = Auth::attempt($credentials);
+        $logged = Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']], ($credentials['remember'] == 'on' ? true : false));
         if ($logged) {
             $loginRequest->session()->regenerate();
             return redirect()->route('auth.redirect');

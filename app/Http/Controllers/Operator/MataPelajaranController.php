@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\MataPelajaran;
 use App\Http\Requests\StoreMataPelajaranRequest;
 use App\Http\Requests\UpdateMataPelajaranRequest;
+use App\Models\TenagaPendidik;
 
 class MataPelajaranController extends Controller
 {
@@ -15,7 +16,10 @@ class MataPelajaranController extends Controller
     public function index()
     {
         $mapels = MataPelajaran::all();
-
+        foreach ($mapels as $mapel) {
+            $jumlah_pendidik = TenagaPendidik::where('mapel_id', $mapel->id)->count();
+            $mapel->setAttribute('jumlah_pendidik', $jumlah_pendidik);
+        }
         return view('operator.mapel.home', [
             'mapels' => $mapels
         ]);

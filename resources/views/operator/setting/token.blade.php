@@ -7,10 +7,10 @@
             <div class="row g-2 align-items-center">
                 <div class="col">
                     <div class="page-pretitle">
-                        Setting
+                        Pengaturan
                     </div>
                     <h2 class="page-title">
-                        Kelola Token
+                        Kelola Integrasi
                     </h2>
                 </div>
                 <!-- Page title actions -->

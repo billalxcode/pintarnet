@@ -12,4 +12,16 @@ class MataPelajaran extends Model
     protected $fillable = [
         'nama'
     ];
+
+    public static function createMapel($nama) {
+        $mapel = static::where('nama', $nama);
+        if (!$mapel->exists()) {
+            $mapel_data = static::create([
+                'nama' => $nama
+            ]);
+            return $mapel_data;
+        } else {
+            return $mapel->first();
+        }
+    }
 }

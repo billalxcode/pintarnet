@@ -64,10 +64,10 @@
                                     @foreach ($mapels as $data)
                                     <tr>
                                         <td>{{ $data->nama }}</td>
-                                        <td>{{ $data->jumlah_pendidik ?? "0" }}</td>
+                                        <td>{{ $data->jumlah_pendidik ?? "0" }} pendidik</td>
                                         <td>{{ $data->created_at }}</td>
                                         <td class="text-end">
-                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-update-{{ $data->id }}">Edit</button> 
+                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-update-{{ $data->id }}">Edit</button>
                                         </td>
                                     </tr>
                                     @endforeach

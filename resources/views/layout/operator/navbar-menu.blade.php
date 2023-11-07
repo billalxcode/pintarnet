@@ -120,7 +120,7 @@
                                 href="{{ route('operator.kehadiran.home') }}">
                                 Kelola Kehadiran
                             </a>
-                            <a class="dropdown-item" href="./layout-boxed.html">
+                            <a class="dropdown-item {{ Route::is('operator.perizinan.home') ? 'active' : '' }}" href="{{ route('operator.perizinan.home') }}">
                                 Kelola Perizinan
                             </a>
                         </div>
