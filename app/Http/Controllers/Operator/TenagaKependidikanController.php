@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Operator;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreImportTenagaKependidikanRequest;
 use App\Models\TenagaKependidikan;
 use App\Http\Requests\StoreTenagaKependidikanRequest;
 use App\Http\Requests\UpdateTenagaKependidikanRequest;
+use App\Imports\TenagaKependidikanImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TenagaKependidikanController extends Controller
 {
@@ -47,6 +50,17 @@ class TenagaKependidikanController extends Controller
     public function show(TenagaKependidikan $tenagaKependidikan)
     {
         //
+    }
+
+    /**
+     * Import data
+     */
+    public function import(StoreImportTenagaKependidikanRequest $request) {
+        $request->validated();
+
+        Excel::import(new TenagaKependidikanImport, $request->file('file'));
+
+        return redirect()->back()->with('success', 'data berhasil disimpan');
     }
 
     /**

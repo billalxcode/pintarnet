@@ -53,7 +53,7 @@
                             <a class="dropdown-item {{ Route::is('ruangan.kehadiran.home') ? 'active' : '' }}" href="{{ route('ruangan.kehadiran.home') }}">
                                 Kelola Kehadiran
                             </a>
-                            <a class="dropdown-item" href="./layout-boxed.html">
+                            <a class="dropdown-item {{ Route::is('ruangan.perizinan.home') ? 'active' : '' }}" href="{{ route('ruangan.perizinan.home') }}">
                                 Kelola Perizinan
                             </a>
                         </div>

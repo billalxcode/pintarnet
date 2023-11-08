@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class StorePerizinanRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class StorePerizinanRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -22,7 +24,22 @@ class StorePerizinanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'ruangan_id' => 'required|exists:ruangans,id',
+            'siswa_id' => 'required|exists:siswas,id',
+            'guru_id' => 'required|exists:tenaga_pendidiks,id',
+            'guru_piket_id' => 'required|exists:tenaga_kependidikans,id',
+            'keterangan' => 'required|string',
+            'exit_at' => 'required|date_format:H:i',
+            'jenis' => [
+                'required',
+                'string',
+                Rule::in(['keluar'])
+            ],
+            'status' => [
+                'required',
+                'string',
+                Rule::in(['meminta'])
+            ]
         ];
     }
 }
