@@ -10,8 +10,9 @@ class Ruangan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama', 'keterangan', 'user_id'
+        'nama', 'keterangan', 'user_id', 'wali_id'
     ];
+
     protected $with = ['user'];
 
     public function user() {
@@ -22,6 +23,10 @@ class Ruangan extends Model
         return $this->hasMany(Siswa::class);
     }
 
+    public function wali() {
+        return $this->hasOne(TenagaPendidik::class, 'id', 'wali_id');
+    }
+    
     public static function createRuangan(
         string $nama = "",
         string $keterangan = ""

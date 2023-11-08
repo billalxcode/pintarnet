@@ -8,6 +8,7 @@ use App\Http\Requests\StoreRuanganRequest;
 use App\Http\Requests\UpdateRuanganRequest;
 use App\Models\Kehadiran;
 use App\Models\Siswa;
+use App\Models\TenagaPendidik;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,10 +21,14 @@ class RuanganController extends Controller
     {
         $data_ruangan = Ruangan::all();
         $data_users = User::role('ruangan')->get();
-
+        $data_tenagapendidiks = TenagaPendidik::whereNotIn('id', $data_ruangan->map(function($data) {
+            return $data->wali_id;
+        }))->get()->sortBy('nama');
+        
         return view('operator.ruangan.home', [
             'data_ruangan' => $data_ruangan,
-            'data_users' => $data_users
+            'data_users' => $data_users,
+            'pendidiks' => $data_tenagapendidiks
         ]);
     }
 
