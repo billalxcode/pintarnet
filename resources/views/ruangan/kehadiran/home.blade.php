@@ -56,6 +56,7 @@
                                         <th>Nama</th>
                                         <th>Status</th>
                                         <th>Ruangan</th>
+                                        <th>Mapel</th>
                                         <th>Keterangan</th>
                                         <th>Created</th>
                                         <th></th>
@@ -77,6 +78,7 @@
                                             @endif
                                         </td>
                                         <td>{{ $data->siswa->ruangan->nama ?? 'Tidak diketahui' }}</td>
+                                        <td>{{ $data->mapel->nama ?? 'Tidak diketahui' }}</td>
                                         <td>{{ $data->keterangan ?? 'Tidak Diketahui' }}</td>
                                         <td>{{ $data->created_at }}</td>
                                         <td class="text-end">
@@ -169,12 +171,14 @@
                             <option value="bolos">Bolos</option>
                         </select>
                     </div>
-                    <div class="mb-3 removable">
-                        <label for="mapel">Mata Pelajaran</label>
+                    <div class="mb-3 removableMapel">
+                        <label for="mapel" class="form-label">Mata Pelajaran</label>
                         <select name="mapel" id="mapel" class="form-control">
-                            @foreach ($data_mapels as $mapel)
+                            @forelse ($data_mapels as $mapel)
                                 <option value="{{ $mapel->id }}">{{ $mapel->nama }}</option>
-                            @endforeach
+                            @empty
+                                <option value="mapel" disabled>Data Mapel Kosong</option>    
+                            @endforelse
                         </select>
                     </div>
                     <div class="mb-3 removable">
@@ -207,23 +211,35 @@
 @endpush
 
 @push('styles')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" /> -->
 @endpush
 
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
 <script>
     $("#btn-save").on("click", function() {
         const html = $(this).parent().parent().find("#form-save")
         html.submit()
     })
 
+    $("#status").on("change", function() {
+        let status = $("#status").val()
+        if (status == "bolos") {
+            $(".removable").hide()
+            $(".removableMapel").show()
+        } else {
+            $(".removableMapel").hide()
+            $(".removable").show()
+        }
+    })
+
     $(document).ready(function() {
+        $(".removableMapel").hide()
         $(".datatable").DataTable()
-        $("#mapel").select2({
-            theme: 'bootstrap-5'
-        })
+        // $("#mapel").select2({
+        //     theme: 'bootstrap-5'
+        // })
     })
 </script>
 @endpush

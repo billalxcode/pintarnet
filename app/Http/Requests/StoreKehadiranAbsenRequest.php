@@ -29,7 +29,7 @@ class StoreKehadiranAbsenRequest extends FormRequest
             'status' => 'required|string|in:izin,sakit,alpha,bolos',
             'keterangan' => 'nullable|string',
             'file' => 'nullable|sometimes|image|max:20480',
-            'mapel' => 'nullable|in:mata_pelajarans,id'
+            'mapel' => 'nullable|exists:mata_pelajarans,id'
         ];
     }
 }
