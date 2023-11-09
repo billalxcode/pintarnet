@@ -167,6 +167,7 @@
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <a href="{{ Auth::user()->getRoleNames()[0] == 'operator' ? route('operator.home') : (Auth::user()->getRoleNames()[0] == 'ruangan' ? route('ruangan.home') : '') }}" class="dropdown-item">Dashboard</a>
                     <form action="{{ route('auth.logout') }}" method="post">
                         @csrf
                         <button class="btn-none dropdown-item">Logout</button>
