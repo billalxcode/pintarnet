@@ -4,6 +4,8 @@ use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+Route::redirect('/auth', '/auth/login');
+
 Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'guest'], function() {
     Route::prefix('login')->as('login.')->group(function() {
         Route::get('', [LoginController::class, 'index'])->name('home');
