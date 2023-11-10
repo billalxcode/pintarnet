@@ -1,4 +1,4 @@
-@extends('layout.operator.app')
+@extends('layout.ruangan.app')
 
 @section('content')
 <!-- Page header -->
