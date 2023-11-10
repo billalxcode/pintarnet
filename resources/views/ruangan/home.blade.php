@@ -77,7 +77,7 @@
                 <div class="col-12 col-lg-6 col-md-6">
                     <div class="card card-md">
                         <div class="card-header">
-                            <h4 class="card-title">Senin, 14 Januari 2023</h4>
+                            <h4 class="card-title">{{ $time_format_day ?? '' }}</h4>
                         </div>
                         <div class="card-body d-flex justify-content-center align-items-center flex-column">
                             <h4 id="greeting" class="placeholder col-3"></h4>

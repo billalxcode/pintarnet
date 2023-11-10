@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Imports\MasterImport as ImportsMasterImport;
+use App\Imports\SiswaImport;
+use App\Imports\TenagaKependidikanImport;
+use App\Imports\TenagaPendidikImport;
 use Illuminate\Console\Command;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -27,6 +29,8 @@ class MasterImport extends Command
      */
     public function handle()
     {
-        Excel::import(new ImportsMasterImport, "excel/MS.T-MASTER.xlsx");
+        Excel::import(new SiswaImport, "excel/MS.T-MASTER.xlsx");
+        Excel::import(new TenagaPendidikImport, "excel/MS.T-Master.xlsx");
+        Excel::import(new TenagaKependidikanImport, "Excel/MS.T-Master.xlsx");
     }
 }

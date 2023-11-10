@@ -7,7 +7,7 @@
         <div class="row g-2 align-items-center">
             <div class="col">
                 <div class="page-pretitle">
-                    Kehadiran
+                    Perizinan
                 </div>
                 <h2 class="page-title">
                     Kelola Data
@@ -22,7 +22,7 @@
                             <path d="M12 5l0 14" />
                             <path d="M5 12l14 0" />
                         </svg>
-                        New Data
+                        Tambah Data
                     </a>
                     <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal" data-bs-target="#modal-report" aria-label="Create new report">
                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
@@ -33,7 +33,6 @@
                         </svg>
                     </a>
                 </div>
-            </div>
         </div>
     </div>
 </div>
@@ -46,7 +45,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Kehadiran</h3>
+                        <h3 class="card-title">Data Perizinan Masuk</h3>
                     </div>
                     <div class="card-body border-bottom py-3">
                         <div class="table-responsive">
@@ -56,29 +55,25 @@
                                         <th>Nama</th>
                                         <th>Status</th>
                                         <th>Ruangan</th>
-                                        <th>Mapel</th>
                                         <th>Keterangan</th>
                                         <th>Created</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data_kehadiran as $data)
+                                    @foreach ($data_masuk as $data)
                                     <tr>
                                         <td>{{ $data->siswa->nama }}</td>
                                         <td>
-                                            @if ($data->status == "hadir")
-                                            <span class="badge bg-success">HADIR</span>
-                                            @elseif ($data->status == "izin")
-                                            <span class="badge bg-info">IZIN</span>
-                                            @elseif ($data->status == "sakit")
-                                            <span class="badge bg-warning">SAKIT</span>
-                                            @else
-                                            <span class="badge bg-danger">ALPHA</span>
+                                            @if ($data->status == "diizinkan")
+                                            <span class="badge bg-success">Izin diberikan</span>
+                                            @elseif ($data->status == "meminta")
+                                            <span class="badge bg-info">Meminta Izin</span>
+                                            @elseif ($data->status == "ditolang")
+                                            <span class="badge bg-danger">Ditolak</span>
                                             @endif
                                         </td>
                                         <td>{{ $data->siswa->ruangan->nama ?? 'Tidak diketahui' }}</td>
-                                        <td>{{ $data->mapel->nama ?? 'Tidak diketahui' }}</td>
                                         <td>{{ $data->keterangan ?? 'Tidak Diketahui' }}</td>
                                         <td>{{ $data->created_at }}</td>
                                         <td class="text-end">
@@ -113,7 +108,7 @@
                                                                 <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
                                                                     Cancel
                                                                 </a>
-                                                                <button type="submit" class="btn btn-primary ms-auto">
+                                                                <button type="submit" class="btn btn-primary ms-auto btn-save">
                                                                     <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                                                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -129,7 +124,7 @@
                                             </div>
                                             @endpush
                                         </td>
-                                    </tr>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -151,43 +146,48 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('ruangan.kehadiran.absen') }}" method="post" id="form-save" enctype="multipart/form-data">
+                <form action="{{ route('ruangan.perizinan.store') }}" method="post" id="form-save">
                     @csrf
                     <input type="hidden" name="ruangan_id" value="{{ $ruangan->id }}">
+                    <input type="hidden" name="jenis" value="keluar">
+                    <input type="hidden" name="status" value="meminta">
                     <div class="mb-3">
-                        <label for="siswa_id" class="form-label">Nama Lengkap</label>
-                        <select name="siswa_id" id="siswa_id" class="form-control">
-                            @foreach($data_siswas as $siswa)
+                        <label class="form-label">Nama Siswa</label>
+                        <select name="siswa_id" id="siswa" class="form-control">
+                            @forelse ($data_siswas as $siswa)
                                 <option value="{{ $siswa->id }}">{{ $siswa->nama }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="status" class="form-label">Status</label>
-                        <select name="status" id="status" class="form-control">
-                            <option value="izin">Izin</option>
-                            <option value="sakit">Sakit</option>
-                            <option value="alpha">Alpha</option>
-                            <option value="bolos">Bolos</option>
-                        </select>
-                    </div>
-                    <div class="mb-3 removableMapel">
-                        <label for="mapel" class="form-label">Mata Pelajaran</label>
-                        <select name="mapel" id="mapel" class="form-control">
-                            @forelse ($data_mapels as $mapel)
-                                <option value="{{ $mapel->id }}">{{ $mapel->nama }}</option>
                             @empty
-                                <option value="mapel" disabled>Data Mapel Kosong</option>    
+                                <option disabled>Data kosong</option>
                             @endforelse
                         </select>
                     </div>
-                    <div class="mb-3 removable">
-                        <label for="keterangan" class="form-label">Keterangan (opsional)</label>
-                        <input type="text" name="keterangan" id="keterangan" class="form-control" placeholder="Keterangan (opsional)">
+                    <div class="mb-3">
+                        <label class="form-label">Nama Guru</label>
+                        <select name="guru_id" id="guru_piket" class="form-control">
+                            @forelse ($data_pendidiks as $pendidik)
+                                <option value="{{ $pendidik->id }}">{{ $pendidik->nama }}</option>
+                            @empty
+                                <option disabled>Data kosong</option>
+                            @endforelse
+                        </select>
                     </div>
-                    <div class="mb-3 removable">
-                        <label for="bukti" class="form-label">Bukti</label>
-                        <input type="file" name="file" id="file" class="form-control">
+                    <div class="mb-3">
+                        <label class="form-label">Nama Guru Piket</label>
+                        <select name="guru_piket_id" id="guru_piket" class="form-control">
+                            @forelse ($data_kependidikans as $kependidikan)
+                                <option value="{{ $kependidikan->id }}">{{ $kependidikan->nama }}</option>
+                            @empty
+                                <option disabled>Data kosong</option>
+                            @endforelse
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Alasan</label>
+                        <input type="text" class="form-control" name="keterangan" placeholder="Alasan Izin Keluar">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Jam Keluar</label>
+                        <input type="time" name="exit_at" id="exit_at" class="form-control">
                     </div>
                 </form>
             </div>
@@ -195,7 +195,7 @@
                 <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
                     Cancel
                 </a>
-                <a href="#" class="btn btn-primary ms-auto" id="btn-save">
+                <a href="#" class="btn btn-primary ms-auto btn-save">
                     <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -212,28 +212,13 @@
 
 @push('scripts')
 <script>
-    $("#btn-save").on("click", function() {
+    $(".btn-save").on("click", function() {
         const html = $(this).parent().parent().find("#form-save")
         html.submit()
     })
 
-    $("#status").on("change", function() {
-        let status = $("#status").val()
-        if (status == "bolos") {
-            $(".removable").hide()
-            $(".removableMapel").show()
-        } else {
-            $(".removableMapel").hide()
-            $(".removable").show()
-        }
-    })
-
     $(document).ready(function() {
-        $(".removableMapel").hide()
         $(".datatable").DataTable()
-        // $("#mapel").select2({
-        //     theme: 'bootstrap-5'
-        // })
     })
 </script>
 @endpush

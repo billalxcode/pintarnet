@@ -29,6 +29,7 @@
 <body>
     <script src="{{ asset('assets/js/demo-theme.min.js?1684106062') }}"></script>
     <div class="page">
+        @include('layout.navbar')
         <div class="page-wrapper">
             @yield('content')
             @include('layout.footer')

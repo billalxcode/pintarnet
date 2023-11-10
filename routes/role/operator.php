@@ -37,6 +37,7 @@ Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['aut
     Route::group(['prefix' => 'tenaga-kependidikan', 'as' => 'tenaga-kependidikan.'], function() {
         Route::get('', [TenagaKependidikanController::class, 'index'])->name('home');
         Route::post('store', [TenagaKependidikanController::class, 'store'])->name('store');
+        Route::post('import', [TenagaKependidikanController::class, 'import'])->name('import');
         Route::delete('destroy/{dataId}', [TenagaKependidikanController::class, 'destroy'])->name('destroy');
     });
 

@@ -22,7 +22,7 @@ class KehadiranController extends Controller
             return $data->id;
         });
         $data_siswas = Siswa::where('ruangan_id', $user->ruangan->id)->whereNotIn('id', $siswa_absens)->orderBy('nama')->get();
-        $data_mapels = MataPelajaran::all();
+        $data_mapels = MataPelajaran::all()->sortBy('nama');
 
         return view('ruangan.kehadiran.home', [
             'data_kehadiran' => $data_kehadiran,
@@ -37,7 +37,6 @@ class KehadiranController extends Controller
             $file = $request->file('file');
             $storage_path = Storage::disk('public')->put('absensi/' . Carbon::now()->toFormattedDateString(), $file);
         }
-
 
         try {
             Kehadiran::createKehadiran($request->siswa_id, $request->status, $request->ruangan_id, $storage_path ?? null, $request->keterangan, $request->mapel);

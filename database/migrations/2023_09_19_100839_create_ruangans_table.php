@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('nama');
             $table->text('keterangan');
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('wali_id')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('wali_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->index('user_id');
             $table->timestamps();
         });
