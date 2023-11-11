@@ -104,7 +104,19 @@
                                                 </td>
                                                 <td>{{ $data->nama }}</td>
                                                 <td>{{ $data->mapel->nama ?? 'Belum diisi' }}</td>
-                                                <td>{{ $data->user->email ?? 'Belum diisi' }}</td>
+                                                <td>
+                                                    @php
+                                                        if ($data->user->email) {
+                                                            @endphp
+                                                            <a href="{{ route('operator.user.home', [ 'email' => $data->user->email ]) }}">{{ $data->user->email }}<a>
+                                                            @php
+                                                        } else {
+                                                            @endphp
+                                                            Belum diisi
+                                                            @php
+                                                        }
+                                                    @endphp
+                                                </td>
                                                 <td>{{ $data->created_at }}</td>
                                                 <td class="text-start">
                                                     <form

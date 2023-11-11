@@ -13,7 +13,7 @@ class RolePermission extends Seeder
      */
     public function run(): void
     {
-        $roles = ['operator', 'ruangan'];
+        $roles = ['operator', 'ruangan', 'pendidik'];
         $guards = ['web', 'api'];
         foreach ($guards as $guard) {
             foreach ($roles as $role) {

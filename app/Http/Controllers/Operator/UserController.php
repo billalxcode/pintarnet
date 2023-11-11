@@ -17,13 +17,17 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
+        $_email = $request->query('email');
         $data_users = User::all()->except(Auth::user()->id);
         $data_users->map(function($data) {
             $roles = $data->getRoleNames();
             $role = collect($roles)->implode(",");
             $data->setAttribute('role', $role);
             return $data;
+        });
+        $data_users = $data_users->filter(function($data) use ($_email) {
+            return $data->email == $_email;
         });
         $data_roles = Role::all();
 

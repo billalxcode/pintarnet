@@ -132,7 +132,7 @@ class User extends Authenticatable
     }
 
     public static function createUser(
-        string $name = ""
+        string $name = "", string $role = 'ruangan'
     ) {
         $user = static::where('name', $name);
 
@@ -146,7 +146,7 @@ class User extends Authenticatable
                 'name' => $name,
                 'email' => $email
             ]);
-            $collection->assignRole('ruangan');
+            $collection->assignRole($role);
             return $collection;
         } else {
             return $user->first();
