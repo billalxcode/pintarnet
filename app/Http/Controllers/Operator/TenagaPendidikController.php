@@ -42,8 +42,16 @@ class TenagaPendidikController extends Controller
     {
         $validated = $request->validated();
 
-        TenagaPendidik::create($validated);
-
+        TenagaPendidik::createTenagaPendidik(
+            $validated['nip'],
+            $validated['nama'],
+            $validated['jk'],
+            $validated['alamat'],
+            $validated['tempat_lahir'],
+            $validated['tanggal_lahir'],
+            $validated['mapel_id']
+        );
+        
         return redirect()->back()->with('success', 'data berhasil ditambahkan');
     }
 

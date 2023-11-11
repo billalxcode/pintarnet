@@ -91,6 +91,7 @@
                                             <th>NIP</th>
                                             <th>Nama Lengkap</th>
                                             <th>Mapel</th>
+                                            <th>Akun</th>
                                             <th>Created</th>
                                             <th></th>
                                         </tr>
@@ -103,6 +104,7 @@
                                                 </td>
                                                 <td>{{ $data->nama }}</td>
                                                 <td>{{ $data->mapel->nama ?? 'Belum diisi' }}</td>
+                                                <td>{{ $data->user->email ?? 'Belum diisi' }}</td>
                                                 <td>{{ $data->created_at }}</td>
                                                 <td class="text-start">
                                                     <form
