@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Models\MataPelajaran;
 use App\Models\TenagaPendidik;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;

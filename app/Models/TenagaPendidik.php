@@ -33,7 +33,7 @@ class TenagaPendidik extends Model
         string $mapel_id = ""
     ) {
         $user = User::createUser($nama);
-
+        
         static::create([
             'nip' => $nip,
             'nama' => $nama,
