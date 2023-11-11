@@ -139,6 +139,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <div class="alert alert-warning">
+                        <b>Peringatan:</b> Email akan otomatis dibuatkan. Jika nama terdapat tanda koma, maka belakang tanda koma pertama akan dihapus. Jika nama terdapat spasi maka akan ditambah kode unik.
+                    </div>
                     <form action="{{ route('operator.tenaga-pendidik.store') }}" method="post" id="form-save">
                         @csrf
                         <div class="mb-3">
@@ -229,6 +232,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <div class="alert alert-warning">
+                        <b>Peringatan:</b> Email akan otomatis dibuatkan. Jika nama terdapat tanda koma, maka belakang tanda koma pertama akan dihapus. Jika nama terdapat spasi maka akan ditambah kode unik.
+                    </div>
                     <form action="{{ route('operator.tenaga-pendidik.import') }}" method="post" id="form-save"
                         enctype="multipart/form-data">
                         @csrf
