@@ -32,6 +32,6 @@ class Perizinan extends Model
     }
 
     public function guru() {
-        return $this->hasOne(TenagaPendidik::class, 'id', 'guru_piket_id');
+        return $this->hasOne(TenagaPendidik::class, 'id', 'guru_id');
     }
 }

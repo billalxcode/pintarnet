@@ -14,6 +14,7 @@ class PerizinanController extends Controller
      */
     public function index()
     {
+        // dd(auth()->user()->unreadNotifications);
         $data_perizinan = Perizinan::all();
         
         return view('operator.perizinan.home', [

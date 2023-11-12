@@ -8,8 +8,10 @@ use App\Models\Perizinan;
 use App\Models\Siswa;
 use App\Models\TenagaKependidikan;
 use App\Models\TenagaPendidik;
+use App\Notifications\RequestPerizinan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class PerizinanController extends Controller
 {
@@ -35,8 +37,9 @@ class PerizinanController extends Controller
 
     public function store(StorePerizinanRequest $storePerizinanRequest) {
         $validated = $storePerizinanRequest->validated();
-        // dd($validated);
-        Perizinan::create($validated);
+        $perizinan = Perizinan::create($validated);
+
+        Notification::send($perizinan->guru->user, new RequestPerizinan($perizinan));
 
         return redirect()->back()->with('success', 'Data berhasil disimpan');
     }
