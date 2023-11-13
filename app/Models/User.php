@@ -100,6 +100,10 @@ class User extends Authenticatable
         return $this->belongsTo(Ruangan::class, 'id', 'user_id');
     }
 
+    public function pendidik() {
+        return $this->belongsTo(TenagaPendidik::class, 'id', 'user_id');
+    }
+    
     public function scopeEmail(Builder $query, string $email)
     {
         $query->where('email', $email);

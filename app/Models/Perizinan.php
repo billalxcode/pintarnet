@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -37,5 +38,17 @@ class Perizinan extends Model
 
     public function ruangan() {
         return $this->hasOne(Ruangan::class, 'id', 'ruangan_id');
+    }
+
+    public function scopeStatus(Builder $query, $status) {
+        $query->where('status', $status);
+    }
+
+    public function scopeJenis(Builder $builder, $jenis) {
+        $builder->where('jenis', $jenis);
+    }
+
+    public function scopePendidik(Builder $builder, $pendidik_id) {
+        $builder->where('guru_id', $pendidik_id);
     }
 }

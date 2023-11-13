@@ -9,5 +9,6 @@ Route::group(['prefix' => 'pendidik', 'middleware' => ['auth', 'role:pendidik'],
 
     Route::group(['prefix' => 'perizinan', 'as' => 'perizinan.'], function() {
         Route::get('', [PerizinanController::class, 'index'])->name('home');
+        Route::post('update', [PerizinanController::class, 'update'])->name('update');
     });
 });
