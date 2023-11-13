@@ -38,6 +38,6 @@ class RequestPerizinan extends Notification
      */
     public function toArray(object $notifiable): array
     {
-        return $this->data->toArray();
+        return $this->data;
     }
 }

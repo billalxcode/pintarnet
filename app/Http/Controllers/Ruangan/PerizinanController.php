@@ -45,7 +45,6 @@ class PerizinanController extends Controller
             'status' => $perizinan->status,
             'jenis' => $perizinan->jenis
         ];
-        dd($notification_data);
         Notification::send($perizinan->guru->user, new RequestPerizinan($notification_data));
 
         return redirect()->back()->with('success', 'Data berhasil disimpan');

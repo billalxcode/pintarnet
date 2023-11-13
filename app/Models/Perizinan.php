@@ -34,4 +34,8 @@ class Perizinan extends Model
     public function guru() {
         return $this->hasOne(TenagaPendidik::class, 'id', 'guru_id');
     }
+
+    public function ruangan() {
+        return $this->hasOne(Ruangan::class, 'id', 'ruangan_id');
+    }
 }
