@@ -22,8 +22,8 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'auth'], func
             return redirect()->route('operator.home');
         } else if ($role === 'ruangan') {
             return redirect()->route('ruangan.home');
-        } else if ($role === 'guru') {
-            return redirect()->route('guru.home');
+        } else if ($role === 'pendidik') {
+            return redirect()->route('pendidik.home');
         }
     })->name('redirect');
 

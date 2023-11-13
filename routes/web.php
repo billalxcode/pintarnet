@@ -32,3 +32,4 @@ Route::group(['prefix' => '/', 'as' => 'guest.'], function() {
 require __DIR__ . "/auth.php";
 require __DIR__ . "/role/operator.php";
 require __DIR__ . "/role/ruangan.php";
+require __DIR__ . "/role/pendidik.php";
