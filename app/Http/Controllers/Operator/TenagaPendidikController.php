@@ -20,7 +20,6 @@ class TenagaPendidikController extends Controller
     {
         $data_tenaga_pendidik = TenagaPendidik::all();
         $data_mapels = MataPelajaran::all();
-
         return view('operator.tenaga-pendidik.home', [
             'data_tenaga_pendidik' => $data_tenaga_pendidik,
             'mapels' => $data_mapels
@@ -42,8 +41,16 @@ class TenagaPendidikController extends Controller
     {
         $validated = $request->validated();
 
-        TenagaPendidik::create($validated);
-
+        TenagaPendidik::createTenagaPendidik(
+            $validated['nip'],
+            $validated['nama'],
+            $validated['jk'],
+            $validated['alamat'],
+            $validated['tempat_lahir'],
+            $validated['tanggal_lahir'],
+            $validated['mapel_id']
+        );
+        
         return redirect()->back()->with('success', 'data berhasil ditambahkan');
     }
 

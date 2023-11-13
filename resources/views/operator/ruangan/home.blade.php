@@ -56,7 +56,7 @@
                                     <tr>
                                         <th>Nama</th>
                                         <th>Keterangan</th>
-                                        <th>User</th>
+                                        <th>Akun</th>
                                         <th>Siswa</th>
                                         <th>Wali Kelas</th>
                                         <th>Created</th>
@@ -68,7 +68,19 @@
                                     <tr>
                                         <td>{{ $data->nama }}</td>
                                         <td>{{ $data->keterangan ?? 'Belum diisi' }}</td>
-                                        <td>{{ $data->user->name ?? 'Tidak diketahui' }}</td>
+                                        <td>
+                                            @php
+                                            if ($data->user->email) {
+                                            @endphp
+                                            <a href="{{ route('operator.user.home', [ 'email' => $data->user->email ]) }}">{{ $data->user->email }}<a>
+                                                    @php
+                                                    } else {
+                                                    @endphp
+                                                    Belum diisi
+                                                    @php
+                                                    }
+                                                    @endphp
+                                        </td>
                                         <td>{{ $data->siswa->count() ?? '0' }} siswa</td>
                                         <td>{{ $data->wali->nama ?? 'Tidak diketahui' }}</td>
                                         <td>{{ $data->created_at }}</td>

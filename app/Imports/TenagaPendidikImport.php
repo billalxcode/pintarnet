@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Models\MataPelajaran;
 use App\Models\TenagaPendidik;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
@@ -28,15 +29,16 @@ class TenagaPendidikImport implements ToCollection, WithHeadingRow, WithCalculat
         foreach ($collection as $row) {
             $mapel = MataPelajaran::createMapel($row['mapel']);
 
-            TenagaPendidik::create([
-                'nip'       => $row['nip'],
-                'nama'      => $row['nama_lengkap'],
-                'mapel_id'  => $mapel->id,
-                'alamat'    => $row['alamat'],
-                'tempat_lahir' => $row['tempat_lahir'],
-                'jk'        => ( $row['jk'] == "L" ? "pria" : "wanita" ),
-                'tanggal_lahir' => Carbon::createFromFormat("d/m/Y", $row['tanggal_lahir'])->format("Y-m-d"),
-            ]);
+            TenagaPendidik::createTenagaPendidik(
+                $row['nip'],
+                $row['nama_lengkap'],
+                ( $row['jk'] == "L" ? "pria" : "wanita" ),
+                $row['alamat'],
+                $row['tempat_lahir'],
+                Carbon::createFromFormat("d/m/Y", $row['tanggal_lahir'])->format("Y-m-d"),
+                $row['kelas'],
+                $mapel->id,
+            );
         }
     }
 }

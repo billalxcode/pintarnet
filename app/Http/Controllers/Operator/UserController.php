@@ -17,7 +17,9 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
+        $_email = $request->query('email');
+        $_role = $request->query('role');
         $data_users = User::all()->except(Auth::user()->id);
         $data_users->map(function($data) {
             $roles = $data->getRoleNames();
@@ -25,6 +27,11 @@ class UserController extends Controller
             $data->setAttribute('role', $role);
             return $data;
         });
+        if (!is_null($_email) || !is_null($_role)) {
+            $data_users = $data_users->filter(function($data) use ($_email, $_role) {
+                return $data->email == $_email || $data->role == $_role;
+            });
+        }
         $data_roles = Role::all();
 
         return view('operator.user.home', [

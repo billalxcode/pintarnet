@@ -37,8 +37,16 @@ class ViewServiceProvider extends ServiceProvider
             if (Auth::check()) {
                 $this->share_data_ruangan($view);
                 $this->share_data_user($view);
+                $this->share_data_notifications($view);
             }
         });
+    }
+
+    public function share_data_notifications($view) {
+        $user = Auth::user();
+        // dd($user->unreadNotifications->first()->data);
+        
+        $view->with('notifications', $user->unreadNotifications);
     }
 
     public function share_data_guest($view) {

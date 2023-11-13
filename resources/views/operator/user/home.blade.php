@@ -62,7 +62,6 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Email</th>
-                                            <th>Connected Ruangan</th>
                                             <th>Roles</th>
                                             <th>Created</th>
                                             <th></th>
@@ -77,7 +76,6 @@
                                                 <td>
                                                     <span class="text-muted">{{ $data->email ?? 'Belum diisi' }}</span>
                                                 </td>
-                                                <td>{{ $data->ruangan->nama ?? 'Belum diisi' }}</td>
                                                 <td class="text-uppercase">{{ $data->role }}</td>
                                                 <td>{{ $data->created_at }}</td>
                                                 <td class="text-start">

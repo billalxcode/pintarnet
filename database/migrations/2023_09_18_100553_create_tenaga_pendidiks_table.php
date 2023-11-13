@@ -21,6 +21,12 @@ return new class extends Migration
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
 
+            $table->unsignedBigInteger('user_id');
+
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+
+            $table->index('user_id');
+
             $table->timestamps();
         });
     }
