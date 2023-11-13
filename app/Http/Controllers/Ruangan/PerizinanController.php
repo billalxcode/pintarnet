@@ -22,7 +22,7 @@ class PerizinanController extends Controller
 
         $data_siswas = Siswa::whereNotIn('id', $data_perizinan_keluar->map(function($data) {
             return $data['siswa_id'];
-        }))->get()->sortBy('nama');
+        }))->where('ruangan_id', $user->ruangan->id)->get()->sortBy('nama');
         $data_pendidiks = TenagaPendidik::all()->sortBy('nama');
         $data_kependidikans = TenagaKependidikan::all()->sortBy('nama');
 
@@ -39,7 +39,14 @@ class PerizinanController extends Controller
         $validated = $storePerizinanRequest->validated();
         $perizinan = Perizinan::create($validated);
 
-        Notification::send($perizinan->guru->user, new RequestPerizinan($perizinan));
+        $notification_data = [
+            'nama_siswa' => $perizinan->siswa->nama,
+            'keterangan' => $perizinan->keterangan,
+            'status' => $perizinan->status,
+            'jenis' => $perizinan->jenis
+        ];
+        dd($notification_data);
+        Notification::send($perizinan->guru->user, new RequestPerizinan($notification_data));
 
         return redirect()->back()->with('success', 'Data berhasil disimpan');
     }
