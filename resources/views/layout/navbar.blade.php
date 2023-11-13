@@ -163,11 +163,8 @@
                         style="background-image: url('/assets/static/avatars/user.png')"></span>
                     <div class="d-none d-xl-block ps-2">
                         <div>{{ auth()->user()->name ?? 'Unknown' }}</div>
-                        <div class="mt-1 small text-muted">
-                            @role('operator') Operator
-                            @else role('ruangan') Ruangan
-                            @else role('pendidik') Pendidik
-                            @endrole
+                        <div class="mt-1 small text-muted text-uppercase">
+                            {{ auth()->user()->getRoleNames()[0] ?? 'Unknown' }}
                         </div>
                     </div>
                 </a>
