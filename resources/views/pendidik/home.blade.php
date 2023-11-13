@@ -26,7 +26,7 @@
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-10">
-                                <h3 class="h1">Welcome {{ auth()->user()->name ?? 'Unknown' }}</h3>
+                                <h3 class="h1">Welcome {{ explode(" ", auth()->user()->name)[0] ?? 'Unknown' }}</h3>
                                 <div class="markdown text-muted">
                                     Selamat datang di aplikasi {{ config('app.name') }}. {{ config('app.name') }} adalah solusi canggih
                                     untuk mengelola informasi akademik dengan mudah dan efisien. Selamat menggunakan {{ config('app.name') }} untuk mengoptimalkan

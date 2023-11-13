@@ -18,8 +18,8 @@
                             </span>
                         </a>
                     </li>
-                    <li class="nav-item {{ Route::is('ruangan.siswa.home') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('ruangan.siswa.home') }}">
+                    <li class="nav-item {{ Route::is('pendidik.perizinan.home') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('pendidik.perizinan.home') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -30,7 +30,7 @@
                                 </svg>
                             </span>
                             <span class="nav-link-title">
-                                Siswa
+                                Perizinan
                             </span>
                         </a>
                     </li>
