@@ -36,7 +36,8 @@ class TenagaPendidikImport implements ToCollection, WithHeadingRow, WithCalculat
                 $row['alamat'],
                 $row['tempat_lahir'],
                 Carbon::createFromFormat("d/m/Y", $row['tanggal_lahir'])->format("Y-m-d"),
-                $mapel->id
+                $row['kelas'],
+                $mapel->id,
             );
         }
     }

@@ -58,30 +58,6 @@ class User extends Authenticatable
         return Str::lower(Str::random($length));
     }
 
-    // private static function removeAcademicTitle($name)
-    // {
-    //     $academicTitles = [
-    //         "s.pd", "s.t", "a.md", "a.ma", "a.p", "s.a.b", "s.a.p",
-    //         "s.kom", "s.pd.jas", "s.th.i", "s.th.l", "s.tr.k", "s.th",
-    //         "s.tr.k", "s.s", "s.pi"
-    //     ];
-    //     $name = Str::of($name)->lower();
-    //     foreach ($academicTitles as $title) {
-    //         if ($name->is('*' . $title)) {
-    //             $name = $name->replaceEnd($title, '');
-    //         } else if ($name->is('*' . $title . '.')) {
-    //             $name = $name->replaceEnd($title . '.', '');
-    //         }
-            
-    //         if ($name->is('*, ') || $name->is('*,') || $name->is('*.,') || $name->is('*., ')) {
-    //             $name = $name->replaceEnd(' ', '');
-    //             $name = $name->replaceEnd(',', '');
-    //             $name = $name->replaceEnd('.', '');
-    //         }
-    //     }
-    //     return $name;
-    // }
-
     private static function removeTitle($name)
     {
         $titles = [
@@ -104,11 +80,9 @@ class User extends Authenticatable
 
     public static function generateEmail($name, $unique = false)
     {
-        // [',', '/', '\\', '@', '#', '$', '`', '%', '^', '&', '*', '(', ')', '+', '=']
         $name = Str::of($name)->lower();
         $domain = request()->getHost();
 
-        // filter string
         $name = static::removeTitle($name);
         
         if ($name->wordCount() == 1 || $unique) {

@@ -20,7 +20,6 @@ class TenagaPendidikController extends Controller
     {
         $data_tenaga_pendidik = TenagaPendidik::all();
         $data_mapels = MataPelajaran::all();
-
         return view('operator.tenaga-pendidik.home', [
             'data_tenaga_pendidik' => $data_tenaga_pendidik,
             'mapels' => $data_mapels

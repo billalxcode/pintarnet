@@ -79,6 +79,7 @@
                                         <th>NIP</th>
                                         <th>Nama Lengkap</th>
                                         <th>Mapel</th>
+                                        <th>Wali Kelas</th>
                                         <th>Akun</th>
                                         <th>Created</th>
                                         <th></th>
@@ -92,6 +93,19 @@
                                         </td>
                                         <td>{{ $data->nama }}</td>
                                         <td>{{ $data->mapel->nama ?? 'Belum diisi' }}</td>
+                                        <td>
+                                            @php
+                                            if ($data->wali) {
+                                            @endphp
+                                            <a href="{{ route('operator.ruangan.home', [ 'id' => $data->wali->id ]) }}">{{ $data->wali->nama }}<a>
+                                                    @php
+                                                    } else {
+                                                    @endphp
+                                                    Belum diisi
+                                                    @php
+                                                    }
+                                                    @endphp
+                                        </td>
                                         <td>
                                             @php
                                             if ($data->user->email) {

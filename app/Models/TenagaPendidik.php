@@ -9,7 +9,6 @@ class TenagaPendidik extends Model
 {
     use HasFactory;
 
-
     protected $fillable = [
         'nip', 'nama', 'jk', 'alamat', 'tempat_lahir',
         'tanggal_lahir', 'mapel_id', 'user_id'
@@ -23,6 +22,10 @@ class TenagaPendidik extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function wali() {
+        return $this->belongsTo(Ruangan::class, 'id', 'wali_id');
+    }
+
     public static function createTenagaPendidik(
         string $nip = "",
         string $nama = "",
@@ -30,11 +33,11 @@ class TenagaPendidik extends Model
         string $alamat = "",
         string $tempat_lahir = "",
         string $tanggal_lahir = "",
+        $kelas = "",
         string $mapel_id = ""
     ) {
         $user = User::createUser($nama, 'pendidik');
-        
-        static::create([
+        $data = static::create([
             'nip' => $nip,
             'nama' => $nama,
             'mapel_id' => $mapel_id,
@@ -44,5 +47,11 @@ class TenagaPendidik extends Model
             'tanggal_lahir' => $tanggal_lahir,
             'user_id' => $user->id
         ]);
+        $ruangan = Ruangan::where('nama', $kelas);
+        if ($kelas != "" && $ruangan->exists()) {
+            $ruangan->update([
+                'wali_id' => $data->id
+            ]);
+        }
     }
 }
