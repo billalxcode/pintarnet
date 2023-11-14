@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\Operator;
 
-use App\Exceptions\ResponseSuccess;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
@@ -11,24 +10,85 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function index() {
-        $data_users = User::all()->except(Auth::user()->id);
-        $data_users->map(function ($data) {
-            $roles = $data->getRoleNames();
-            $role = collect($roles)->implode(",");
-            $data->setAttribute('role', $role);
-            return $data;
-        });
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $user = Auth::user();
+        $users = User::all()->except($user->id);
 
-        throw new ResponseSuccess('success get all users', $data_users);
+        return response()->json([
+            'data' => $users
+        ]);
     }
 
-    public function store(StoreUserRequest $request) {
-        $data = $request->validated();
-        $user = User::create($data);
-        $user_data = User::findOrFail($user->id);
-        $user_data->assignRole('ruangan');
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create(StoreUserRequest $request)
+    {
+        
+    }
 
-        throw new ResponseSuccess('success create new data', $user);
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validated();
+
+        $user = User::createUser($validated['name'], $validated['ruangan']);
+
+        return response()->json([
+            'data' => $user
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        $user = User::findOrFail($id);
+
+        return response()->json([
+            'data' => $user
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        $user = User::findOrFail($id);
+        if ($user->exists()) {
+            $user->delete();
+
+            return response()->json([
+                'message' => 'Data berhasil dihapus'
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Data gagal dihapus'
+            ])->setStatusCode(404);
+        }
     }
 }

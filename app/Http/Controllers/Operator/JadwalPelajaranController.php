@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Operator;
 
+use App\Http\Controllers\Controller;
 use App\Models\JadwalPelajaran;
 use App\Http\Requests\StoreJadwalPelajaranRequest;
 use App\Http\Requests\UpdateJadwalPelajaranRequest;
