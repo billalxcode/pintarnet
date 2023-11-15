@@ -28,3 +28,4 @@ Route::as('api.')->group(function() {
 });
 
 require_once __DIR__ . "/role/api/operator.php";
+require_once __DIR__ . "/role/api/ruangan.php";
