@@ -12,5 +12,9 @@ Route::as('api.')->group(function() {
             Route::get('', [SiswaController::class, 'index'])->name('home');
             Route::get('{siswa_id}', [SiswaController::class, 'show'])->name('show');
         });
+
+        Route::group(['prefix' => 'kehadiran', 'as' => 'kehadiran'], function() {
+            // Route::get('')
+        });
     });
 });
