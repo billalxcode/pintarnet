@@ -20,6 +20,8 @@ class Siswa extends Model
         'alamat', 'ruangan_id'
     ];
 
+    protected $with = ['ruangan'];
+
     public static function boot() {
         parent::boot();
         static::creating(function ($siswa) {
