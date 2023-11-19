@@ -19,6 +19,7 @@ class AuthController extends Controller
             throw new ResponseError("incorrect email or password");
         }
 
+        $loginRequest->user()->tokens()->delete();
         $token = $loginRequest->user()->createToken('api');
         throw new ResponseSuccess('successfully login', ['access_token' => $token->accessToken, 'expires_at' => $token->token->expires_at]);
     }
