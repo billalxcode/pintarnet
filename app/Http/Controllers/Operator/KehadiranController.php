@@ -7,6 +7,9 @@ use App\Models\Kehadiran;
 use App\Http\Requests\StoreKehadiranRequest;
 use App\Http\Requests\UpdateKehadiranRequest;
 use Carbon\Carbon;
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class KehadiranController extends Controller
 {
@@ -19,6 +22,35 @@ class KehadiranController extends Controller
         
         return view('operator.kehadiran.home', [
             'data_kehadiran' => $data_kehadirans
+        ]);
+    }
+
+    public function rekap(Request $request) {
+        $qfilter = $request->query('filter');
+        $qjsonvalue = $request->query('value');
+
+        $data = Kehadiran::all();
+        if ($qfilter == "created_at") {
+            try {
+                $value = json_decode($qjsonvalue);
+                if (Arr::exists($value, 'k') && Arr::exists($value, 'v')) {
+                    $k = $value['k'];
+                    $v = $value['v'];
+                    
+                    if ($k == "created_at") {
+                        $data = Kehadiran::where('created_at', $v)->get();
+                    } else if ($k == "ruangan") {
+                        $data = Kehadiran::where('ruangan_id', $v)->get();
+                    }
+                } else {
+                    return redirect()->route('operator.kehadiran.home')->with('error', 'Maaf kamu kueri kamu salah.');
+                }
+            } catch (Exception $e) {
+                return redirect()->route('operator.kehadiran.home')->with('error', 'Maaf kamu kueri kamu salah.');
+            }
+        }
+        return view('operator.kehadiran.rekap', [
+            'data_rekap' => $data
         ]);
     }
 

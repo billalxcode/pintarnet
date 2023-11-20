@@ -111,9 +111,9 @@
                                                                     <label for="wali">Wali Kelas</label>
                                                                     <select name="wali" id="wali" class="form-control">
                                                                         @forelse($pendidiks as $pendidik)
-                                                                            <option value="{{ $pendidik->id }}">{{ $pendidik->nama }}</option>
+                                                                        <option value="{{ $pendidik->id }}">{{ $pendidik->nama }}</option>
                                                                         @empty
-                                                                            <option disabled>Data tenaga pendidik kosong</option>
+                                                                        <option disabled>Data tenaga pendidik kosong</option>
                                                                         @endforelse
                                                                     </select>
                                                                 </div>

@@ -60,6 +60,7 @@ Route::group(['prefix' => 'operator', 'as' => 'operator.', 'middleware' => ['aut
     Route::group(['prefix' => 'kehadiran', 'as' => 'kehadiran.'], function () {
         Route::get('', [KehadiranController::class, 'index'])->name('home');
         Route::put('update/{dataId}', [KehadiranController::class, 'update'])->name('update');
+        Route::get('rekap', [KehadiranController::class, 'rekap'])->name('rekap');
     });
 
     Route::group(['prefix' => 'users', 'as' => 'user.'], function () {
