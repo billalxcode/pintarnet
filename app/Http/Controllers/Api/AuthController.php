@@ -14,11 +14,12 @@ class AuthController extends Controller
     public function login(LoginRequest $loginRequest) {
         $credentials = $loginRequest->validated();
 
-        $logged = Auth::attempt($credentials);
+        $logged = Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']], $credentials['remember']);
         if (!$logged) {
             throw new ResponseError("incorrect email or password");
         }
 
+        $loginRequest->user()->tokens()->delete();
         $token = $loginRequest->user()->createToken('api');
         throw new ResponseSuccess('successfully login', ['access_token' => $token->accessToken, 'expires_at' => $token->token->expires_at]);
     }

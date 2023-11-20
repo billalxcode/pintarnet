@@ -14,7 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
         $this->call([
             RolePermission::class,
         ]);
@@ -27,6 +26,7 @@ class DatabaseSeeder extends Seeder
 
         if (config('app.debug') == true) {
             $this->command->call('app:master-import');
+            $this->command->call('passport:install');
         }
     }
 }

@@ -1,20 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Operator;
+namespace App\Http\Controllers\Api\Ruangan;
 
 use App\Http\Controllers\Controller;
-use App\Models\JadwalPelajaran;
-use App\Http\Requests\StoreJadwalPelajaranRequest;
-use App\Http\Requests\UpdateJadwalPelajaranRequest;
+use App\Models\Siswa;
+use Illuminate\Http\Request;
 
-class JadwalPelajaranController extends Controller
+class SiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $user = auth()->user();
+
+        $siswas = $user->ruangan->siswa;
+
+        return response()->json([
+            'data' => $siswas
+        ]);
     }
 
     /**
@@ -28,7 +33,7 @@ class JadwalPelajaranController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreJadwalPelajaranRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -36,15 +41,19 @@ class JadwalPelajaranController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(JadwalPelajaran $jadwalPelajaran)
+    public function show(string $id)
     {
-        //
+        $siswa = Siswa::findOrFail($id);
+
+        return response()->json([
+            'data' => $siswa
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(JadwalPelajaran $jadwalPelajaran)
+    public function edit(string $id)
     {
         //
     }
@@ -52,7 +61,7 @@ class JadwalPelajaranController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateJadwalPelajaranRequest $request, JadwalPelajaran $jadwalPelajaran)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -60,7 +69,7 @@ class JadwalPelajaranController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(JadwalPelajaran $jadwalPelajaran)
+    public function destroy(string $id)
     {
         //
     }
